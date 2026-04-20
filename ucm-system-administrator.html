@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — System Administrator I · UCM Office of Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson: #C8102E;
+  --crimson-d: #a50d25;
+  --navy: #1a2740;
+  --text: #1a1f2e;
+  --muted: #5a6478;
+  --rule: #dde2ea;
+  --bg: #f6f8fc;
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+header { background:var(--crimson); padding:56px 10% 48px; position:relative; overflow:hidden; }
+header::before { content:''; position:absolute; top:-80px; right:-80px; width:400px; height:400px; background:radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 65%); border-radius:50%; }
+header::after { content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:linear-gradient(90deg, rgba(255,255,255,0.4) 0%, transparent 60%); }
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.65); font-weight:400; font-size:0.75em; display:block; margin-top:6px; }
+.h-tagline { font-size:15px; font-weight:400; color:rgba(255,255,255,0.7); max-width:580px; line-height:1.6; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.9); }
+.impact-bar { background:var(--navy); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:140px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.07); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:var(--crimson); line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.55); margin-top:5px; font-weight:500; }
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--crimson); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:600px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+.retention-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.ret-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.ret-num { font-size:32px; font-weight:800; color:var(--crimson); line-height:1; }
+.ret-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; font-weight:500; }
+.ret-card.highlight { background:var(--crimson); border-color:var(--crimson); }
+.ret-card.highlight .ret-num { color:#fff; }
+.ret-card.highlight .ret-label { color:rgba(255,255,255,0.75); }
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--crimson); color:rgba(255,255,255,0.85); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--crimson); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg,var(--crimson),#e84560); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--crimson); width:8%; text-align:right; }
+.plan-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--navy); }
+.plan-head.p2 { background:#1a4a7a; }
+.plan-head.p3 { background:var(--crimson); }
+.plan-head.p4 { background:#2d2d2d; }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:14px; font-weight:800; color:#fff; line-height:1.2; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.kpi-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.kpi-table thead tr { background:var(--navy); }
+.kpi-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.kpi-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); }
+.kpi-table tr:nth-child(even) td { background:var(--bg); }
+.kpi-baseline { color:var(--muted); }
+.kpi-target { font-weight:700; color:var(--crimson); }
+footer { background:#2d2d2d; padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--crimson); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.75); }
+@media(max-width:768px) { section { padding:44px 6%; } header { padding:44px 6% 40px; } .context-strip, .retention-row { grid-template-columns:1fr 1fr; } .ps-grid { grid-template-columns:1fr; } .plan-grid { grid-template-columns:1fr 1fr; } .sk-bar-wrap, .sk-proof { display:none; } footer { flex-direction:column; padding:40px 6%; } .ib-item { min-width:50%; } }
+</style>
+</head>
+<body>
+
+<!-- ===== SECTION 1: HEADER ===== -->
+<header>
+  <div class="h-eyebrow">System Administrator I &middot; Office of Technology &middot; University of Central Missouri</div>
+  <h1>Raghav Patidar
+    <span>UCM Alumnus &middot; MS Computer Information Systems, 2025</span>
+  </h1>
+  <p class="h-tagline">Built to protect the infrastructure that 12,000 students and hundreds of faculty depend on every day — and already familiar with it from two years at UCM completing an MS in Computer Information Systems.</p>
+  <div class="h-meta">
+    <div>
+      <div class="h-meta-label">Experience</div>
+      <div class="h-meta-value">5+ Years (Infosys)</div>
+    </div>
+    <div>
+      <div class="h-meta-label">Education</div>
+      <div class="h-meta-value">MS Computer Information Systems, UCM</div>
+    </div>
+    <div>
+      <div class="h-meta-label">Department</div>
+      <div class="h-meta-value">Office of Technology, UCM</div>
+    </div>
+    <div>
+      <div class="h-meta-label">Core Tools</div>
+      <div class="h-meta-value">Linux &middot; Python &middot; AWS &middot; LDAP &middot; Airflow</div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SECTION 2: IMPACT BAR ===== -->
+<div class="impact-bar">
+  <div class="ib-item">
+    <div class="ib-num">99%</div>
+    <div class="ib-label">System Uptime Maintained</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">85%</div>
+    <div class="ib-label">Incident Reduction via Automation</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">100%</div>
+    <div class="ib-label">Audit Compliance Achieved</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">200+</div>
+    <div class="ib-label">Hours/Year Saved via Scripting</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">40%</div>
+    <div class="ib-label">Onboarding Time Reduction</div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ===== SECTION 3: CONTEXT (01) ===== -->
+<section class="alt">
+  <div class="sec-label">01 &mdash; Context</div>
+  <div class="sec-title">UCM Office of Technology's Environment</div>
+  <div class="sec-desc">The infrastructure that powers UCM serves over 12,000 enrolled students, hundreds of faculty, and administrative systems that must meet FERPA compliance, 24/7 uptime expectations, and enterprise-grade security standards.</div>
+
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Institution</div>
+      <div class="cs-value">University of Central Missouri</div>
+      <div class="cs-sub">~12,000 enrolled students</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Infrastructure</div>
+      <div class="cs-value">Enterprise Linux/Windows Servers</div>
+      <div class="cs-sub">LDAP/ADS, campus network, hybrid cloud</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Compliance</div>
+      <div class="cs-value">FERPA, PII Controls, Security Audits</div>
+      <div class="cs-sub">Role-based access, audit logging</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">OT Mandate</div>
+      <div class="cs-value">99.9% Uptime, Secure Campus Network</div>
+      <div class="cs-sub">Faculty and student IT reliability</div>
+    </div>
+  </div>
+
+  <div class="retention-row">
+    <div class="ret-card highlight">
+      <div class="ret-num">12,000+</div>
+      <div class="ret-label">Students depending on IT infrastructure</div>
+    </div>
+    <div class="ret-card">
+      <div class="ret-num">500+</div>
+      <div class="ret-label">Faculty and staff systems to maintain</div>
+    </div>
+    <div class="ret-card">
+      <div class="ret-num">100%</div>
+      <div class="ret-label">Compliance required (FERPA/audit)</div>
+    </div>
+    <div class="ret-card">
+      <div class="ret-num">24/7</div>
+      <div class="ret-label">Uptime expectation for campus systems</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 4: CHALLENGES & RESPONSE (02) ===== -->
+<section>
+  <div class="sec-label">02 &mdash; Challenges &amp; Response</div>
+  <div class="sec-title">Problems Encountered. Fixes Deployed.</div>
+  <div class="sec-desc">Each challenge maps directly to a JD requirement for this role, drawn from production experience at Infosys managing enterprise Linux and AWS environments.</div>
+
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">1</div>
+        <div>
+          <strong>Manual server monitoring with no automated alerting</strong>
+          <p>Production servers had no proactive incident detection. Issues surfaced only after user impact.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">2</div>
+        <div>
+          <strong>Access control gaps and inconsistent RBAC across systems</strong>
+          <p>Users held excess permissions across multiple systems; no unified PII audit trail existed.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">3</div>
+        <div>
+          <strong>Slow backup validation and no DR testing cadence</strong>
+          <p>Backups were created but restore procedures were untested, creating unquantified recovery risk.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">4</div>
+        <div>
+          <strong>Poor technical documentation, long onboarding for new engineers</strong>
+          <p>No standardized runbooks. Every new team member required weeks of tribal knowledge transfer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">Response</div>
+      <div class="ps-row">
+        <div class="ps-num">1</div>
+        <div>
+          <strong>Python + CloudWatch automated alerting pipeline</strong>
+          <p>Built threshold-based alerting on server metrics. Result: 85% reduction in production incidents reaching users.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">2</div>
+        <div>
+          <strong>RBAC framework with PII controls and audit logging</strong>
+          <p>Implemented role-based access tiers and automated audit logging across all layers. Result: 100% compliance on audit review.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">3</div>
+        <div>
+          <strong>Airflow-scheduled backup validation and restore drills</strong>
+          <p>Automated restore testing cadence with S3 versioned snapshots. Result: 99% uptime SLA maintained across all critical systems.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">4</div>
+        <div>
+          <strong>Confluence runbooks and technical SOPs</strong>
+          <p>Authored 15+ standardized runbooks covering top server types and incident procedures. Result: 40% reduction in onboarding time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 5: SKILLS ALIGNMENT (03) ===== -->
+<section class="alt">
+  <div class="sec-label">03 &mdash; Skills Alignment</div>
+  <div class="sec-title">JD Requirements Mapped to Demonstrated Work</div>
+  <div class="sec-desc">Every requirement in the System Administrator I job description maps directly to production experience. Proficiency ratings reflect real workload depth, not self-assessment alone.</div>
+
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">Linux Server Administration</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:90%"></div></div></td>
+      <td class="sk-pct">90%</td>
+      <td class="sk-proof">AWS EC2/EMR Linux environments across 10+ production servers at Infosys</td>
+    </tr>
+    <tr>
+      <td class="sk-name">OS Monitoring &amp; Patch Management</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-pct">92%</td>
+      <td class="sk-proof">Automated alerting reduced incidents 85%; patch validation scripted in Python</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Firewall &amp; Network Security</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:85%"></div></div></td>
+      <td class="sk-pct">85%</td>
+      <td class="sk-proof">AWS VPC security groups, ACLs, enterprise access policy enforcement</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Backup &amp; Recovery Procedures</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-pct">92%</td>
+      <td class="sk-proof">Airflow + S3 restore drills maintained 99% system uptime SLA</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Python &amp; Shell Scripting</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-pct">94%</td>
+      <td class="sk-proof">200+ hrs/year saved via environment provisioning and log automation</td>
+    </tr>
+    <tr>
+      <td class="sk-name">RBAC &amp; Authentication (LDAP/ADS)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:88%"></div></div></td>
+      <td class="sk-pct">88%</td>
+      <td class="sk-proof">PII controls and audit logging achieved 100% compliance across all access layers</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Technical Documentation</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-pct">92%</td>
+      <td class="sk-proof">15+ runbooks authored in Confluence; 40% reduction in engineer onboarding time</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 6: 90-DAY PLAN (04) ===== -->
+<section>
+  <div class="sec-label">04 &mdash; 90-Day Plan</div>
+  <div class="sec-title">From Day One to Sustained Reliability</div>
+  <div class="sec-desc">A concrete, phased plan for entering the OT environment, stabilizing known risk areas, and building the automation foundation for long-term campus infrastructure health.</div>
+
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Discovery</div>
+        <div class="plan-dates">Days 1&ndash;30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Map server inventory</strong> across Linux and Windows environments</div>
+        <div class="plan-item"><strong>Audit LDAP/ADS</strong> access tiers and group memberships</div>
+        <div class="plan-item"><strong>Document network topology</strong> and identify unmonitored systems</div>
+        <div class="plan-item"><strong>Interview OT team</strong> to surface undocumented tribal knowledge</div>
+        <div class="plan-output"><span>Deliverable</span>Audit report to OT leadership with priority risk list</div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Stabilization</div>
+        <div class="plan-dates">Days 31&ndash;60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Clear patch backlog</strong> on all critical servers</div>
+        <div class="plan-item"><strong>Audit firewall rules</strong> and remove stale access entries</div>
+        <div class="plan-item"><strong>Validate backups</strong> with tested restore procedures for all critical systems</div>
+        <div class="plan-item"><strong>Remediate RBAC gaps</strong> identified in Phase 1 audit</div>
+        <div class="plan-output"><span>Deliverable</span>All critical servers at patch baseline; backup coverage confirmed</div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Automation</div>
+        <div class="plan-dates">Days 61&ndash;90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Deploy Python monitoring scripts</strong> with CloudWatch-style alerting</div>
+        <div class="plan-item"><strong>Automate patch reporting</strong> via scheduled shell scripts</div>
+        <div class="plan-item"><strong>Author Confluence runbooks</strong> for top 10 server types</div>
+        <div class="plan-item"><strong>Onboard team</strong> to new alerting and documentation standards</div>
+        <div class="plan-output"><span>Deliverable</span>Automated alerting live; Confluence runbook v1 published</div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-head p4">
+        <div class="plan-phase">Phase 4</div>
+        <div class="plan-title">Reliability</div>
+        <div class="plan-dates">90 Days+</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Establish DR testing cadence</strong> with scheduled restore drills</div>
+        <div class="plan-item"><strong>LDAP/ADS RLS audit</strong> on a quarterly review cycle</div>
+        <div class="plan-item"><strong>Zero-downtime deployment patterns</strong> for future server changes</div>
+        <div class="plan-item"><strong>Contribute to OT capacity planning</strong> for next academic year</div>
+        <div class="plan-output"><span>Target</span>99.9% uptime maintained every quarter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 7: FOOTER ===== -->
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>System Administrator I &middot; Office of Technology &middot; UCM</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="footer-right btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" class="footer-right btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div>
+      <div class="fc-label">Phone</div>
+      <div class="fc-val">913-218-6727</div>
+    </div>
+    <div>
+      <div class="fc-label">Email</div>
+      <div class="fc-val">raghavpatidar997@gmail.com</div>
+    </div>
+    <div>
+      <div class="fc-label">Location</div>
+      <div class="fc-val">Warrensburg, MO</div>
+    </div>
+    <div>
+      <div class="fc-label">Education</div>
+      <div class="fc-val">MS Computer Information Systems, UCM 2025</div>
+    </div>
+    <div>
+      <div class="fc-label">LinkedIn</div>
+      <div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
