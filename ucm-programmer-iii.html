@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Programmer III, UCM Office of Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson: #C8102E;
+  --crimson-d: #a50d25;
+  --navy: #1a2740;
+  --text: #1a1f2e;
+  --muted: #5a6478;
+  --rule: #dde2ea;
+  --bg: #f6f8fc;
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+header { background:var(--crimson); padding:56px 10% 48px; position:relative; overflow:hidden; }
+header::before { content:''; position:absolute; top:-80px; right:-80px; width:400px; height:400px; background:radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 65%); border-radius:50%; }
+header::after { content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:linear-gradient(90deg, rgba(255,255,255,0.4) 0%, transparent 60%); }
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.65); font-weight:400; font-size:0.75em; display:block; margin-top:6px; }
+.h-tagline { font-size:15px; font-weight:400; color:rgba(255,255,255,0.7); max-width:520px; line-height:1.6; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.9); }
+.impact-bar { background:var(--navy); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:140px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.07); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:var(--crimson); line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.55); margin-top:5px; font-weight:500; }
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--crimson); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:600px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); margin:0; }
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+.retention-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.ret-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.ret-num { font-size:32px; font-weight:800; color:var(--crimson); line-height:1; }
+.ret-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; font-weight:500; }
+.ret-card.highlight { background:var(--crimson); border-color:var(--crimson); }
+.ret-card.highlight .ret-num { color:#fff; }
+.ret-card.highlight .ret-label { color:rgba(255,255,255,0.75); }
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--crimson); color:rgba(255,255,255,0.85); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--crimson); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg,var(--crimson),#e84560); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--crimson); width:8%; text-align:right; }
+.plan-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--navy); }
+.plan-head.p2 { background:#1a4a7a; }
+.plan-head.p3 { background:var(--crimson); }
+.plan-head.p4 { background:#2d2d2d; }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:14px; font-weight:800; color:#fff; line-height:1.2; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.kpi-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.kpi-table thead tr { background:var(--navy); }
+.kpi-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.kpi-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); }
+.kpi-table tr:nth-child(even) td { background:var(--bg); }
+.kpi-baseline { color:var(--muted); }
+.kpi-target { font-weight:700; color:var(--crimson); }
+footer { background:#2d2d2d; padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--crimson); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.75); }
+@media(max-width:768px) { section { padding:44px 6%; } header { padding:44px 6% 40px; } .context-strip, .retention-row { grid-template-columns:1fr 1fr; } .ps-grid { grid-template-columns:1fr; } .plan-grid { grid-template-columns:1fr 1fr; } .sk-bar-wrap, .sk-proof { display:none; } footer { flex-direction:column; padding:40px 6%; } .ib-item { min-width:50%; } }
+</style>
+</head>
+<body>
+
+<!-- ===== SECTION 1: HEADER ===== -->
+<header>
+  <div class="h-eyebrow">Programmer III &middot; Office of Technology &middot; University of Central Missouri</div>
+  <h1>Raghav Patidar<span>UCM Alumnus &middot; MS Computer Information Systems, 2025</span></h1>
+  <p class="h-tagline">Two years at UCM as a graduate student, watching enrollment systems, financial aid workflows, and HR records in daily use. Now applying to write and maintain the programs that make all of it run reliably for 12,000 students and hundreds of staff.</p>
+  <div class="h-meta">
+    <div class="h-meta-item">
+      <span class="h-meta-label">Experience</span>
+      <span class="h-meta-value">5+ Years</span>
+    </div>
+    <div class="h-meta-item">
+      <span class="h-meta-label">Education</span>
+      <span class="h-meta-value">MS CIS, UCM 2025</span>
+    </div>
+    <div class="h-meta-item">
+      <span class="h-meta-label">Department</span>
+      <span class="h-meta-value">Office of Technology</span>
+    </div>
+    <div class="h-meta-item">
+      <span class="h-meta-label">Core Languages</span>
+      <span class="h-meta-value">SQL / PL/SQL &middot; Python &middot; Java &middot; XML/JSON</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== IMPACT BAR ===== -->
+<div class="impact-bar">
+  <div class="ib-item">
+    <div class="ib-num">95%</div>
+    <div class="ib-label">ML Model Accuracy<br>(Innovation Award)</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">15+</div>
+    <div class="ib-label">Production Programs<br>Built &amp; Documented</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">40%</div>
+    <div class="ib-label">Query Latency<br>Reduction</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">200+</div>
+    <div class="ib-label">Hours/Year<br>Automated</div>
+  </div>
+  <div class="ib-item">
+    <div class="ib-num">85%</div>
+    <div class="ib-label">Bad-Data Incident<br>Reduction</div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ===== SECTION 3: CONTEXT ===== -->
+<section>
+  <div class="sec-label">01 &mdash; Context</div>
+  <div class="sec-title">UCM Office of Technology's Programming Environment</div>
+  <div class="sec-desc">OT builds and maintains the administrative applications that the entire university depends on. Reliability, maintainability, and data integrity are non-negotiable when Banner, Workday, and custom programs collectively serve every student, faculty member, and staff employee on campus.</div>
+
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Institution</div>
+      <div class="cs-value">University of Central Missouri</div>
+      <div class="cs-sub">~12,000 enrolled students</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Core Systems</div>
+      <div class="cs-value">Banner &middot; Workday</div>
+      <div class="cs-sub">Custom administrative applications</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Compliance</div>
+      <div class="cs-value">FERPA &middot; PII Controls</div>
+      <div class="cs-sub">Data integrity across all administrative records</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">OT Mandate</div>
+      <div class="cs-value">Reliable, Maintainable Programs</div>
+      <div class="cs-sub">Campus depends on them daily</div>
+    </div>
+  </div>
+
+  <div class="retention-row">
+    <div class="ret-card highlight">
+      <div class="ret-num">12,000+</div>
+      <div class="ret-label">Students on systems OT maintains</div>
+    </div>
+    <div class="ret-card">
+      <div class="ret-num">500+</div>
+      <div class="ret-label">Faculty and staff users</div>
+    </div>
+    <div class="ret-card">
+      <div class="ret-num">100%</div>
+      <div class="ret-label">Data integrity required (FERPA)</div>
+    </div>
+    <div class="ret-card">
+      <div class="ret-num">Multi</div>
+      <div class="ret-label">ERP environment: Banner + Workday</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 4: CHALLENGES & RESPONSE ===== -->
+<section class="alt">
+  <div class="sec-label">02 &mdash; Challenges &amp; Response</div>
+  <div class="sec-title">Problems Solved, Methods Applied</div>
+  <div class="sec-desc">Four representative challenges from prior work that map directly to what a Programmer III at OT will face.</div>
+
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">1</div>
+        <div>
+          <strong>Manual business process workflows, no automation</strong>
+          <p>Repetitive data pulls and file processing consumed analyst time daily across Finance and Sales teams with no programmatic alternative.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">2</div>
+        <div>
+          <strong>Slow, unoptimized SQL queries degrading report performance</strong>
+          <p>Ad-hoc queries on large transactional tables ran for minutes, blocking report delivery and analyst productivity.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">3</div>
+        <div>
+          <strong>No structured program documentation, inconsistent code standards</strong>
+          <p>Delivered programs had no data dictionaries, no design specs, and no regression tests. Maintenance required tribal knowledge.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">4</div>
+        <div>
+          <strong>Ad-hoc reporting load overwhelming analysts</strong>
+          <p>One-off report requests consumed engineering time that should have gone to new development, with no self-service alternative available.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">Response</div>
+      <div class="ps-row">
+        <div class="ps-num">1</div>
+        <div>
+          <strong>Python + SQL automation framework</strong>
+          <p>Built scripted workflows for data ingestion, file processing, and environment configuration. Recovered 200+ hours per year across impacted teams.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">2</div>
+        <div>
+          <strong>PL/SQL Stored Procedures + query optimization</strong>
+          <p>Rewrote critical queries as parameterized stored procedures with indexed execution plans. Achieved 40% latency reduction across core report queries.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">3</div>
+        <div>
+          <strong>Full technical documentation suite on all 15+ deliverables</strong>
+          <p>Produced design documents, data dictionaries, UAT scripts, and version change logs for every program shipped. Zero undocumented production code.</p>
+        </div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">4</div>
+        <div>
+          <strong>Power BI self-service report templates + parameterized queries</strong>
+          <p>Designed reusable report templates with DAX measures and dynamic filters, enabling analysts to self-serve standard requests. Reduced ad-hoc load by 30%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 5: SKILLS ALIGNMENT ===== -->
+<section>
+  <div class="sec-label">03 &mdash; Skills Alignment</div>
+  <div class="sec-title">JD Requirements vs. Demonstrated Experience</div>
+  <div class="sec-desc">Mapping the Programmer III job description to direct evidence from Infosys production work and two years at UCM as a graduate student.</div>
+
+  <table class="skills-table">
+    <thead>
+      <tr>
+        <td class="sk-name" style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding-bottom:12px;">JD Requirement</td>
+        <td class="sk-bar-wrap" style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding-bottom:12px;padding-left:20px;">Match</td>
+        <td class="sk-proof" style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding-bottom:12px;">Proof</td>
+        <td class="sk-pct" style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding-bottom:12px;">%</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="sk-name">SQL &amp; PL/SQL Programming</td>
+        <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:96%"></div></div></td>
+        <td class="sk-proof">Stored Procedures, Views, 40% query latency reduction at Infosys</td>
+        <td class="sk-pct">96%</td>
+      </tr>
+      <tr>
+        <td class="sk-name">Python Scripting &amp; Automation</td>
+        <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+        <td class="sk-proof">200+ hrs/year saved across data ingestion, file processing, env config</td>
+        <td class="sk-pct">94%</td>
+      </tr>
+      <tr>
+        <td class="sk-name">XML &amp; JSON Data Processing</td>
+        <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:90%"></div></div></td>
+        <td class="sk-proof">ETL pipelines across 12+ enterprise source systems in XML/JSON formats</td>
+        <td class="sk-pct">90%</td>
+      </tr>
+      <tr>
+        <td class="sk-name">Report Layout Design (Power BI)</td>
+        <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+        <td class="sk-proof">15+ Power BI dashboards with DAX measures, KPI standardization</td>
+        <td class="sk-pct">92%</td>
+      </tr>
+      <tr>
+        <td class="sk-name">User Requirements Gathering</td>
+        <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:90%"></div></div></td>
+        <td class="sk-proof">95% stakeholder satisfaction across 4 concurrent Infosys workstreams</td>
+        <td class="sk-pct">90%</td>
+      </tr>
+      <tr>
+        <td class="sk-name">Technical Documentation</td>
+        <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+        <td class="sk-proof">15+ program docs, data dictionaries, UAT scripts on all deliverables</td>
+        <td class="sk-pct">92%</td>
+      </tr>
+      <tr>
+        <td class="sk-name">University Systems Familiarity</td>
+        <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:88%"></div></div></td>
+        <td class="sk-proof">MS CIS graduate at UCM — studied university information systems, Banner, FERPA constraints firsthand</td>
+        <td class="sk-pct">88%</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 6: 90-DAY PLAN ===== -->
+<section class="alt">
+  <div class="sec-label">04 &mdash; 90-Day Plan</div>
+  <div class="sec-title">Ramp, Quick Wins, First Delivery, Platform</div>
+  <div class="sec-desc">A concrete plan for contributing immediately and building toward sustainable impact inside OT's programming environment.</div>
+
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Onboarding</div>
+        <div class="plan-dates">Days 1 &ndash; 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Learn existing codebase</strong> and understand Banner/Workday integration points</div>
+        <div class="plan-item"><strong>Audit program inventory</strong> and identify documentation gaps in current catalog</div>
+        <div class="plan-item"><strong>Meet functional owners</strong> in Finance, HR, Enrollment to understand their top pain points</div>
+        <div class="plan-output"><span>Deliverable</span>Gap assessment report to OT leadership</div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Quick Wins</div>
+        <div class="plan-dates">Days 31 &ndash; 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Fix highest-impact SQL performance issues</strong> identified in gap assessment</div>
+        <div class="plan-item"><strong>Document top 5 undocumented programs</strong> with full data dictionaries and change logs</div>
+        <div class="plan-item"><strong>Automate one recurring manual process</strong> using Python and parameterized queries</div>
+        <div class="plan-output"><span>Deliverable</span>2+ automation wins delivered and in production</div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">New Development</div>
+        <div class="plan-dates">Days 61 &ndash; 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Deliver first net-new program</strong> from requirements through UAT to production</div>
+        <div class="plan-item"><strong>Establish code review standard</strong> and documentation template for the team</div>
+        <div class="plan-item"><strong>Present learnings</strong> on integration patterns observed across Banner/Workday layers</div>
+        <div class="plan-output"><span>Deliverable</span>Program in production with full documentation</div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-head p4">
+        <div class="plan-phase">Phase 4</div>
+        <div class="plan-title">Platform</div>
+        <div class="plan-dates">90 Days+</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Self-service report templates</strong> for the most common campus reporting requests</div>
+        <div class="plan-item"><strong>Python automation framework</strong> for recurring data workflows across departments</div>
+        <div class="plan-item"><strong>Program documentation library</strong> complete and maintained for all active production code</div>
+        <div class="plan-output"><span>Target</span>30% reduction in ad-hoc programming requests</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===== SECTION 7: FOOTER ===== -->
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Programmer III &middot; Office of Technology &middot; UCM</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="footer-right a btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="footer-right a btn-ghost">LinkedIn</a>
+  </div>
+  <div class="footer-contacts">
+    <div>
+      <div class="fc-label">Phone</div>
+      <div class="fc-val">913-218-6727</div>
+    </div>
+    <div>
+      <div class="fc-label">Email</div>
+      <div class="fc-val">raghavpatidar997@gmail.com</div>
+    </div>
+    <div>
+      <div class="fc-label">Location</div>
+      <div class="fc-val">Warrensburg, MO</div>
+    </div>
+    <div>
+      <div class="fc-label">LinkedIn</div>
+      <div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
