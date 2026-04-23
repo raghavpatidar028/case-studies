@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Data Analyst | HAVI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --havi-navy:   #003D6B;
+  --havi-mid:    #0066A1;
+  --havi-orange: #F47920;
+  --havi-amber:  #E8690F;
+  --text:        #1a1f2e;
+  --muted:       #5a6478;
+  --rule:        #dde2ea;
+  --bg:          #f6f8fc;
+  --white:       #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+
+/* HEADER */
+header {
+  background:var(--havi-navy);
+  padding:56px 10% 48px;
+  position:relative; overflow:hidden;
+}
+header::before {
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:400px; height:400px;
+  background:radial-gradient(circle, rgba(244,121,32,0.15) 0%, transparent 65%);
+  border-radius:50%;
+}
+header::after {
+  content:''; position:absolute; left:0; bottom:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--havi-orange) 0%, transparent 55%);
+}
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.5); font-weight:400; font-size:0.72em; display:block; margin-top:8px; }
+.h-tagline { font-size:15px; color:rgba(255,255,255,0.6); max-width:560px; line-height:1.65; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.33); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.88); }
+
+/* IMPACT BAR */
+.impact-bar { background:var(--havi-orange); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:130px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.2); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:#fff; line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.75); margin-top:5px; }
+
+/* SECTIONS */
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--havi-orange); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--havi-navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:640px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); }
+
+/* CONTEXT STRIP */
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--havi-navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+/* STAT ROW */
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.stat-num { font-size:26px; font-weight:800; color:var(--havi-navy); line-height:1; }
+.stat-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+.stat-card.hl { background:var(--havi-navy); border-color:var(--havi-navy); }
+.stat-card.hl .stat-num { color:#fff; font-size:18px; padding-top:4px; }
+.stat-card.hl .stat-label { color:rgba(255,255,255,0.6); }
+
+/* PROBLEM / SOLUTION */
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--havi-navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--havi-orange); color:rgba(255,255,255,0.95); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--havi-orange); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--havi-navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--havi-navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+/* JD TABLE */
+.jd-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.jd-table thead tr { background:var(--havi-navy); }
+.jd-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.jd-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); vertical-align:top; }
+.jd-table tr:nth-child(even) td { background:var(--bg); }
+.jd-proof { color:var(--muted); font-size:12px; line-height:1.45; }
+.badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:10px; font-weight:700; text-transform:uppercase; }
+.badge-full { background:rgba(244,121,32,0.12); color:var(--havi-amber); }
+.badge-strong { background:rgba(0,61,107,0.1); color:var(--havi-navy); }
+
+/* SKILLS TABLE */
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--havi-navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg, var(--havi-navy), var(--havi-orange)); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--havi-orange); width:8%; text-align:right; }
+
+/* 90-DAY PLAN */
+.plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--havi-navy); }
+.plan-head.p2 { background:var(--havi-mid); }
+.plan-head.p3 { background:var(--havi-orange); }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:15px; font-weight:800; color:#fff; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--havi-navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+
+/* FOOTER */
+footer { background:var(--havi-navy); padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--havi-orange); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); }
+
+@media(max-width:768px){
+  section { padding:44px 6%; }
+  header { padding:44px 6% 40px; }
+  .context-strip, .stat-row { grid-template-columns:1fr 1fr; }
+  .ps-grid, .plan-grid { grid-template-columns:1fr; }
+  .sk-bar-wrap, .sk-proof { display:none; }
+  footer { flex-direction:column; padding:40px 6%; }
+  .ib-item { min-width:50%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="h-eyebrow">Data Analyst &nbsp;·&nbsp; HAVI &nbsp;·&nbsp; Supply Chain Analytics &nbsp;·&nbsp; Chicago, IL</div>
+  <h1>Raghav Patidar<span>Supply chain analytics, Power BI dashboards, process improvement, and data-driven operations — built for HAVI's scale.</span></h1>
+  <p class="h-tagline">5+ years building the exact analytics HAVI delivers: supply chain KPI dashboards, demand forecasting, ETL pipelines, and process improvement through data. Here is precisely how that maps to this role.</p>
+  <div class="h-meta">
+    <div class="h-meta-item"><div class="h-meta-label">Experience</div><div class="h-meta-value">5+ Years Data Analytics</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Location</div><div class="h-meta-value">Chicago, IL — No Relocation</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Certifications</div><div class="h-meta-value">SCRUM · Project Management · Agile</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Core Stack</div><div class="h-meta-value">SQL · Python · R · Power BI · dbt · Airflow</div></div>
+  </div>
+</header>
+
+<!-- IMPACT BAR -->
+<div class="impact-bar">
+  <div class="ib-item"><div class="ib-num">95%</div><div class="ib-label">Demand Forecast Accuracy</div></div>
+  <div class="ib-item"><div class="ib-num">10TB+</div><div class="ib-label">Weekly ETL Throughput</div></div>
+  <div class="ib-item"><div class="ib-num">50+</div><div class="ib-label">Hours/Month Saved (Reporting)</div></div>
+  <div class="ib-item"><div class="ib-num">85%</div><div class="ib-label">Bad-Data Reduction</div></div>
+  <div class="ib-item"><div class="ib-num">22%</div><div class="ib-label">Cycle Time Cut via Process Improvement</div></div>
+</div>
+
+<!-- COMPANY CONTEXT -->
+<section>
+  <div class="sec-label">01 &nbsp;— &nbsp;Company Context</div>
+  <h2 class="sec-title">Understanding HAVI's Analytics Mandate</h2>
+  <p class="sec-desc">HAVI is a global supply chain solutions company — managing sourcing, logistics, and end-to-end supply chain operations for the world's most iconic food service brands. The Data Analyst role sits at the center of that mission: surfacing patterns in complex supply chain data, automating workflows, and building the Power BI dashboards that drive daily operational decisions.</p>
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Company</div>
+      <div class="cs-value">HAVI — Global Supply Chain Solutions</div>
+      <div class="cs-sub">Chicago HQ · 100+ countries · Food service focus</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Role Focus</div>
+      <div class="cs-value">Supply Chain Data Analysis &amp; Process Improvement</div>
+      <div class="cs-sub">Power BI dashboards · SQL/Python · Workflow automation</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Tech Stack</div>
+      <div class="cs-value">SQL · Python · R · Power BI · Azure · Databricks</div>
+      <div class="cs-sub">Statistical tools · Process mapping · EDI standards</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Preferred</div>
+      <div class="cs-value">Azure Ecosystem · Lean Six Sigma</div>
+      <div class="cs-sub">Supply chain traceability · Master/Product Config (SIM/PIM)</div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card hl">
+      <div class="stat-num">Supply Chain</div>
+      <div class="stat-label">Domain — HAVI's entire business; this is Raghav's primary analytics specialty</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3+yr</div>
+      <div class="stat-label">Required — Raghav brings 5+ years, 3.5 of them in supply chain analytics</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">MS Degree</div>
+      <div class="stat-label">Preferred — Raghav holds an MS in Computer Information Systems (UCM)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Chicago</div>
+      <div class="stat-label">Location — Raghav is already in Chicago; available for hybrid with zero ramp-up delay</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CHALLENGES / RESPONSE -->
+<section class="alt">
+  <div class="sec-label">02 &nbsp;— &nbsp;Challenges &amp; My Response</div>
+  <h2 class="sec-title">What HAVI Needs &nbsp;·&nbsp; What I Bring</h2>
+  <p class="sec-desc">The JD reveals four core operational challenges. Each one maps directly to work I've already done in a supply chain analytics context — not as a theoretical exercise, but in production, for enterprise clients.</p>
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">The Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Turning Large Datasets into Actionable Patterns</strong><p>Supply chain operations generate vast, heterogeneous data across sourcing, logistics, and inventory systems. The challenge is structuring it fast enough to be relevant to business decisions.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Automating Repetitive Data Workflows</strong><p>Manual reporting and data preparation eat analyst hours and introduce errors. Without automation, the team spends time moving data instead of analyzing it.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Power BI Dashboards That Drive Daily Decisions</strong><p>Leadership needs real-time visibility into supply chain KPIs — OTIF, fill rates, inventory levels — but dashboards only help if the underlying data is clean, fast, and trusted.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Process Improvement Backed by Data</strong><p>Identifying where to apply Lean and process improvement requires both quantitative analysis and the ability to communicate findings clearly to business stakeholders who don't live in spreadsheets.</p></div>
+      </div>
+    </div>
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">My Response</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Structured Data Analysis at Supply Chain Scale</strong><p>At Infosys, I analyzed inventory turnover, lead times, and supplier performance across 12+ enterprise data sources using SQL and Python. Identified stockout root causes and delivered insights that cut excess inventory by 25% and improved delivery timelines by 18%.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>ETL Automation and Workflow Elimination</strong><p>Architected 15+ production ETL pipelines (SQL, dbt, Oracle, Airflow) processing 10TB+/week. Automated data quality checks reduced bad data by 85% and refactored scripts cut execution time from 6 hours to 45 minutes.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Power BI Dashboards Built for Supply Chain KPIs</strong><p>Designed custom DAX-driven Power BI dashboards tracking OTIF, fill rate, and geopolitical risk across 12+ enterprise sources. Centralized reporting and cut manual effort by 50+ hours/month for operational leadership.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Lean Process Improvement with Statistical Backing</strong><p>Applied value stream mapping and Lean principles across 8+ departments at Infosys — used Python and R for statistical analysis to surface automation opportunities, reducing cycle times by 22% and delivering findings to executives via dashboards.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- JD COVERAGE -->
+<section>
+  <div class="sec-label">03 &nbsp;— &nbsp;JD Coverage</div>
+  <h2 class="sec-title">Every Responsibility &nbsp;&#8594;&nbsp; Direct Evidence</h2>
+  <p class="sec-desc">HAVI's Data Analyst requirements mapped one-to-one against verified, quantified outcomes from real supply chain analytics work.</p>
+  <table class="jd-table">
+    <thead>
+      <tr>
+        <th>JD Responsibility</th>
+        <th>My Evidence</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Identify data-driven opportunities with business leaders</strong></td>
+        <td class="jd-proof">Partnered with business leaders at Infosys to surface supply chain optimization opportunities — identified inventory turnover inefficiencies and customs clearance bottlenecks using SQL, reducing excess stock by 25% and shipment hold-ups by 35%.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Analyze and synthesize data into relevant reports</strong></td>
+        <td class="jd-proof">Built Power BI dashboards and statistical analysis pipelines (Python, R) delivering actionable supply chain reports to leadership — centralized 12+ data sources; reduced manual reporting by 50+ hours/month.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Structure large datasets to uncover patterns</strong></td>
+        <td class="jd-proof">Wrote and optimized complex SQL queries against Oracle and Snowflake data warehouses; applied clustering, regression, and anomaly detection in Python/R — improved query performance 40% and uncovered production quality patterns improving output by 17%.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Automate data workflows</strong></td>
+        <td class="jd-proof">Architected 15+ ETL pipelines using Airflow, dbt, and Oracle processing 10TB+/week. Python automation scripts saved 200+ hours/year; reduced recurring analysis effort by 20–65% across reporting pipelines.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Create impactful MS Power BI dashboards</strong></td>
+        <td class="jd-proof">Designed custom DAX measures and interactive Power BI dashboards tracking supply chain KPIs (OTIF, fill rate, geopolitical risk) for enterprise clients — enabled data-driven adjustments to operations and marketing spend.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Maintain data quality standards</strong></td>
+        <td class="jd-proof">Implemented automated data quality validation checks in Python — reduced bad data in production reports by 85%. Built audit-logging data lake zones ensuring 99.9% operational reliability and governance compliance.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Document current-state processes</strong></td>
+        <td class="jd-proof">Documented current data flows and supply chain processes across enterprise systems — created metadata lineage maps enabling data governance compliance and reducing data validation time by 30%.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Process improvement using Lean / process mapping</strong></td>
+        <td class="jd-proof">Applied value stream mapping and Lean principles across 8+ departments — identified workflow automation opportunities and implemented Python/SQL solutions cutting cycle times by 22%. Lean Six Sigma principles embedded in all process work.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Statistical analysis (R, Python, SPSS)</strong></td>
+        <td class="jd-proof">Conducted hypothesis testing, regression, clustering, and anomaly detection in Python and R across supply chain and customer datasets. Applied SPSS for customer segmentation delivering 18% campaign ROI improvement.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Azure ecosystem &amp; Databricks (preferred)</strong></td>
+        <td class="jd-proof">Worked with Azure ecosystem and have Databricks familiarity from cloud pipeline work. Primary experience in AWS (S3, Glue, Athena) and Snowflake; Azure ramp-up is minimal given overlapping paradigms.</td>
+        <td><span class="badge badge-strong">Strong</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- SKILLS -->
+<section class="alt">
+  <div class="sec-label">04 &nbsp;— &nbsp;Technical Alignment</div>
+  <h2 class="sec-title">Required Tools &nbsp;&#8594;&nbsp; Verified Proficiency</h2>
+  <p class="sec-desc">Every tool listed in HAVI's JD mapped to production-level experience with quantified proof.</p>
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">SQL — Advanced Query &amp; Optimization</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:97%"></div></div></td>
+      <td class="sk-proof">Advanced SQL across Oracle and Snowflake — 40% query performance improvement; 10TB+/week pipeline throughput</td>
+      <td class="sk-pct">97%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Python (Pandas, NumPy, Scikit-learn)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Python for ETL, ML models, statistical analysis, and automation — 95% demand forecast accuracy; 200+ hrs/yr saved</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">MS Power BI (DAX, Power Query)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Custom DAX dashboards for supply chain KPIs across 12+ sources — reduced manual reporting by 50+ hours/month</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">R &amp; Statistical Analysis</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-proof">R and SPSS for regression, clustering, hypothesis testing — improved campaign ROI 18%; anomaly detection in production</td>
+      <td class="sk-pct">92%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">ETL Pipeline Design (dbt, Airflow, Oracle)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">15+ production ETL pipelines — medallion architecture, data quality checks, 85% bad-data reduction</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Process Improvement &amp; Value Stream Mapping</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:91%"></div></div></td>
+      <td class="sk-proof">Lean/VSM across 8+ departments — workflow automation identified and implemented; 22% cycle time reduction</td>
+      <td class="sk-pct">91%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Supply Chain Analytics (OTIF, Fill Rate, Forecasting)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:96%"></div></div></td>
+      <td class="sk-proof">3.5 years supply chain analytics at Infosys — OTIF/fill rate dashboards, demand forecasting (XGBoost/ARIMA), inventory analytics</td>
+      <td class="sk-pct">96%</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- 90-DAY PLAN -->
+<section>
+  <div class="sec-label">05 &nbsp;— &nbsp;90-Day Plan</div>
+  <h2 class="sec-title">First 90 Days at HAVI</h2>
+  <p class="sec-desc">HAVI's supply chain data environment is complex and global. The first priority is understanding how data flows across HAVI's systems before proposing any improvements — then contributing fast with minimal hand-holding.</p>
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Learn &amp; Map</div>
+        <div class="plan-dates">Days 1 – 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Immerse in HAVI data architecture</strong> — understand source systems, data flows, and existing Power BI reports</div>
+        <div class="plan-item"><strong>Audit active dashboards</strong> — identify gaps in KPI coverage, stale data sources, and missing supply chain metrics</div>
+        <div class="plan-item"><strong>Shadow business leader workflows</strong> — understand how analysts currently interact with operations teams to surface needs</div>
+        <div class="plan-item"><strong>Document current-state processes</strong> — map data pipelines, reporting cadence, and manual handoffs for key workflows</div>
+        <div class="plan-output"><span>Deliverable</span>Current-state map of data flows + prioritized list of quick-win improvements</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Contribute &amp; Build</div>
+        <div class="plan-dates">Days 31 – 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Own first Power BI dashboard enhancement</strong> — add missing KPI, improve load time, or automate a manual refresh</div>
+        <div class="plan-item"><strong>Automate one manual reporting workflow</strong> — Python or SQL script replacing a recurring analyst task</div>
+        <div class="plan-item"><strong>Complete first end-to-end analysis</strong> — structured dataset, statistical findings, and written recommendations for a business leader</div>
+        <div class="plan-item"><strong>Apply process mapping to one workflow</strong> — identify bottleneck and quantify improvement opportunity with data</div>
+        <div class="plan-output"><span>Deliverable</span>Enhanced dashboard live + first analysis report delivered to stakeholder</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Drive Impact</div>
+        <div class="plan-dates">Days 61 – 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Lead a cross-functional analysis project</strong> — supply chain KPI deep-dive with findings presented to leadership</div>
+        <div class="plan-item"><strong>Propose and scope one process improvement initiative</strong> — business case backed by data, Lean framework applied</div>
+        <div class="plan-item"><strong>Expand automation coverage</strong> — identify 2–3 additional workflow targets; quantify time saved and error reduction</div>
+        <div class="plan-item"><strong>90-day retrospective</strong> — what I delivered, what I learned about HAVI's data environment, priorities for Q2</div>
+        <div class="plan-output"><span>Deliverable</span>Process improvement proposal + leadership analysis deck + automation roadmap</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Data Analyst &nbsp;·&nbsp; HAVI &nbsp;·&nbsp; Supply Chain Analytics &nbsp;·&nbsp; Chicago, IL</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div class="fc-item"><div class="fc-label">Phone</div><div class="fc-val">913-218-6727</div></div>
+    <div class="fc-item"><div class="fc-label">Email</div><div class="fc-val">raghavpatidar997@gmail.com</div></div>
+    <div class="fc-item"><div class="fc-label">LinkedIn</div><div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div></div>
+    <div class="fc-item"><div class="fc-label">Education</div><div class="fc-val">MS Computer Information Systems, University of Central Missouri</div></div>
+  </div>
+</footer>
+
+</body>
+</html>
