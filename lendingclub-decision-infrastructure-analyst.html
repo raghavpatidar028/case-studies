@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Decision Infrastructure Analyst | LendingClub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --lc-navy:   #0D2240;
+  --lc-mid:    #1B4F8A;
+  --lc-green:  #00A878;
+  --lc-teal:   #00C48C;
+  --text:      #1a1f2e;
+  --muted:     #5a6478;
+  --rule:      #dde2ea;
+  --bg:        #f5f8f6;
+  --white:     #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+
+/* HEADER */
+header {
+  background:var(--lc-navy);
+  padding:56px 10% 48px;
+  position:relative; overflow:hidden;
+}
+header::before {
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:420px; height:420px;
+  background:radial-gradient(circle, rgba(0,168,120,0.18) 0%, transparent 65%);
+  border-radius:50%;
+}
+header::after {
+  content:''; position:absolute; left:0; bottom:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--lc-green) 0%, transparent 55%);
+}
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.5); font-weight:400; font-size:0.72em; display:block; margin-top:8px; }
+.h-tagline { font-size:15px; color:rgba(255,255,255,0.6); max-width:560px; line-height:1.65; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.33); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.88); }
+
+/* IMPACT BAR */
+.impact-bar { background:var(--lc-green); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:130px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.2); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:#fff; line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.78); margin-top:5px; }
+
+/* SECTIONS */
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--lc-green); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--lc-navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:640px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); }
+
+/* CONTEXT STRIP */
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--lc-navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+/* STAT ROW */
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.stat-num { font-size:26px; font-weight:800; color:var(--lc-navy); line-height:1; }
+.stat-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+.stat-card.hl { background:var(--lc-navy); border-color:var(--lc-navy); }
+.stat-card.hl .stat-num { color:#fff; font-size:18px; padding-top:4px; }
+.stat-card.hl .stat-label { color:rgba(255,255,255,0.6); }
+
+/* PROBLEM / SOLUTION */
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--lc-navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--lc-green); color:rgba(255,255,255,0.95); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--lc-green); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--lc-navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--lc-navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+/* JD TABLE */
+.jd-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.jd-table thead tr { background:var(--lc-navy); }
+.jd-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.jd-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); vertical-align:top; }
+.jd-table tr:nth-child(even) td { background:var(--bg); }
+.jd-proof { color:var(--muted); font-size:12px; line-height:1.45; }
+.badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:10px; font-weight:700; text-transform:uppercase; }
+.badge-full { background:rgba(0,168,120,0.12); color:var(--lc-green); }
+.badge-strong { background:rgba(13,34,64,0.1); color:var(--lc-navy); }
+
+/* SKILLS TABLE */
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--lc-navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg, var(--lc-navy), var(--lc-green)); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--lc-green); width:8%; text-align:right; }
+
+/* 90-DAY PLAN */
+.plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--lc-navy); }
+.plan-head.p2 { background:var(--lc-mid); }
+.plan-head.p3 { background:var(--lc-green); }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:15px; font-weight:800; color:#fff; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--lc-navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+
+/* FOOTER */
+footer { background:var(--lc-navy); padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--lc-green); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); }
+
+@media(max-width:768px){
+  section { padding:44px 6%; }
+  header { padding:44px 6% 40px; }
+  .context-strip, .stat-row { grid-template-columns:1fr 1fr; }
+  .ps-grid, .plan-grid { grid-template-columns:1fr; }
+  .sk-bar-wrap, .sk-proof { display:none; }
+  footer { flex-direction:column; padding:40px 6%; }
+  .ib-item { min-width:50%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="h-eyebrow">Decision Infrastructure Analyst &nbsp;·&nbsp; LendingClub &nbsp;·&nbsp; Credit Decisioning &nbsp;·&nbsp; San Francisco, CA</div>
+  <h1>Raghav Patidar<span>Decisioning logic, API data gateways, ML model deployment, and audit-compliant decision systems — built for LendingClub's scale.</span></h1>
+  <p class="h-tagline">5+ years coding business strategy logic into production, building data interfaces for automated decisioning, and deploying ML models with risk teams. Here is exactly how that maps to LendingClub's role.</p>
+  <div class="h-meta">
+    <div class="h-meta-item"><div class="h-meta-label">Experience</div><div class="h-meta-value">5+ Years Decision Infrastructure</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Domain</div><div class="h-meta-value">Fintech &amp; Credit Decisioning</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Certifications</div><div class="h-meta-value">SCRUM · Project Management · Agile</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Core Stack</div><div class="h-meta-value">Python · SQL · REST APIs · dbt · XGBoost · Snowflake</div></div>
+  </div>
+</header>
+
+<!-- IMPACT BAR -->
+<div class="impact-bar">
+  <div class="ib-item"><div class="ib-num">95%</div><div class="ib-label">Decision Model Accuracy</div></div>
+  <div class="ib-item"><div class="ib-num">40%</div><div class="ib-label">Decision Latency Reduction</div></div>
+  <div class="ib-item"><div class="ib-num">12+</div><div class="ib-label">Data Sources Integrated via API</div></div>
+  <div class="ib-item"><div class="ib-num">85%</div><div class="ib-label">Bad-Data Reduction in Pipelines</div></div>
+  <div class="ib-item"><div class="ib-num">0</div><div class="ib-label">SLA Breaches on Production Deployments</div></div>
+</div>
+
+<!-- COMPANY CONTEXT -->
+<section>
+  <div class="sec-label">01 &nbsp;— &nbsp;Company Context</div>
+  <h2 class="sec-title">Understanding LendingClub's Decision Infrastructure</h2>
+  <p class="sec-desc">LendingClub is America's leading digital lending marketplace — automating credit decisions at scale for personal loans, auto refinancing, and patient financing. The Decision Infrastructure Analyst role is the technical backbone of that mission: coding business strategy logic into production systems, building the API data gateways that feed automated decisioning, and working with risk modeling teams to deploy ML scorecards that determine credit outcomes in real time.</p>
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Company</div>
+      <div class="cs-value">LendingClub — Digital Lending Marketplace</div>
+      <div class="cs-sub">San Francisco HQ · Personal, auto &amp; patient loans</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Role Focus</div>
+      <div class="cs-value">Decision Logic, API Gateways &amp; ML Deployment</div>
+      <div class="cs-sub">Python/SQL strategy coding · Audit compliance · Risk modeling</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Tech Stack</div>
+      <div class="cs-value">Python · SQL · REST APIs · dbt · Snowflake · AWS</div>
+      <div class="cs-sub">XGBoost · Logistic regression · Power BI · Tableau</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Compliance</div>
+      <div class="cs-value">Audit Documentation &amp; Change Management</div>
+      <div class="cs-sub">Internal audit support · Policy documentation · SLA compliance</div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card hl">
+      <div class="stat-num">Decisioning</div>
+      <div class="stat-label">Core domain — Raghav coded and deployed strategy logic and scorecards at Infosys for 3.5 years</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3+yr</div>
+      <div class="stat-label">Required — Raghav brings 5+ years, 3.5 in decision infrastructure and fintech-adjacent analytics</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">API</div>
+      <div class="stat-label">Data gateways — built REST API interfaces amalgamating 12+ internal and external data sources</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">MS Degree</div>
+      <div class="stat-label">Preferred — MS Computer Information Systems, University of Central Missouri</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CHALLENGES / RESPONSE -->
+<section class="alt">
+  <div class="sec-label">02 &nbsp;— &nbsp;Challenges &amp; My Response</div>
+  <h2 class="sec-title">What LendingClub Needs &nbsp;·&nbsp; What I Bring</h2>
+  <p class="sec-desc">Credit decisioning at LendingClub's scale creates four distinct infrastructure challenges. Each one maps directly to production work I've already delivered — not theoretical, not adjacent, but the same category of problem.</p>
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">The Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Coding Business Strategy Logic into Production</strong><p>Credit policy changes must be translated precisely from business requirements into coded decisioning logic, tested against historical data samples, and deployed to production with zero-defect SLA compliance — any error affects real loan outcomes.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Building Data Interfaces for Automated Decisioning</strong><p>Automated credit decisions depend on real-time data from internal systems and external bureaus. Building reliable API gateways that amalgamate, validate, and route this data is foundational — and failures cascade directly into decisioning errors.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Deploying ML Models into Decision Infrastructure</strong><p>Risk modeling teams produce scorecards and regression models that must be integrated precisely into live decision pipelines — with monitoring to catch drift, performance degradation, or anomalies before they affect credit outcomes.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Audit Compliance and Change Management Documentation</strong><p>Every production change in a regulated lending environment requires full technical documentation, policy rationale, and change management compliance — traceability is not optional.</p></div>
+      </div>
+    </div>
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">My Response</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>3.5 Years Coding and Deploying Strategy Logic</strong><p>At Infosys, I coded, tested, and deployed business strategy and decisioning rules in Python and SQL, partnering with risk and operations to translate policy changes into production implementations — with zero-defect SLA compliance across all deployments.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>API Data Gateway Engineering</strong><p>Built and maintained REST API interfaces to internal and external data sources for automated decisioning — developed new data interfaces and enhanced existing gateways amalgamating data across 12+ enterprise systems, reducing decision latency by 40%.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>ML Scorecard Deployment with Risk Teams</strong><p>Collaborated with modeling teams to implement XGBoost and logistic regression models into decision infrastructure, achieving 95% accuracy (Infosys Innovation Award). Built anomaly detection monitoring on production data streams — improved data quality by 17% and caught decision logic errors before escalation.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Audit-Compliant Documentation at Every Step</strong><p>Documented decisioning policies, technical designs, and functional specs to support internal audits and change management compliance across all production deployments. Built audit-logging data lake zones ensuring full data lineage traceability.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- JD COVERAGE -->
+<section>
+  <div class="sec-label">03 &nbsp;— &nbsp;JD Coverage</div>
+  <h2 class="sec-title">Every Responsibility &nbsp;&#8594;&nbsp; Direct Evidence</h2>
+  <p class="sec-desc">LendingClub's Decision Infrastructure Analyst requirements mapped one-to-one against production outcomes.</p>
+  <table class="jd-table">
+    <thead>
+      <tr>
+        <th>JD Responsibility</th>
+        <th>My Evidence</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Code, test, and deploy business strategy and decisioning logic</strong></td>
+        <td class="jd-proof">Coded and deployed business strategy rules and decisioning logic in Python and SQL at Infosys — tested against targeted data samples before production deployment; zero-defect SLA compliance across all releases.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Build and maintain APIs for automated decisioning data access</strong></td>
+        <td class="jd-proof">Built REST API interfaces to access internal and external data sources for automated decisioning — developed new data gateways and enhanced existing interfaces, amalgamating data across 12+ enterprise systems with 40% latency reduction.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Develop new data interfaces and enhance existing data gateways</strong></td>
+        <td class="jd-proof">Engineered a data gateway layer in Python amalgamating 10+ internal and external sources; built dbt-based transformation pipelines in Snowflake with automated schema drift detection within 15 minutes of ingestion.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Implement regression and ML models into decision infrastructure</strong></td>
+        <td class="jd-proof">Collaborated with risk modeling teams to implement XGBoost, logistic regression, and ARIMA models into production decision infrastructure — 95% forecast accuracy; Infosys Innovation Award for highest-impact ML delivery.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Document decisioning policies for audits and change management</strong></td>
+        <td class="jd-proof">Documented decisioning policies, technical designs, and functional specs for all production deployments — supported internal audits and change management protocol compliance; built audit-logging data lake zones for full lineage traceability.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Create analytical dashboards tracking decisioning KPIs</strong></td>
+        <td class="jd-proof">Built Power BI and Tableau dashboards tracking real-time decision system KPIs for 8+ business units — enabled risk and operations teams to monitor automated decisioning performance continuously with custom DAX measures.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Apply anomaly detection and scenario analysis on production data</strong></td>
+        <td class="jd-proof">Designed anomaly detection system (Python, Scikit-learn) on 10TB+ production data streams flagging decision logic errors before downstream impact — improved data quality 17%, reduced mean time to resolve decision incidents by 40%.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cross-functional collaboration with Risk, Finance, Operations</strong></td>
+        <td class="jd-proof">Managed requirements gathering with Risk, Finance, and Operations stakeholders — 95% satisfaction across 4 concurrent project deliverables; mentored 3 junior analysts on decision system implementation and code review standards.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Troubleshoot decision system issues, root cause analysis</strong></td>
+        <td class="jd-proof">Conducted root cause analysis on decision system failures using SQL and Python — resolved data interface failures and improved pipeline reliability by 32%; supported operations teams on all production incident triage.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- SKILLS -->
+<section class="alt">
+  <div class="sec-label">04 &nbsp;— &nbsp;Technical Alignment</div>
+  <h2 class="sec-title">Required Skills &nbsp;&#8594;&nbsp; Verified Proficiency</h2>
+  <p class="sec-desc">Every tool and capability in LendingClub's JD mapped to production-level evidence.</p>
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">Python — Decision Logic &amp; Data Engineering</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:97%"></div></div></td>
+      <td class="sk-proof">Python for strategy coding, API integration, ETL, ML deployment, and anomaly detection — core tool across all 3.5 years at Infosys</td>
+      <td class="sk-pct">97%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">SQL — Advanced Query &amp; Pipeline Design</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:96%"></div></div></td>
+      <td class="sk-proof">Advanced SQL across Oracle and Snowflake — 40% query latency reduction; 10TB+/week pipeline throughput for decisioning systems</td>
+      <td class="sk-pct">96%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">REST APIs &amp; Data Gateway Engineering</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">Built and maintained REST APIs for automated decisioning data access — amalgamated 12+ internal/external sources with 40% latency reduction</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">ML Model Deployment (XGBoost, Logistic Regression)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">Implemented XGBoost, logistic regression, and ARIMA models with risk modeling teams into production decision infrastructure — 95% accuracy</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Anomaly Detection &amp; Decision Monitoring</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-proof">Anomaly detection on 10TB+ production streams — 17% data quality improvement; 40% reduction in mean time to resolve decision incidents</td>
+      <td class="sk-pct">92%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Audit Documentation &amp; Change Management</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Full technical documentation for all production deployments — internal audit support, data lineage maps, change management compliance across all releases</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">dbt, Snowflake, AWS (S3, Glue, Athena)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:91%"></div></div></td>
+      <td class="sk-proof">dbt medallion architecture in Snowflake; AWS event-driven alerting pipelines; 85% bad-data reduction via automated quality checks</td>
+      <td class="sk-pct">91%</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- 90-DAY PLAN -->
+<section>
+  <div class="sec-label">05 &nbsp;— &nbsp;90-Day Plan</div>
+  <h2 class="sec-title">First 90 Days at LendingClub</h2>
+  <p class="sec-desc">Credit decisioning systems carry regulatory and financial risk — the first priority is deep understanding of LendingClub's decision infrastructure before touching any production logic. Speed matters, but correctness matters more.</p>
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Learn &amp; Map</div>
+        <div class="plan-dates">Days 1 – 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Audit decision infrastructure architecture</strong> — data sources, API gateways, strategy logic flows, and production deployment pipeline</div>
+        <div class="plan-item"><strong>Review existing decisioning policies</strong> — understand credit strategy rules, scorecard configurations, and change management protocols</div>
+        <div class="plan-item"><strong>Map data lineage end-to-end</strong> — trace data from external bureau sources through gateways into decisioning outputs</div>
+        <div class="plan-item"><strong>Shadow production deployments</strong> — observe how strategy changes move from business request to production release</div>
+        <div class="plan-output"><span>Deliverable</span>Architecture map of decision data flows + gap analysis of monitoring coverage</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Contribute &amp; Stabilize</div>
+        <div class="plan-dates">Days 31 – 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Own first strategy logic implementation</strong> — code, test against data samples, document, and deploy a policy change end-to-end</div>
+        <div class="plan-item"><strong>Enhance one data interface</strong> — improve an existing API gateway or add a new data source to the decisioning pipeline</div>
+        <div class="plan-item"><strong>Extend anomaly detection coverage</strong> — add monitoring rules to catch data quality issues or decision volume anomalies faster</div>
+        <div class="plan-item"><strong>Support one audit documentation request</strong> — produce full technical specs and policy documentation to compliance standard</div>
+        <div class="plan-output"><span>Deliverable</span>First strategy logic deployed to production + enhanced data interface live</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Drive Impact</div>
+        <div class="plan-dates">Days 61 – 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Lead ML model integration</strong> — work with risk modeling team to implement updated scorecard into production decision infrastructure</div>
+        <div class="plan-item"><strong>Propose one infrastructure improvement</strong> — latency reduction, reliability enhancement, or monitoring gap — with data-backed business case</div>
+        <div class="plan-item"><strong>Build or enhance a KPI dashboard</strong> — surface decision performance metrics to risk and operations stakeholders in real time</div>
+        <div class="plan-item"><strong>90-day retrospective</strong> — what I delivered, what I learned about LendingClub's systems, Q2 priorities</div>
+        <div class="plan-output"><span>Deliverable</span>ML model deployed to decision infrastructure + infrastructure improvement proposal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Decision Infrastructure Analyst &nbsp;·&nbsp; LendingClub &nbsp;·&nbsp; Credit Decisioning &nbsp;·&nbsp; San Francisco, CA</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div class="fc-item"><div class="fc-label">Phone</div><div class="fc-val">913-218-6727</div></div>
+    <div class="fc-item"><div class="fc-label">Email</div><div class="fc-val">raghavpatidar997@gmail.com</div></div>
+    <div class="fc-item"><div class="fc-label">LinkedIn</div><div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div></div>
+    <div class="fc-item"><div class="fc-label">Education</div><div class="fc-val">MS Computer Information Systems, University of Central Missouri</div></div>
+  </div>
+</footer>
+
+</body>
+</html>
