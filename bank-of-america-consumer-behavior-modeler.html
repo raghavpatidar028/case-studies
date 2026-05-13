@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Consumer Behavior Modeler II | Bank of America</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --boa-navy:  #012169;
+  --boa-mid:   #1B3F7D;
+  --boa-red:   #E31837;
+  --boa-crimson:#C4122F;
+  --text:      #1a1f2e;
+  --muted:     #5a6478;
+  --rule:      #dde2ea;
+  --bg:        #f6f7fb;
+  --white:     #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+
+/* HEADER */
+header {
+  background:var(--boa-navy);
+  padding:56px 10% 48px;
+  position:relative; overflow:hidden;
+}
+header::before {
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:420px; height:420px;
+  background:radial-gradient(circle, rgba(227,24,55,0.15) 0%, transparent 65%);
+  border-radius:50%;
+}
+header::after {
+  content:''; position:absolute; left:0; bottom:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--boa-red) 0%, transparent 55%);
+}
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.5); font-weight:400; font-size:0.72em; display:block; margin-top:8px; }
+.h-tagline { font-size:15px; color:rgba(255,255,255,0.6); max-width:580px; line-height:1.65; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.33); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.88); }
+
+/* IMPACT BAR */
+.impact-bar { background:var(--boa-red); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:130px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.2); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:#fff; line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.78); margin-top:5px; }
+
+/* SECTIONS */
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--boa-red); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--boa-navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:640px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); }
+
+/* CONTEXT STRIP */
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--boa-navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+/* STAT ROW */
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.stat-num { font-size:26px; font-weight:800; color:var(--boa-navy); line-height:1; }
+.stat-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+.stat-card.hl { background:var(--boa-navy); border-color:var(--boa-navy); }
+.stat-card.hl .stat-num { color:#fff; font-size:18px; padding-top:4px; }
+.stat-card.hl .stat-label { color:rgba(255,255,255,0.6); }
+
+/* PROBLEM / SOLUTION */
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--boa-navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--boa-red); color:rgba(255,255,255,0.95); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--boa-red); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--boa-navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--boa-navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+/* JD TABLE */
+.jd-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.jd-table thead tr { background:var(--boa-navy); }
+.jd-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.jd-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); vertical-align:top; }
+.jd-table tr:nth-child(even) td { background:var(--bg); }
+.jd-proof { color:var(--muted); font-size:12px; line-height:1.45; }
+.badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:10px; font-weight:700; text-transform:uppercase; }
+.badge-full { background:rgba(227,24,55,0.1); color:var(--boa-crimson); }
+.badge-strong { background:rgba(1,33,105,0.1); color:var(--boa-navy); }
+
+/* SKILLS TABLE */
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--boa-navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg, var(--boa-navy), var(--boa-red)); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--boa-red); width:8%; text-align:right; }
+
+/* 90-DAY PLAN */
+.plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--boa-navy); }
+.plan-head.p2 { background:var(--boa-mid); }
+.plan-head.p3 { background:var(--boa-red); }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:15px; font-weight:800; color:#fff; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--boa-navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+
+/* FOOTER */
+footer { background:var(--boa-navy); padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--boa-red); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); }
+
+@media(max-width:768px){
+  section { padding:44px 6%; }
+  header { padding:44px 6% 40px; }
+  .context-strip, .stat-row { grid-template-columns:1fr 1fr; }
+  .ps-grid, .plan-grid { grid-template-columns:1fr; }
+  .sk-bar-wrap, .sk-proof { display:none; }
+  footer { flex-direction:column; padding:40px 6%; }
+  .ib-item { min-width:50%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="h-eyebrow">Consumer Behavior Modeler II &nbsp;·&nbsp; Bank of America &nbsp;·&nbsp; Consumer, Business &amp; Wealth Management &nbsp;·&nbsp; Charlotte, NC</div>
+  <h1>Raghav Patidar<span>Multivariate statistical modeling, GenAI-powered behavioral analytics, and production ML deployment — built for BofA's consumer data scale.</span></h1>
+  <p class="h-tagline">5+ years building consumer behavior models that predict, segment, and explain — from XGBoost/ARIMA ensembles at 95% accuracy to LangChain-powered NL query platforms on 10TB+ warehouses. Here is exactly how that maps to Bank of America.</p>
+  <div class="h-meta">
+    <div class="h-meta-item"><div class="h-meta-label">Experience</div><div class="h-meta-value">5+ Years Consumer Behavior Modeling</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Domain</div><div class="h-meta-value">Statistical Modeling &amp; GenAI Analytics</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Certifications</div><div class="h-meta-value">SCRUM · Project Management · Agile</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Core Stack</div><div class="h-meta-value">Python · SQL · XGBoost · LangChain · Snowflake · Hadoop</div></div>
+  </div>
+</header>
+
+<!-- IMPACT BAR -->
+<div class="impact-bar">
+  <div class="ib-item"><div class="ib-num">95%</div><div class="ib-label">Consumer Model Prediction Accuracy</div></div>
+  <div class="ib-item"><div class="ib-num">75%</div><div class="ib-label">Engagement Lift from Churn Model</div></div>
+  <div class="ib-item"><div class="ib-num">40%</div><div class="ib-label">Faster Time-to-Insight via GenAI</div></div>
+  <div class="ib-item"><div class="ib-num">10TB+</div><div class="ib-label">Weekly Data Processed on Hadoop/Snowflake</div></div>
+  <div class="ib-item"><div class="ib-num">9%</div><div class="ib-label">Conversion Lift via Behavioral Segmentation</div></div>
+</div>
+
+<!-- COMPANY CONTEXT -->
+<section>
+  <div class="sec-label">01 &nbsp;— &nbsp;Company Context</div>
+  <h2 class="sec-title">Understanding BofA's Consumer Behavior Modeling Challenge</h2>
+  <p class="sec-desc">Bank of America serves tens of millions of customers across Consumer, Business, and Wealth Management — making consumer behavior modeling one of the highest-stakes analytical challenges in financial services. The Consumer Behavior Modeler II role sits at that intersection: building multivariate statistical models that predict and explain customer behavior, leveraging GenAI tooling to democratize insights, and deploying production-grade ML into regulated environments with full documentation rigor.</p>
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Company</div>
+      <div class="cs-value">Bank of America — Global Financial Institution</div>
+      <div class="cs-sub">Charlotte HQ · Consumer, Business &amp; Wealth Mgmt</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Role Focus</div>
+      <div class="cs-value">Multivariate Models, Behavioral AI &amp; GenAI Analytics</div>
+      <div class="cs-sub">Python/SQL · LLM-based tools · Hadoop · Snowflake</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Tech Stack</div>
+      <div class="cs-value">Python · SQL · Hadoop · Teradata · Snowflake · Starburst</div>
+      <div class="cs-sub">LangChain · XGBoost · Scikit-learn · FastAPI · Docker</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Environment</div>
+      <div class="cs-value">Regulated Banking · Audit-Compliant Documentation</div>
+      <div class="cs-sub">Production model monitoring · Agile delivery · Cross-functional</div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card hl">
+      <div class="stat-num">Consumer Behavior</div>
+      <div class="stat-label">Core domain — Raghav's primary modeling specialty across 3.5 years at Infosys</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">GenAI</div>
+      <div class="stat-label">Differentiator — LangChain, LangGraph, vLLM, OpenAI APIs deployed in production</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">10TB+</div>
+      <div class="stat-label">Data scale — ELT pipelines on Hadoop and Snowflake matching BofA's enterprise volume</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Charlotte</div>
+      <div class="stat-label">Location — matching BofA's HQ; available to start with minimal delay</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CHALLENGES / RESPONSE -->
+<section class="alt">
+  <div class="sec-label">02 &nbsp;— &nbsp;Challenges &amp; My Response</div>
+  <h2 class="sec-title">What BofA Needs &nbsp;·&nbsp; What I Bring</h2>
+  <p class="sec-desc">Modeling consumer behavior at BofA's scale creates four distinct challenges. Each maps to production work I have already delivered — not for toy datasets, but for 10TB+ enterprise environments with real business stakes.</p>
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">The Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Multivariate Statistical Modeling at Enterprise Scale</strong><p>Consumer behavior is non-linear, temporal, and multi-signal. Building models that capture purchase patterns, churn propensity, and engagement shifts requires rigorous statistical reasoning — and the infrastructure to run it on tens of millions of customer records.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Democratizing Insights with GenAI</strong><p>Business stakeholders across Consumer, Business, and Wealth Management need behavioral insights but cannot query data warehouses directly. Closing that gap without creating an analyst bottleneck requires GenAI tooling that translates intent into data — accurately and at scale.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Production ML Deployment with Model Monitoring</strong><p>A model that works in development is not a model that works in production. Consumer behavior drifts — seasonally, economically, and behaviorally. Catching that drift before it produces bad decisions requires production monitoring built in from day one.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Audit-Ready Documentation in a Regulated Environment</strong><p>Every model deployed in banking must be explainable, documented, and auditable. Statistical assumptions, feature rationale, validation results, and known limitations must all be traceable — not as an afterthought, but as a production requirement.</p></div>
+      </div>
+    </div>
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">My Response</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>XGBoost/ARIMA Ensemble at 95% Accuracy — Infosys Innovation Award</strong><p>Built a multivariate ensemble combining XGBoost (non-linear behavioral features) and ARIMA (temporal seasonality via STL decomposition) on 10TB+ of consumer data from 12 integrated sources. Applied rigorous OLS and panel data assumption validation throughout. Infosys Innovation Award for highest-impact modeling deliverable.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>LangChain/LangGraph GenAI Platform — 40% Faster Insights</strong><p>Designed and deployed a GenAI consumer insights platform using LangChain orchestration, LangGraph agents, and OpenAI-compatible APIs (vLLM for on-premise inference) with a RAG architecture against Snowflake schema docs. Business stakeholders query 10TB+ data in plain English. Served via FastAPI, containerized with Docker. 40% reduction in analyst time-to-insight.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Three-Layer Model Monitoring Framework</strong><p>Built production monitoring across: (1) data distribution — PSI tracking on live feature distributions vs training baselines; (2) prediction distribution — weekly output score shift monitoring; (3) business KPI — connecting model outputs to downstream engagement metrics. Caught two drift events before business impact; response time under 24 hours both times.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Model Card Documentation Standard — Adopted Across Teams</strong><p>Created a Model Card template covering data lineage, feature rationale, validation results, known limitations, monitoring plan, and retraining triggers — stored in Confluence linked to JIRA for full traceability. Reduced onboarding time by 40% and was adopted by two other modeling teams at Infosys.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- JD COVERAGE -->
+<section>
+  <div class="sec-label">03 &nbsp;— &nbsp;JD Coverage</div>
+  <h2 class="sec-title">Every Requirement &nbsp;&#8594;&nbsp; Direct Evidence</h2>
+  <p class="sec-desc">Bank of America's Consumer Behavior Modeler II requirements mapped one-to-one against verified, quantified outcomes.</p>
+  <table class="jd-table">
+    <thead>
+      <tr>
+        <th>JD Requirement</th>
+        <th>My Evidence</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Multivariate statistical modeling and logical inference of assumptions</strong></td>
+        <td class="jd-proof">Built XGBoost/ARIMA ensemble with rigorous OLS and panel data assumption validation — 95% prediction accuracy across 12 integrated consumer data sources. Applied STL decomposition, cross-validation on holdout cohorts, and VIF analysis for feature selection.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Consumer behavior prediction and behavioral AI</strong></td>
+        <td class="jd-proof">Engineered behavioral AI churn prediction model using supervised classification on consumer interaction signals (session depth, cart abandonment, inactivity streaks, feature-usage frequency) — drove 75% engagement lift and 9% conversion lift through targeted segmentation.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>GenAI-based tools and LLM-based solutions</strong></td>
+        <td class="jd-proof">Designed and deployed LangChain/LangGraph GenAI platform with OpenAI-compatible APIs and vLLM inference — natural-language queries over Snowflake warehouse; 40% latency reduction via caching; 200+ query sessions/day in production. Served via FastAPI, containerized with Docker.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Analyzing and sanitizing large data volumes (Hadoop, Snowflake, Teradata)</strong></td>
+        <td class="jd-proof">Built ELT pipelines on Hadoop feeding Snowflake processing 10TB+/week from 12 enterprise sources. Validated and sanitized data with automated quality checks — 30% improvement in data quality; 40% improvement in data availability and speed.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>A/B testing and hypothesis testing with rigorous statistical inference</strong></td>
+        <td class="jd-proof">Executed A/B tests with full hypothesis testing framework on consumer messaging combinations — identified high-performing variants that improved signups by 15% and delivered actionable behavioral insights to marketing stakeholders.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Python, SQL, and statistical programming</strong></td>
+        <td class="jd-proof">Python (Pandas, NumPy, Scikit-learn, XGBoost, TensorFlow) and advanced SQL across Oracle, Snowflake, Teradata — primary tools across all 5 years. OLAP cubes with 45% query performance improvement; automated data cleaning for AI initiatives.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Real-time anomaly detection on consumer data streams</strong></td>
+        <td class="jd-proof">Implemented Isolation Forest with statistical control chart layer (3-sigma thresholding) on consumer data streams — 17% data quality improvement; 95% reduction in critical production incidents; alerts routed within 15 minutes of threshold breach.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Well-documented code and structured technical documentation</strong></td>
+        <td class="jd-proof">Created Model Card documentation standard (data lineage, feature rationale, validation results, monitoring plan) — adopted by two other Infosys modeling teams; reduced onboarding time by 40%. Version-controlled Python codebases with Git across all production projects.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Production ML deployment and model monitoring</strong></td>
+        <td class="jd-proof">Built FastAPI microservices to expose statistical models as inference endpoints; containerized with Docker; implemented three-layer monitoring (PSI distribution tracking, prediction drift, business KPI). Caught two production drift events before business impact.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cross-functional collaboration and stakeholder communication</strong></td>
+        <td class="jd-proof">Managed cross-functional delivery across Risk, Finance, Marketing, and Operations — 95% stakeholder satisfaction across 4 concurrent projects. Communicated complex model outputs to senior leaders via demo-first presentations and Power BI dashboards. Mentored 5 junior analysts.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- SKILLS -->
+<section class="alt">
+  <div class="sec-label">04 &nbsp;— &nbsp;Technical Alignment</div>
+  <h2 class="sec-title">Required Skills &nbsp;&#8594;&nbsp; Verified Proficiency</h2>
+  <p class="sec-desc">Every capability in BofA's JD mapped to production experience with quantified proof.</p>
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">Python — Statistical Modeling &amp; ML</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:97%"></div></div></td>
+      <td class="sk-proof">XGBoost, Scikit-learn, Pandas, NumPy, TensorFlow — primary tool for all modeling across 5 years</td>
+      <td class="sk-pct">97%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Multivariate Statistical Modeling</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">XGBoost/ARIMA ensemble at 95% accuracy; OLS, panel data, VIF, cross-validation; Infosys Innovation Award</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">GenAI &amp; LLMs (LangChain, LangGraph, vLLM)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-proof">LangChain/LangGraph production platform; vLLM inference; RAG architecture; FastAPI + Docker deployment; 200+ sessions/day</td>
+      <td class="sk-pct">92%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Hadoop, Snowflake, Teradata, SQL</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">ELT pipelines on Hadoop to Snowflake — 10TB+/week; OLAP cubes in Teradata/Oracle with 45% query improvement</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Behavioral AI &amp; Consumer Segmentation</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Churn prediction with SMOTE-balanced classification — 75% engagement lift; clustering for consumer segmentation; 9% conversion improvement</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">A/B Testing &amp; Hypothesis Testing</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:91%"></div></div></td>
+      <td class="sk-proof">Full A/B test framework with hypothesis testing on consumer messaging — 15% signup improvement; statistical significance validated throughout</td>
+      <td class="sk-pct">91%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Model Monitoring &amp; Production Deployment</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">Three-layer monitoring framework (PSI, prediction drift, business KPI) — caught 2 drift events pre-impact; FastAPI + Docker inference pipeline</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<!-- 90-DAY PLAN -->
+<section>
+  <div class="sec-label">05 &nbsp;— &nbsp;90-Day Plan</div>
+  <h2 class="sec-title">First 90 Days at Bank of America</h2>
+  <p class="sec-desc">Consumer behavior modeling at BofA's scale means millions of customers and regulatory accountability on every model output. The first priority is deep understanding of BofA's data environment and model governance standards before producing anything new.</p>
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Learn &amp; Orient</div>
+        <div class="plan-dates">Days 1 – 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Audit existing consumer behavior models</strong> — understand feature sets, validation methodology, monitoring setup, and known limitations</div>
+        <div class="plan-item"><strong>Map data infrastructure</strong> — Hadoop, Snowflake, Teradata/Starburst sources, ELT pipelines, and schema documentation</div>
+        <div class="plan-item"><strong>Review model governance standards</strong> — BofA documentation requirements, audit protocols, and change management processes</div>
+        <div class="plan-item"><strong>Shadow stakeholder reviews</strong> — understand how modeling outputs are consumed by Consumer, Business, and Wealth Management teams</div>
+        <div class="plan-output"><span>Deliverable</span>Data infrastructure map + gap analysis of existing model monitoring coverage</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Contribute &amp; Build</div>
+        <div class="plan-dates">Days 31 – 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Own first modeling task end-to-end</strong> — feature engineering, model training, assumption validation, and documented Model Card</div>
+        <div class="plan-item"><strong>Enhance monitoring on one production model</strong> — add PSI tracking or business KPI alerting to an under-monitored deployment</div>
+        <div class="plan-item"><strong>Prototype a GenAI insight tool</strong> — LangChain NL-to-SQL prototype against a BofA data schema for analyst self-service</div>
+        <div class="plan-item"><strong>Deliver first stakeholder analysis</strong> — behavioral segmentation or churn risk output with executive-ready findings</div>
+        <div class="plan-output"><span>Deliverable</span>First model contribution documented and reviewed + GenAI prototype demoed to team</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Drive Impact</div>
+        <div class="plan-dates">Days 61 – 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Lead a multivariate modeling project</strong> — consumer churn, product propensity, or behavioral segmentation — full lifecycle from data to stakeholder delivery</div>
+        <div class="plan-item"><strong>Propose a GenAI analytics initiative</strong> — business case for LLM-based insight tooling tailored to BofA's Consumer division data assets</div>
+        <div class="plan-item"><strong>Establish documentation standard</strong> — propose Model Card template adapted to BofA's governance requirements</div>
+        <div class="plan-item"><strong>90-day retrospective</strong> — what I delivered, gaps I identified, priorities for Q2 modeling roadmap</div>
+        <div class="plan-output"><span>Deliverable</span>Completed model project + GenAI proposal + documentation standard submitted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Consumer Behavior Modeler II &nbsp;·&nbsp; Bank of America &nbsp;·&nbsp; Charlotte, NC</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div class="fc-item"><div class="fc-label">Phone</div><div class="fc-val">913-218-6727</div></div>
+    <div class="fc-item"><div class="fc-label">Email</div><div class="fc-val">raghavpatidar997@gmail.com</div></div>
+    <div class="fc-item"><div class="fc-label">LinkedIn</div><div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div></div>
+    <div class="fc-item"><div class="fc-label">Education</div><div class="fc-val">MS Computer Information Systems, University of Central Missouri</div></div>
+  </div>
+</footer>
+
+</body>
+</html>
