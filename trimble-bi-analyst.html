@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Business Intelligence Analyst | Trimble AECO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --tri-navy:  #003B5C;
+  --tri-blue:  #005F9E;
+  --tri-teal:  #00A9CE;
+  --text:      #1a1f2e;
+  --muted:     #5a6478;
+  --rule:      #dde2ea;
+  --bg:        #f4f8fb;
+  --white:     #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+
+header { background:var(--tri-navy); padding:56px 10% 48px; position:relative; overflow:hidden; }
+header::before { content:''; position:absolute; top:-60px; right:-60px; width:420px; height:420px; background:radial-gradient(circle, rgba(0,169,206,0.18) 0%, transparent 65%); border-radius:50%; }
+header::after { content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:linear-gradient(90deg, var(--tri-teal) 0%, transparent 55%); }
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.5); font-weight:400; font-size:0.72em; display:block; margin-top:8px; }
+.h-tagline { font-size:15px; color:rgba(255,255,255,0.6); max-width:580px; line-height:1.65; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.33); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.88); }
+
+.impact-bar { background:var(--tri-teal); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:130px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.2); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:#fff; line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.78); margin-top:5px; }
+
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--tri-teal); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--tri-navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:640px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); }
+
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--tri-navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.stat-num { font-size:26px; font-weight:800; color:var(--tri-navy); line-height:1; }
+.stat-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+.stat-card.hl { background:var(--tri-navy); border-color:var(--tri-navy); }
+.stat-card.hl .stat-num { color:#fff; font-size:18px; padding-top:4px; }
+.stat-card.hl .stat-label { color:rgba(255,255,255,0.6); }
+
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--tri-navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--tri-teal); color:rgba(255,255,255,0.95); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--tri-teal); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--tri-navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--tri-navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+.jd-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.jd-table thead tr { background:var(--tri-navy); }
+.jd-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.jd-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); vertical-align:top; }
+.jd-table tr:nth-child(even) td { background:var(--bg); }
+.jd-proof { color:var(--muted); font-size:12px; line-height:1.45; }
+.badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:10px; font-weight:700; text-transform:uppercase; }
+.badge-full { background:rgba(0,169,206,0.12); color:var(--tri-blue); }
+.badge-strong { background:rgba(0,59,92,0.1); color:var(--tri-navy); }
+
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--tri-navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg, var(--tri-navy), var(--tri-teal)); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--tri-teal); width:8%; text-align:right; }
+
+.plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--tri-navy); }
+.plan-head.p2 { background:var(--tri-blue); }
+.plan-head.p3 { background:var(--tri-teal); }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:15px; font-weight:800; color:#fff; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--tri-navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+
+footer { background:var(--tri-navy); padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--tri-teal); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); }
+
+@media(max-width:768px){
+  section { padding:44px 6%; }
+  header { padding:44px 6% 40px; }
+  .context-strip, .stat-row { grid-template-columns:1fr 1fr; }
+  .ps-grid, .plan-grid { grid-template-columns:1fr; }
+  .sk-bar-wrap, .sk-proof { display:none; }
+  footer { flex-direction:column; padding:40px 6%; }
+  .ib-item { min-width:50%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-eyebrow">Business Intelligence Analyst &nbsp;·&nbsp; Trimble AECO Platform &nbsp;·&nbsp; Westminster, CO &nbsp;·&nbsp; R56123</div>
+  <h1>Raghav Patidar<span>SaaS growth analytics, strategic forecasting, variance analysis, and AI-assisted BI — built for Trimble's AECO Platform team.</span></h1>
+  <p class="h-tagline">5+ years turning SaaS and enterprise data into strategic growth decisions — demand forecasting at 95% accuracy, Domo/Power BI/Tableau dashboards, anomaly detection, and C-suite advisory. Here is exactly how that maps to Trimble's Platform BI role.</p>
+  <div class="h-meta">
+    <div class="h-meta-item"><div class="h-meta-label">Experience</div><div class="h-meta-value">5+ Years BI &amp; Analytics</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Domain</div><div class="h-meta-value">SaaS Analytics, Forecasting &amp; Strategic BI</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Certifications</div><div class="h-meta-value">SCRUM · Project Management · Agile</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Core Stack</div><div class="h-meta-value">SQL · Domo · Power BI · Tableau · Python · dbt</div></div>
+  </div>
+</header>
+
+<div class="impact-bar">
+  <div class="ib-item"><div class="ib-num">95%</div><div class="ib-label">Forecast Accuracy (XGBoost/ARIMA)</div></div>
+  <div class="ib-item"><div class="ib-num">10%</div><div class="ib-label">YoY Revenue Lift from BI Insights</div></div>
+  <div class="ib-item"><div class="ib-num">85%</div><div class="ib-label">Bad-Data Reduction via Anomaly Detection</div></div>
+  <div class="ib-item"><div class="ib-num">50+</div><div class="ib-label">Hours/Month Saved via Automated Reporting</div></div>
+  <div class="ib-item"><div class="ib-num">45%</div><div class="ib-label">Query Performance Improvement (OLAP)</div></div>
+</div>
+
+<section>
+  <div class="sec-label">01 &nbsp;— &nbsp;Company Context</div>
+  <h2 class="sec-title">Understanding Trimble AECO's Growth Analytics Challenge</h2>
+  <p class="sec-desc">Trimble's AECO (Architecture, Engineering, Construction and Owner) Platform team needs a BI Analyst who is more than a dashboard builder — they need someone who can analyze the intersection of global infrastructure trends and SaaS performance to identify exactly where and how to expand. That means translating ARR, Churn, and Retention metrics into predictable financial outcomes, conducting deep variance analysis against budget, and serving as a trusted data advisor to senior leaders making high-stakes capital allocation decisions.</p>
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Division</div>
+      <div class="cs-value">Trimble AECO Platform Team</div>
+      <div class="cs-sub">Architecture, Engineering, Construction &amp; Owner sector</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Analytics Focus</div>
+      <div class="cs-value">SaaS Metrics — ARR, Churn, Retention</div>
+      <div class="cs-sub">Strategic forecasting · Variance vs budget · Capital allocation</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">BI Stack</div>
+      <div class="cs-value">Domo · Tableau · Power BI · SQL · Python</div>
+      <div class="cs-sub">Predictive analytics · Anomaly detection · AI automation</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Salary Range</div>
+      <div class="cs-value">$91,100 – $125,200 + Bonus</div>
+      <div class="cs-sub">Westminster, CO · In-person · Full-time</div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card hl">
+      <div class="stat-num">Strategic Growth</div>
+      <div class="stat-label">This role informs capital allocation decisions for the AECO Platform — not routine reporting</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Domo</div>
+      <div class="stat-label">Named explicitly in the JD — Raghav has production Domo experience, a rare differentiator</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">SaaS Metrics</div>
+      <div class="stat-num" style="font-size:13px;padding-top:2px;">ARR · Churn · Retention</div>
+      <div class="stat-label">Core KPIs for this role — mapped to Raghav's forecasting and churn modeling experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">AI Tools</div>
+      <div class="stat-label">Preferred — Raghav built anomaly detection and predictive models in Python deployed to production</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">02 &nbsp;— &nbsp;Challenges &amp; My Response</div>
+  <h2 class="sec-title">What Trimble AECO Needs &nbsp;·&nbsp; What I Bring</h2>
+  <p class="sec-desc">Four core challenges drive this role. Each one maps to work I have already delivered in enterprise and SaaS-adjacent environments — with numbers to back it up.</p>
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">The Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Translating SaaS Metrics into Predictable Financial Outcomes</strong><p>Leadership needs monthly and quarterly forecasts that convert ARR, Churn, and Retention signals into financial projections they can budget against — not rough estimates, but data-backed, defensible numbers tied to real variance analysis.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Variance Analysis — The "Why" Behind the Numbers</strong><p>Actuals diverging from budget is expected. What's not acceptable is not knowing why. Leaders need an analyst who can deep-dive into variance, identify the root driver, and surface actionable recommendations — not just flag the gap.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>AI and Automation to Replace Manual Reporting</strong><p>Trimble explicitly wants someone experimenting with predictive analytics and anomaly detection to automate manual reporting and improve accuracy of global growth models — not just building static dashboards.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Serving as a Trusted Data Advisor to Senior Leaders</strong><p>This role requires more than analysis — it requires translating complex data into cost-benefit guidance for international public sector leaders making product investment decisions. The BI analyst is the person they call, not a ticket in a queue.</p></div>
+      </div>
+    </div>
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">My Response</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>XGBoost/ARIMA Forecasting — 95% Accuracy on Demand and Churn Signals</strong><p>At Infosys, I built an ensemble forecasting system combining XGBoost (non-linear behavioral signals) and ARIMA (temporal trends) achieving 95% prediction accuracy — Infosys Innovation Award. Also built a churn prediction model that translated engagement signals into retention forecasts, directly analogous to ARR and Churn forecasting for SaaS. Monthly and quarterly forecasting cycles were my delivery cadence.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Root-Cause Variance Analysis Delivered to C-Suite</strong><p>At Infosys I conducted in-depth analysis of actuals vs. targets across sales and marketing KPIs — surfacing the "why behind the numbers" and presenting findings directly to C-suite leaders. Findings influenced a 10% year-over-year revenue increase and informed budget reallocation decisions. I did not just report variance; I diagnosed it and recommended action.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Anomaly Detection + Automated Reporting — 85% Bad-Data Reduction</strong><p>Built real-time anomaly detection systems in Python (Isolation Forest + statistical thresholding) on production data streams — flagging data quality issues and reporting errors automatically. Automated ETL quality checks reduced bad data in production BI reports by 85% and saved 50+ hours/month of manual reporting effort. This is exactly the AI-automation capability the JD describes.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Trusted Data Advisor — 95% Stakeholder Satisfaction Across 4 Concurrent Projects</strong><p>Managed requirements and delivered analytics advisory across 4 concurrent projects at Infosys with 95% stakeholder satisfaction. Presented quarterly strategic insights to C-suite leadership and served as the single analytical contact for Sales, Finance, and Operations teams. Led an Agile BI initiative (Resource Management Tool) that directly improved project efficiency by 11% through data-driven decisions.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">03 &nbsp;— &nbsp;JD Coverage</div>
+  <h2 class="sec-title">Every Responsibility &nbsp;&#8594;&nbsp; Direct Evidence</h2>
+  <p class="sec-desc">Trimble's BI Analyst (AECO) responsibilities mapped one-to-one against production outcomes — using the actual job posting (R56123, posted 2026).</p>
+  <table class="jd-table">
+    <thead>
+      <tr>
+        <th>JD Responsibility</th>
+        <th>My Evidence</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Strategic Forecasting — ARR, Churn, Retention into financial outcomes</strong></td>
+        <td class="jd-proof">Built XGBoost/ARIMA ensemble forecasting at 95% accuracy — monthly and quarterly cadence. Developed churn prediction model translating behavioral signals into retention forecasts. Both map directly to SaaS ARR/Churn/Retention forecasting.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Variance &amp; Performance Analysis — actuals vs budget, "why behind the numbers"</strong></td>
+        <td class="jd-proof">Conducted in-depth KPI variance analysis at Infosys — surfaced root drivers behind performance gaps and presented actionable findings to C-suite. Findings influenced 10% YoY revenue increase and budget reallocation decisions.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Data Mining &amp; Interpretation — SaaS metrics and external market data</strong></td>
+        <td class="jd-proof">Analyzed complex business problems using SQL and Python across 10TB+/week of enterprise data — identified trends, market influences, and performance patterns. Applied statistical methods improving forecast accuracy by 12%.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Trend &amp; Pattern Analysis — AECO datasets, regional shifts, product-led growth</strong></td>
+        <td class="jd-proof">Developed behavioral AI models to identify trends in customer interaction data — segmentation, churn propensity, and regional demand patterns. Delivered 18% campaign ROI improvement through trend-driven audience targeting.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>AI &amp; Automation — predictive analytics and anomaly detection</strong></td>
+        <td class="jd-proof">Built real-time anomaly detection (Isolation Forest, Python) on production data streams — 85% bad-data reduction, 50+ hours/month saved in automated reporting. Demand forecasting ensemble (XGBoost/ARIMA) is production predictive analytics.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Domo, Tableau, Power BI — building and maintaining dashboards and pipelines</strong></td>
+        <td class="jd-proof">Built end-to-end Domo + Power BI + Tableau dashboards integrating Salesforce CRM — pipeline health, campaign ROI, lead conversion. Designed 15+ ETL pipelines (Airflow, dbt, Oracle) processing 10TB+/week; 99.9% reliability.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Business Advisory — trusted advisor to senior leaders, cost-benefit analyses</strong></td>
+        <td class="jd-proof">Presented quarterly performance insights to C-suite at Infosys — translated complex analysis into capital allocation recommendations influencing 10% YoY revenue growth. 95% stakeholder satisfaction across 4 concurrent advisory engagements.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>SQL — building and maintaining data pipelines and models</strong></td>
+        <td class="jd-proof">Advanced SQL across Oracle, Snowflake, MySQL, PostgreSQL — star/snowflake schema, OLAP cubes with 45% query improvement, and SQL-driven ETL pipelines feeding all downstream BI reporting.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Collaborative Consulting — technical consultant for cross-functional teams</strong></td>
+        <td class="jd-proof">Served as analytical contact for Sales, Finance, Marketing, and Operations at Infosys — directly produced datasets and reports, trained teams on self-service BI tools, and reduced ad-hoc requests by 22%.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Predictive modeling and AI-assisted reconciliations (preferred)</strong></td>
+        <td class="jd-proof">XGBoost gradient boosting, ARIMA, behavioral classification, Isolation Forest anomaly detection — all deployed in production. Python (Pandas, NumPy, Scikit-learn) is primary analytical tool throughout.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">04 &nbsp;— &nbsp;Technical Alignment</div>
+  <h2 class="sec-title">Required Skills &nbsp;&#8594;&nbsp; Verified Proficiency</h2>
+  <p class="sec-desc">Every tool and capability named in the actual Trimble R56123 posting mapped to production evidence.</p>
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">SQL — Data Pipelines &amp; Modeling</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:97%"></div></div></td>
+      <td class="sk-proof">Advanced SQL — Oracle, Snowflake, MySQL; star/snowflake schema; OLAP; 45% query improvement; 15+ ETL pipelines</td>
+      <td class="sk-pct">97%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Domo — CRM-Integrated BI Dashboards</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:88%"></div></div></td>
+      <td class="sk-proof">Domo dashboards integrating Salesforce CRM — pipeline health, campaign ROI, lead conversion; 50% reporting efficiency gain</td>
+      <td class="sk-pct">88%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Power BI &amp; Tableau</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Power BI (DAX, Power Query) and Tableau for KPI dashboards — 50+ hrs/month saved; C-suite quarterly insights delivery</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Strategic Forecasting (XGBoost, ARIMA)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">XGBoost/ARIMA ensemble — 95% accuracy; monthly/quarterly cadence; churn prediction model for retention forecasting</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Python — Anomaly Detection &amp; Predictive Analytics</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">Isolation Forest + statistical thresholding on production streams — 85% bad-data reduction; automated reporting saving 50+ hrs/month</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Variance Analysis &amp; Executive Advisory</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-proof">Root-cause KPI variance presented to C-suite — influenced 10% YoY revenue increase; 95% stakeholder satisfaction across 4 concurrent projects</td>
+      <td class="sk-pct">92%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">ETL Pipelines (Airflow, dbt, Oracle)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">15+ production ETL pipelines — 10TB+/week; 85% bad-data reduction; 99.9% reliability via automated quality checks</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">05 &nbsp;— &nbsp;90-Day Plan</div>
+  <h2 class="sec-title">First 90 Days at Trimble AECO</h2>
+  <p class="sec-desc">Trimble's AECO Platform team needs someone who can ramp quickly, earn trust as an analytical advisor, and start contributing to forecasting and variance analysis before the quarter closes. Here is exactly how I would approach that.</p>
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Learn &amp; Align</div>
+        <div class="plan-dates">Days 1 – 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Understand the SaaS metrics stack</strong> — how ARR, Churn, and Retention are defined, tracked, and reported in Domo/Power BI</div>
+        <div class="plan-item"><strong>Review existing forecasting models</strong> — identify methodology, cadence, known gaps, and where variance surprises are recurring</div>
+        <div class="plan-item"><strong>Map data pipelines to dashboards</strong> — trace data from source systems through ETL into Domo/Tableau/Power BI outputs</div>
+        <div class="plan-item"><strong>Shadow senior leader reviews</strong> — understand how Platform leadership currently consumes BI and where they feel under-served</div>
+        <div class="plan-output"><span>Deliverable</span>SaaS metrics map + top 3 forecasting gaps identified with proposed fixes</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Contribute &amp; Build</div>
+        <div class="plan-dates">Days 31 – 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Own first forecasting cycle contribution</strong> — monthly ARR/Churn/Retention forecast with variance commentary for Platform leadership</div>
+        <div class="plan-item"><strong>Deliver first variance deep-dive</strong> — root-cause analysis of actuals vs budget for one business unit with actionable recommendations</div>
+        <div class="plan-item"><strong>Automate one manual reporting workflow</strong> — Python or SQL replacing a recurring analyst task; quantify hours saved</div>
+        <div class="plan-item"><strong>Enhance a Domo or Power BI dashboard</strong> — add a missing SaaS KPI or improve data refresh to remove a reporting lag</div>
+        <div class="plan-output"><span>Deliverable</span>First monthly forecast delivered + variance report presented to leadership</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Drive Impact</div>
+        <div class="plan-dates">Days 61 – 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Lead quarterly forecasting cycle</strong> — end-to-end SaaS performance forecast with financial narrative for senior AECO Platform leaders</div>
+        <div class="plan-item"><strong>Propose a predictive analytics initiative</strong> — anomaly detection or churn early-warning model using existing data assets</div>
+        <div class="plan-item"><strong>Build a self-service reporting layer</strong> — reduce ad-hoc requests by giving cross-functional teams direct access to key SaaS metrics</div>
+        <div class="plan-item"><strong>90-day retrospective</strong> — what I delivered, what I learned about AECO growth data, and Q2 priorities</div>
+        <div class="plan-output"><span>Deliverable</span>Quarterly forecast package + predictive analytics proposal submitted to Platform leadership</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Business Intelligence Analyst &nbsp;·&nbsp; Trimble AECO Platform &nbsp;·&nbsp; Westminster, CO</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div class="fc-item"><div class="fc-label">Phone</div><div class="fc-val">913-218-6727</div></div>
+    <div class="fc-item"><div class="fc-label">Email</div><div class="fc-val">raghavpatidar997@gmail.com</div></div>
+    <div class="fc-item"><div class="fc-label">LinkedIn</div><div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div></div>
+    <div class="fc-item"><div class="fc-label">Education</div><div class="fc-val">MS Computer Information Systems, University of Central Missouri</div></div>
+  </div>
+</footer>
+
+</body>
+</html>
