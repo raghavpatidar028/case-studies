@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Data Analyst, Product Strategy & AI | AlphaSense</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --as-navy:  #0B2044;
+  --as-blue:  #1E5DC8;
+  --as-teal:  #00A8E0;
+  --as-light: #33C1F0;
+  --text:     #1a1f2e;
+  --muted:    #5a6478;
+  --rule:     #dde2ea;
+  --bg:       #f4f7fb;
+  --white:    #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+
+header { background:var(--as-navy); padding:56px 10% 48px; position:relative; overflow:hidden; }
+header::before { content:''; position:absolute; top:-60px; right:-60px; width:440px; height:440px; background:radial-gradient(circle, rgba(0,168,224,0.18) 0%, transparent 65%); border-radius:50%; }
+header::after { content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:linear-gradient(90deg, var(--as-teal) 0%, transparent 55%); }
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.5); font-weight:400; font-size:0.72em; display:block; margin-top:8px; }
+.h-tagline { font-size:15px; color:rgba(255,255,255,0.6); max-width:580px; line-height:1.65; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.33); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.88); }
+
+.impact-bar { background:var(--as-teal); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:130px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.2); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:#fff; line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.78); margin-top:5px; }
+
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--as-teal); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--as-navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:640px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); }
+
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--as-navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.stat-num { font-size:26px; font-weight:800; color:var(--as-navy); line-height:1; }
+.stat-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+.stat-card.hl { background:var(--as-navy); border-color:var(--as-navy); }
+.stat-card.hl .stat-num { color:#fff; font-size:16px; padding-top:4px; }
+.stat-card.hl .stat-label { color:rgba(255,255,255,0.6); }
+
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--as-navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--as-teal); color:rgba(255,255,255,0.95); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--as-teal); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--as-navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--as-navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+.jd-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.jd-table thead tr { background:var(--as-navy); }
+.jd-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.jd-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); vertical-align:top; }
+.jd-table tr:nth-child(even) td { background:var(--bg); }
+.jd-proof { color:var(--muted); font-size:12px; line-height:1.45; }
+.badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:10px; font-weight:700; text-transform:uppercase; }
+.badge-full { background:rgba(0,168,224,0.12); color:var(--as-blue); }
+.badge-strong { background:rgba(11,32,68,0.1); color:var(--as-navy); }
+
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--as-navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg, var(--as-navy), var(--as-teal)); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--as-teal); width:8%; text-align:right; }
+
+.plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--as-navy); }
+.plan-head.p2 { background:var(--as-blue); }
+.plan-head.p3 { background:var(--as-teal); }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:15px; font-weight:800; color:#fff; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--as-navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+
+footer { background:var(--as-navy); padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--as-teal); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); }
+
+@media(max-width:768px){
+  section { padding:44px 6%; }
+  header { padding:44px 6% 40px; }
+  .context-strip, .stat-row { grid-template-columns:1fr 1fr; }
+  .ps-grid, .plan-grid { grid-template-columns:1fr; }
+  .sk-bar-wrap, .sk-proof { display:none; }
+  footer { flex-direction:column; padding:40px 6%; }
+  .ib-item { min-width:50%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-eyebrow">Data Analyst, Product Strategy &amp; AI &nbsp;·&nbsp; AlphaSense &nbsp;·&nbsp; New York, NY &nbsp;·&nbsp; $158K–$217K</div>
+  <h1>Raghav Patidar<span>NL-to-BigQuery via MCP, causal inference on GenAI features, cohort retention analytics, and agentic data democratization — built for AlphaSense's AI-native analytics vision.</span></h1>
+  <p class="h-tagline">AlphaSense is not looking for a dashboard builder. They need someone who can wire BigQuery to LLMs, apply causal inference to GenAI feature retention, and be the strategic analytical co-pilot for their Product team. That is the work I have already done.</p>
+  <div class="h-meta">
+    <div class="h-meta-item"><div class="h-meta-label">Experience</div><div class="h-meta-value">5+ Years Product &amp; Data Analytics</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Location</div><div class="h-meta-value">Open to New York, NY</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Compensation Range</div><div class="h-meta-value">$158,000 – $217,000 + Bonus + Equity</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Core Stack</div><div class="h-meta-value">BigQuery · SQL · Python · LLM APIs · MCP · LangChain</div></div>
+  </div>
+</header>
+
+<div class="impact-bar">
+  <div class="ib-item"><div class="ib-num">95%</div><div class="ib-label">Forecast Accuracy (Innovation Award)</div></div>
+  <div class="ib-item"><div class="ib-num">12%</div><div class="ib-label">Retention Lift from GenAI Feature Analysis</div></div>
+  <div class="ib-item"><div class="ib-num">22%</div><div class="ib-label">Ad-Hoc Requests Cut via NL Query Interface</div></div>
+  <div class="ib-item"><div class="ib-num">85%</div><div class="ib-label">Pipeline Incident Reduction (Anomaly Detection)</div></div>
+  <div class="ib-item"><div class="ib-num">10%</div><div class="ib-label">YoY Revenue Lift from Strategic BI Advisory</div></div>
+</div>
+
+<section>
+  <div class="sec-label">01 &nbsp;— &nbsp;Company Context</div>
+  <h2 class="sec-title">Understanding AlphaSense's Analytics Mission</h2>
+  <p class="sec-desc">AlphaSense is an AI-powered market intelligence platform trusted by 6,000+ enterprise customers including a majority of the S&amp;P 500. This Data Analyst, Product Strategy &amp; AI role is explicitly not about building dashboards — it is about two things: deep strategic analysis of how GenAI features actually drive WAU/DAU retention and user habit formation, and architecting the AI-native infrastructure that lets Product Managers query BigQuery using natural language. The person hired is the founding member of AlphaSense's next-generation analytics workflow.</p>
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Company</div>
+      <div class="cs-value">AlphaSense — AI Market Intelligence Platform</div>
+      <div class="cs-sub">6,000+ enterprise customers · Majority of S&amp;P 500 · Founded 2011</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Role Type</div>
+      <div class="cs-value">Strategic Analytics + AI-Native Data Democratization</div>
+      <div class="cs-sub">NOT dashboards — GenAI retention analysis + BigQuery LLM bridge</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Tech Stack</div>
+      <div class="cs-value">BigQuery · SQL · Python · LLM APIs · MCP · LangChain</div>
+      <div class="cs-sub">Cohort analysis · Causal inference · Agentic frameworks</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Unique Mandate</div>
+      <div class="cs-value">Founding Member of Next-Gen Analytics Workflow</div>
+      <div class="cs-sub">Autonomy to define how a modern Product team interacts with data</div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card hl">
+      <div class="stat-num">NL-to-BigQuery via MCP</div>
+      <div class="stat-label">The core technical ask — Raghav has already built this exact system in production</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Causal Inference</div>
+      <div class="stat-label">Required for GenAI feature impact analysis — Raghav applied DiD to isolate 12% retention lift</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Stats-First</div>
+      <div class="stat-label">JD explicitly values knowing WHICH statistical tests to apply — core of Raghav's analytical approach</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">$158K–$217K</div>
+      <div class="stat-label">Base compensation range + performance bonus + equity — NYC-based in-person collaboration with PM team</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">02 &nbsp;— &nbsp;Challenges &amp; My Response</div>
+  <h2 class="sec-title">What AlphaSense Needs &nbsp;·&nbsp; What I Bring</h2>
+  <p class="sec-desc">AlphaSense's two-part mission for this role is highly specific. Both halves map to work I have already shipped — not conceptually, but in production systems with measurable outcomes.</p>
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">The Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Measure the True Impact of GenAI Features on Retention</strong><p>AlphaSense wants to understand whether new GenAI capabilities are actually inflecting long-term user retention — not surface-level feature usage, but statistically validated causal impact on WAU/DAU and habit formation. Correlation does not answer this. Causal inference does.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Wire BigQuery to LLMs So PMs Can Query Data in Plain English</strong><p>The goal is to eliminate the "request-and-wait" analytics bottleneck. Product Managers should be able to ask complex data questions in natural language and get accurate, audit-able answers from BigQuery — without waiting for an analyst or writing SQL.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Design a Semantic Layer That Makes Data "AI-Ready"</strong><p>LLM-generated SQL is only as good as the schema it queries. If table names, column aliases, and metric definitions are inconsistent or undocumented, the AI returns garbage. Building an AI-ready semantic layer is the prerequisite for everything else.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Be the Strategic Co-Pilot for Product Leadership</strong><p>The PM team needs an analyst who proactively surfaces trends, drop-offs, and opportunities across all product features — not someone who answers tickets. This requires deep product intuition, statistical rigor, and the ability to turn findings into executive-ready narratives.</p></div>
+      </div>
+    </div>
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">My Response</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Applied Causal Inference (DiD) to GenAI Feature Retention — 12% Lift Validated</strong><p>Applied difference-in-differences causal inference to isolate the impact of a GenAI feature on 30-day user retention — surfaced a statistically significant 12% lift for feature adopters, validated via cohort heatmaps reviewed by C-suite. This is exactly the analytical methodology AlphaSense describes for WAU/DAU retention analysis.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Built NL-to-BigQuery Interface Using LLM APIs and Model Context Protocol</strong><p>Designed and shipped a natural-language query interface over a BigQuery-style warehouse using Python and LLM APIs. Implemented Model Context Protocol (MCP) to expose schema metadata as structured agentic tool context — eliminating query hallucinations and enabling multi-hop follow-up chains across 20+ product metrics. PMs queried live datasets conversationally, cutting ad-hoc requests by 22%.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Designed Semantic Layer Mapping Business Terms to Schema — Zero Hallucinations</strong><p>Built a semantic layer that mapped business terminology to BigQuery table and column schemas so LLM-generated SQL returned accurate, context-aware results. Standardized metric definitions across product and engineering teams, eliminating inconsistent KPI interpretations that had previously produced conflicting reports.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Strategic Analytics Co-Pilot — Retention, Adoption Funnels, C-Suite Influence</strong><p>Served as strategic analytics partner to product leadership at Infosys — conducting deep-dive cohort analyses on user retention, feature adoption funnels, and engagement decay curves that drove quarterly roadmap decisions. Presented findings to C-suite with narratives that contributed to a measurable 10% YoY revenue increase.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">03 &nbsp;— &nbsp;JD Coverage</div>
+  <h2 class="sec-title">Every Requirement &nbsp;&#8594;&nbsp; Direct Evidence</h2>
+  <p class="sec-desc">AlphaSense's Data Analyst, Product Strategy &amp; AI requirements mapped against production outcomes — verified from the actual job posting.</p>
+  <table class="jd-table">
+    <thead>
+      <tr>
+        <th>JD Requirement</th>
+        <th>My Evidence</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Build AI-to-data bridge: wire BigQuery to LLMs via MCP or cloud AI tooling</strong></td>
+        <td class="jd-proof">Built NL-to-BigQuery query interface using Python, LLM APIs, and Model Context Protocol (MCP) — schema metadata exposed as agentic tool context; multi-hop follow-up chains across 20+ product metrics; query hallucinations eliminated via semantic layer.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Design semantic layer for AI-ready data schemas</strong></td>
+        <td class="jd-proof">Designed semantic layer mapping business terminology to BigQuery table and column schemas — standardized metric definitions across product and engineering teams; eliminated inconsistent KPI interpretations that had previously caused conflicting executive reports.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Advanced statistical methods: cohort analysis, causal inference, propensity matching</strong></td>
+        <td class="jd-proof">Applied difference-in-differences causal inference to isolate GenAI feature impact on 30-day retention — 12% statistically significant lift for feature adopters. Cohort analysis, regression, A/B testing, and hypothesis testing applied across all product analytics work.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Measure GenAI feature impact on WAU/DAU retention and habit formation</strong></td>
+        <td class="jd-proof">Built end-to-end product analytics pipeline tracking user retention cohorts, feature adoption funnels, and engagement decay curves. Applied causal inference to isolate GenAI feature retention impact — surfaced 12% lift validated via cohort heatmaps reviewed by C-suite leadership.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Expert-level SQL and BigQuery</strong></td>
+        <td class="jd-proof">Expert SQL across BigQuery, Snowflake, Oracle — complex OLAP queries, star/snowflake schema design, 40% query runtime reduction via targeted indexing and partitioning. SQL is the foundation of every analytical pipeline I have built.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Python, APIs, LLMs, and agentic frameworks</strong></td>
+        <td class="jd-proof">Built agentic analytics assistant using LangChain and OpenAI API — multi-step tool use (SQL executor, chart renderer, anomaly detector) for complex product questions. MCP implementation, REST API integration, and Python-first throughout all AI projects.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Deep product and business intuition — understand product strategy and key metrics</strong></td>
+        <td class="jd-proof">Served as strategic analytics partner to product leadership — proactively identified retention trends, feature drop-offs, and adoption opportunities beyond feature-by-feature reporting. Drove quarterly roadmap decisions through cohort analysis.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Communication and influence — present complex insights to technical and non-technical stakeholders</strong></td>
+        <td class="jd-proof">Presented cohort findings and product performance insights to C-suite — translated complex statistical analyses into executive-ready narratives contributing to 10% YoY revenue increase. 95% stakeholder satisfaction across 4 concurrent analytical projects.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Collaborative leadership — remote data team (India) + NYC product leadership</strong></td>
+        <td class="jd-proof">Managed cross-functional analytics delivery with remote and in-person teams at Infosys across multiple concurrent projects — coordinated data engineering feeds from 12+ sources while serving as the analytical face to business and product leadership.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>AI tooling curiosity — actively explores new frameworks for business problems</strong></td>
+        <td class="jd-proof">Proactively built LangChain prototype on own initiative, reducing report generation by 50%; earned production approval within one sprint. Implemented MCP before it was a mainstream standard. At UCM, introduced GenAI and LLM-based analytics into graduate curriculum.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">04 &nbsp;— &nbsp;Technical Alignment</div>
+  <h2 class="sec-title">Required Skills &nbsp;&#8594;&nbsp; Verified Proficiency</h2>
+  <p class="sec-desc">Every technical capability named in the AlphaSense JD mapped to production evidence.</p>
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">SQL &amp; BigQuery — Expert Level</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:97%"></div></div></td>
+      <td class="sk-proof">Expert SQL across BigQuery, Snowflake, Oracle — complex OLAP, 40% query performance improvement, 10TB+/week pipelines</td>
+      <td class="sk-pct">97%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">LLM APIs, MCP &amp; Agentic Frameworks</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">NL-to-BigQuery via MCP in production; LangChain/OpenAI agentic assistant with multi-step tool use; 22% ad-hoc request reduction</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Causal Inference &amp; Statistical Methods</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-proof">DiD causal inference on GenAI feature retention — 12% lift validated; A/B testing, cohort analysis, regression, hypothesis testing</td>
+      <td class="sk-pct">92%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Python — Analytics &amp; AI Engineering</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Python (Pandas, NumPy, Scikit-learn) for forecasting, causal inference, anomaly detection, ETL, and LLM API integration — primary tool across 5 years</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Product Analytics — Cohort, Retention, Funnels</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">End-to-end BigQuery cohort pipeline tracking retention, adoption funnels, and engagement decay; C-suite reviewed cohort heatmaps driving roadmap decisions</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Semantic Layer &amp; AI-Ready Schema Design</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:90%"></div></div></td>
+      <td class="sk-proof">Designed semantic layer mapping business terms to BigQuery schemas for LLM-generated SQL accuracy; eliminated hallucinations and KPI inconsistencies</td>
+      <td class="sk-pct">90%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Stakeholder Communication &amp; Executive Influence</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">C-suite analytics presentations contributing to 10% YoY revenue growth; 95% satisfaction across 4 concurrent product/business stakeholder relationships</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">05 &nbsp;— &nbsp;90-Day Plan</div>
+  <h2 class="sec-title">First 90 Days at AlphaSense</h2>
+  <p class="sec-desc">AlphaSense is hiring the founding member of a next-generation analytics workflow. The first priority is earning trust as a strategic thought partner to the PM team — not shipping dashboards, but surfacing the right insights and building the AI infrastructure that changes how the team operates.</p>
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Learn &amp; Understand</div>
+        <div class="plan-dates">Days 1 – 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Audit BigQuery schema and data model</strong> — understand table structure, metric definitions, and where schema inconsistencies block AI-readiness</div>
+        <div class="plan-item"><strong>Shadow PM team workflows</strong> — understand the most common data questions, the current bottlenecks, and the highest-stakes product decisions coming up</div>
+        <div class="plan-item"><strong>Review existing analytics infrastructure</strong> — what dashboards exist, what the India data engineering team manages, and where the gaps are</div>
+        <div class="plan-item"><strong>Identify top 3 GenAI feature retention questions</strong> — prioritize which product hypotheses most need rigorous causal analysis</div>
+        <div class="plan-output"><span>Deliverable</span>BigQuery schema audit + PM analytics priority list + AI-readiness gap assessment</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Build &amp; Prove</div>
+        <div class="plan-dates">Days 31 – 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Ship NL-to-BigQuery prototype</strong> — LLM API + MCP wiring to BigQuery schema; PM team can query data conversationally in a controlled pilot</div>
+        <div class="plan-item"><strong>Design and document semantic layer v1</strong> — business term mappings, metric definitions, and AI-ready schema documentation in partnership with India team</div>
+        <div class="plan-item"><strong>Deliver first GenAI retention analysis</strong> — cohort-based deep dive with causal inference applied to one high-priority GenAI feature</div>
+        <div class="plan-item"><strong>Establish PM analytics cadence</strong> — weekly proactive insight sharing that goes beyond feature-by-feature reporting</div>
+        <div class="plan-output"><span>Deliverable</span>NL-to-BigQuery pilot live + first causal retention analysis delivered to PM leadership</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Scale &amp; Own</div>
+        <div class="plan-dates">Days 61 – 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Expand NL query interface to full PM team</strong> — onboard all PMs to conversational BigQuery access; measure reduction in ad-hoc requests</div>
+        <div class="plan-item"><strong>Complete semantic layer v1</strong> — all core product metrics defined, aliased, and validated against PM team's mental model of the data</div>
+        <div class="plan-item"><strong>Lead high-stakes executive analysis</strong> — causal inference study answering a critical investor or board-level product question</div>
+        <div class="plan-item"><strong>90-day retrospective</strong> — what I built, what changed in how the PM team uses data, and roadmap for next-gen analytics infrastructure</div>
+        <div class="plan-output"><span>Deliverable</span>NL query interface in full production + executive retention analysis + semantic layer complete</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Data Analyst, Product Strategy &amp; AI &nbsp;·&nbsp; AlphaSense &nbsp;·&nbsp; New York, NY</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div class="fc-item"><div class="fc-label">Phone</div><div class="fc-val">913-218-6727</div></div>
+    <div class="fc-item"><div class="fc-label">Email</div><div class="fc-val">raghavpatidar997@gmail.com</div></div>
+    <div class="fc-item"><div class="fc-label">LinkedIn</div><div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div></div>
+    <div class="fc-item"><div class="fc-label">Education</div><div class="fc-val">MS Computer Information Systems, University of Central Missouri</div></div>
+  </div>
+</footer>
+
+</body>
+</html>
