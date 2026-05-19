@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Project Controls BI Analyst | HNTB</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --hntb-navy:   #003264;
+  --hntb-mid:    #1B5EA6;
+  --hntb-orange: #F5821F;
+  --hntb-amber:  #D96D0A;
+  --text:        #1a1f2e;
+  --muted:       #5a6478;
+  --rule:        #dde2ea;
+  --bg:          #f5f7fb;
+  --white:       #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+
+header { background:var(--hntb-navy); padding:56px 10% 48px; position:relative; overflow:hidden; }
+header::before { content:''; position:absolute; top:-60px; right:-60px; width:420px; height:420px; background:radial-gradient(circle, rgba(245,130,31,0.15) 0%, transparent 65%); border-radius:50%; }
+header::after { content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:linear-gradient(90deg, var(--hntb-orange) 0%, transparent 55%); }
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:16px; }
+header h1 { font-size:clamp(28px,4vw,46px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.5); font-weight:400; font-size:0.72em; display:block; margin-top:8px; }
+.h-tagline { font-size:15px; color:rgba(255,255,255,0.6); max-width:580px; line-height:1.65; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.33); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.88); }
+
+.impact-bar { background:var(--hntb-orange); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:130px; padding:24px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.2); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:30px; font-weight:800; color:#fff; line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.78); margin-top:5px; }
+
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--hntb-orange); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--hntb-navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:640px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); }
+
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--hntb-navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.stat-num { font-size:26px; font-weight:800; color:var(--hntb-navy); line-height:1; }
+.stat-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+.stat-card.hl { background:var(--hntb-navy); border-color:var(--hntb-navy); }
+.stat-card.hl .stat-num { color:#fff; font-size:18px; padding-top:4px; }
+.stat-card.hl .stat-label { color:rgba(255,255,255,0.6); }
+
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--hntb-navy); color:rgba(255,255,255,0.65); }
+.ps-col-head.solution { background:var(--hntb-orange); color:rgba(255,255,255,0.95); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--hntb-orange); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--hntb-navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--hntb-navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+.jd-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.jd-table thead tr { background:var(--hntb-navy); }
+.jd-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); text-align:left; }
+.jd-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); vertical-align:top; }
+.jd-table tr:nth-child(even) td { background:var(--bg); }
+.jd-proof { color:var(--muted); font-size:12px; line-height:1.45; }
+.badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:10px; font-weight:700; text-transform:uppercase; }
+.badge-full { background:rgba(245,130,31,0.12); color:var(--hntb-amber); }
+.badge-strong { background:rgba(0,50,100,0.1); color:var(--hntb-navy); }
+
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--hntb-navy); width:34%; }
+.sk-bar-wrap { width:42%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg, var(--hntb-navy), var(--hntb-orange)); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--hntb-orange); width:8%; text-align:right; }
+
+.plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--hntb-navy); }
+.plan-head.p2 { background:var(--hntb-mid); }
+.plan-head.p3 { background:var(--hntb-orange); }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+.plan-title { font-size:15px; font-weight:800; color:#fff; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--hntb-navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+
+footer { background:var(--hntb-navy); padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.45); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--hntb-orange); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); }
+
+@media(max-width:768px){
+  section { padding:44px 6%; }
+  header { padding:44px 6% 40px; }
+  .context-strip, .stat-row { grid-template-columns:1fr 1fr; }
+  .ps-grid, .plan-grid { grid-template-columns:1fr; }
+  .sk-bar-wrap, .sk-proof { display:none; }
+  footer { flex-direction:column; padding:40px 6%; }
+  .ib-item { min-width:50%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-eyebrow">Project Controls BI Analyst &nbsp;·&nbsp; HNTB &nbsp;·&nbsp; Infrastructure Engineering &nbsp;·&nbsp; Charlotte, NC</div>
+  <h1>Raghav Patidar<span>Power BI earned value dashboards, Oracle/dbt ETL pipelines, OLAP cubes, and project cost analytics — built for HNTB's infrastructure project controls environment.</span></h1>
+  <p class="h-tagline">5+ years building the exact BI stack HNTB needs — Power BI dashboards tracking EAC, SPI/CPI, budget variance and burn rate; ETL pipelines processing project cost data through Oracle and dbt; and C-suite earned value presentations that drove real budget decisions.</p>
+  <div class="h-meta">
+    <div class="h-meta-item"><div class="h-meta-label">Experience</div><div class="h-meta-value">5+ Years Project Controls &amp; BI</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Domain</div><div class="h-meta-value">Earned Value, Cost/Schedule Analytics</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Certifications</div><div class="h-meta-value">SCRUM · Project Management · Agile</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Core Stack</div><div class="h-meta-value">Power BI · SQL · dbt · Oracle · Airflow · OBIEE</div></div>
+  </div>
+</header>
+
+<div class="impact-bar">
+  <div class="ib-item"><div class="ib-num">45%</div><div class="ib-label">Query Performance Improvement (OLAP)</div></div>
+  <div class="ib-item"><div class="ib-num">50+</div><div class="ib-label">Hours/Month Saved via Automated Reporting</div></div>
+  <div class="ib-item"><div class="ib-num">85%</div><div class="ib-label">Bad-Data Reduction in ETL Pipelines</div></div>
+  <div class="ib-item"><div class="ib-num">10%</div><div class="ib-label">YoY Revenue Lift from BI Insights</div></div>
+  <div class="ib-item"><div class="ib-num">99.9%</div><div class="ib-label">Pipeline Uptime via Audit-Logged ETL</div></div>
+</div>
+
+<section>
+  <div class="sec-label">01 &nbsp;— &nbsp;Company Context</div>
+  <h2 class="sec-title">Understanding HNTB's Project Controls BI Environment</h2>
+  <p class="sec-desc">HNTB is an employee-owned infrastructure solutions firm delivering some of America's most complex transportation, civil, and structural engineering programs. The Project Controls BI Analyst role is the analytical backbone of HNTB's program delivery — building the Power BI dashboards that give project managers and executives real-time visibility into earned value, cost variance, schedule performance, and burn rate across multi-contract infrastructure programs. The data is complex, the stakes are high, and the ETL pipelines feeding it must be reliable.</p>
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Company</div>
+      <div class="cs-value">HNTB — Employee-Owned Infrastructure Engineering Firm</div>
+      <div class="cs-sub">Charlotte NC office · Transportation, civil &amp; structural programs</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Role Focus</div>
+      <div class="cs-value">Project Cost &amp; Schedule BI — EVM, EAC, SPI/CPI</div>
+      <div class="cs-sub">Power BI · Oracle ETL · dbt · OLAP · Earned Value Reporting</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Data Stack</div>
+      <div class="cs-value">Oracle · dbt · Airflow · Snowflake · OBIEE · SQL</div>
+      <div class="cs-sub">CDC · Audit logging · Row-level security · Star/snowflake schema</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Stakeholders</div>
+      <div class="cs-value">Project Managers, Finance, C-Suite Leadership</div>
+      <div class="cs-sub">Budget variance, earned value narratives, portfolio reporting</div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card hl">
+      <div class="stat-num">Earned Value</div>
+      <div class="stat-label">Core of this role — Raghav built EAC, SPI/CPI, budget variance, and burn rate dashboards with automated DAX measures</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Oracle + dbt</div>
+      <div class="stat-label">HNTB's primary data stack — Raghav's primary ETL tools; 15+ production pipelines built and maintained</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Row-Level Security</div>
+      <div class="stat-label">Power BI RLS implemented — project managers see only their portfolio; governance-compliant reporting</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Charlotte, NC</div>
+      <div class="stat-label">Resume location matched — open to Charlotte for this role</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">02 &nbsp;— &nbsp;Challenges &amp; My Response</div>
+  <h2 class="sec-title">What HNTB Needs &nbsp;·&nbsp; What I Bring</h2>
+  <p class="sec-desc">Four challenges drive this role. Each maps to production work I delivered in an enterprise environment — using the same tools, the same KPIs, and the same governance requirements HNTB operates under.</p>
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">The Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Power BI Dashboards for Project Cost and Schedule Control</strong><p>Project managers on large infrastructure programs need real-time visibility into EAC, SPI, CPI, budget variance, and burn rate — not weekly spreadsheet extracts. Dashboards must be drill-through from program to task level, with row-level security so each PM sees only their portfolio.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Reliable ETL Pipelines for Project Cost Data</strong><p>Project cost data lives across Oracle databases, timesheet systems, contract management platforms, and billing systems. Feeding clean, timely, auditable data from all these sources into a reporting warehouse requires robust ETL with quality checks and lineage tracking built in — not bolted on after the fact.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>OLAP Cubes for Multidimensional Project Analytics</strong><p>Project finance teams need to slice performance by cost code, contract, region, and time period simultaneously. Star schema dimensional models and OLAP cubes are the infrastructure that makes this possible — and makes it fast enough to be useful in real-time leadership reviews.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>C-Suite Earned Value Reporting That Drives Budget Decisions</strong><p>Quarterly earned value presentations to senior leadership must translate EAC, SPI/CPI, and variance trends into budget recommendations — not just charts. The BI analyst is the person who bridges technical data and executive decision-making.</p></div>
+      </div>
+    </div>
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">My Response</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Power BI Project Controls Dashboard — EAC, SPI/CPI, Budget Variance, Row-Level Security</strong><p>Designed end-to-end Power BI project controls dashboard ingesting cost, schedule, and earned value data from Oracle via dbt pipelines — tracking EAC and SPI/CPI in real time with automated daily refresh and drill-through from program to task level. Implemented row-level security ensuring each PM saw only their portfolio. Automated DAX measures calculated budget variance, burn rate, and forecast-to-complete across 50+ active projects. Saved 50+ hours/month of manual reporting.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Medallion ETL Pipelines — 99.9% Uptime, 85% Bad-Data Reduction</strong><p>Architected medallion-style data pipeline using Apache Airflow and dbt Cloud to ingest raw project cost records, timesheet data, and contract milestones from 12+ source systems into Snowflake — 10TB+/week with 99.9% uptime and full audit logging. Bronze/Silver/Gold transformation layers with referential integrity, data quality checks, and lineage tracking. Reduced bad-data incidents by 85% and cut pipeline execution from 6 hours to under 45 minutes.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>OLAP Cubes and Star Schema — 45% Query Performance Improvement</strong><p>Designed enterprise OLAP cubes and star/snowflake schema dimensional models in Oracle and OBIEE — enabling high-speed slice-and-dice analytics across project cost, labor, and financial performance for 8 business units. 45% improvement in multidimensional query performance. Migrated critical reporting to OBIEE with semantic layer objects that simplified ad-hoc analysis for non-technical project managers and reduced data request backlog by 22%.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>C-Suite Earned Value Presentations — 10% YoY Revenue Influence</strong><p>Presented quarterly earned value and performance insights to C-suite stakeholders at Infosys — translated EAC, variance trends, and SPI/CPI findings into actionable budget recommendations that influenced a 10% year-over-year revenue increase. Applied statistical hypothesis testing and ARIMA diagnostics to validate forecasting assumptions; documented full methodology for stakeholder review.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">03 &nbsp;— &nbsp;JD Coverage</div>
+  <h2 class="sec-title">Every Requirement &nbsp;&#8594;&nbsp; Direct Evidence</h2>
+  <p class="sec-desc">HNTB's Project Controls BI Analyst requirements mapped one-to-one against production outcomes from enterprise BI and ETL delivery.</p>
+  <table class="jd-table">
+    <thead>
+      <tr>
+        <th>JD Requirement</th>
+        <th>My Evidence</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Power BI dashboards for project cost, schedule, and earned value (EAC, SPI, CPI)</strong></td>
+        <td class="jd-proof">Designed end-to-end Power BI project controls dashboard tracking EAC and SPI/CPI in real time via dbt/Oracle pipelines — drill-through from program to task level; automated DAX measures for budget variance, burn rate, and forecast-to-complete across 50+ active projects.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>ETL/ELT pipelines for project cost and operational data</strong></td>
+        <td class="jd-proof">Architected 15+ production ETL/ELT pipelines using SQL, dbt, and Oracle processing 10TB+/week. Medallion architecture (Bronze/Silver/Gold) with Apache Airflow orchestration — 99.9% uptime, full audit logging, 85% bad-data reduction.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Star/snowflake schema and OLAP cubes for multidimensional reporting</strong></td>
+        <td class="jd-proof">Designed enterprise OLAP cubes and star/snowflake schemas in Oracle and OBIEE — 45% query performance improvement for financial and schedule reporting across 8 business units. Migrated critical reporting to OBIEE with semantic layer reducing PM data request backlog by 22%.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Row-level security and data governance in Power BI</strong></td>
+        <td class="jd-proof">Implemented row-level security in Power BI ensuring project managers see only their portfolio data. CDC (change data capture) processes across 5 data sources and audit-logging data lake zones — 100% compliance with governance and audit protocols.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>SQL — complex transformations and root cause analysis</strong></td>
+        <td class="jd-proof">Expert SQL across Oracle, SQL Server, PostgreSQL, Snowflake — complex ETL transformations, schedule performance root cause analysis, 40% query runtime reduction via indexing and partitioning. SQL is the foundation of all project controls data work.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>dbt for data transformation and modeling</strong></td>
+        <td class="jd-proof">dbt Cloud Bronze/Silver/Gold transformation layers with referential integrity, data quality checks, and lineage tracking. Refactored legacy ETL scripts into modular dbt models with GitHub CI/CD — reduced code redundancy 45%, pipeline execution from 6hr to 45min.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>JIRA-managed project workflows and billing reconciliation</strong></td>
+        <td class="jd-proof">Streamlined billing and revenue reporting via JIRA-managed workflows — resolved invoice discrepancies and reduced billing errors by 25% across multi-contract project portfolios. Managed 4 concurrent BI projects in JIRA with 95% stakeholder satisfaction.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Financial forecasting and budget variance analysis</strong></td>
+        <td class="jd-proof">XGBoost/ARIMA ensemble forecasting at 95% accuracy (Infosys Innovation Award). Automated DAX measures for budget variance, burn rate, and forecast-to-complete. Presented financial forecasts to C-suite contributing to 10% YoY revenue increase.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Oracle and OBIEE — enterprise data platform experience</strong></td>
+        <td class="jd-proof">Built production ETL pipelines in Oracle SQL and dbt; designed OLAP cubes and dimensional models in Oracle/OBIEE; created semantic layer objects for PM self-service analytics. Oracle is the primary database across all Infosys enterprise projects.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>C-suite reporting and stakeholder communication</strong></td>
+        <td class="jd-proof">Presented quarterly earned value and performance insights to C-suite — translated technical EAC/SPI/CPI findings into budget recommendations influencing 10% YoY revenue increase. Mentored 3 junior data engineers; 95% stakeholder satisfaction across 4 concurrent projects.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">04 &nbsp;— &nbsp;Technical Alignment</div>
+  <h2 class="sec-title">Required Skills &nbsp;&#8594;&nbsp; Verified Proficiency</h2>
+  <p class="sec-desc">Every tool and capability in HNTB's Project Controls BI stack mapped to production evidence.</p>
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">Power BI — DAX, RLS, Drill-Through</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:96%"></div></div></td>
+      <td class="sk-proof">EAC/SPI/CPI project controls dashboard; DAX measures for budget variance and burn rate; row-level security; 50+ active projects tracked</td>
+      <td class="sk-pct">96%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">SQL — Oracle, SQL Server, Snowflake</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:97%"></div></div></td>
+      <td class="sk-proof">Expert SQL across Oracle, SQL Server, PostgreSQL, Snowflake — complex transformations, root cause analysis, 40% query performance improvement</td>
+      <td class="sk-pct">97%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">dbt — Medallion Architecture &amp; CI/CD</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">dbt Cloud Bronze/Silver/Gold layers; GitHub CI/CD workflows; pipeline from 6hr to 45min; 85% bad-data reduction; 45% code redundancy reduction</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Oracle + OBIEE — Enterprise Data Platform</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">Production ETL in Oracle SQL; OLAP cubes and star/snowflake schemas in Oracle/OBIEE; semantic layer objects for PM self-service analytics</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">OLAP Cubes &amp; Star/Snowflake Schema</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Enterprise OLAP cubes across 8 business units — 45% multidimensional query improvement; star/snowflake schemas for cost, labor, and financial analytics</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Earned Value Management (EAC, SPI, CPI)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-proof">EAC, SPI/CPI, budget variance, burn rate, forecast-to-complete — all tracked via automated Power BI DAX measures and presented to C-suite quarterly</td>
+      <td class="sk-pct">92%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Apache Airflow — Pipeline Orchestration</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">Airflow orchestration for 15+ production pipelines; 10TB+/week throughput; 99.9% uptime; CDC processes across 5 data sources with audit logging</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">05 &nbsp;— &nbsp;90-Day Plan</div>
+  <h2 class="sec-title">First 90 Days at HNTB</h2>
+  <p class="sec-desc">Infrastructure project controls data is complex — multiple contracts, multiple cost codes, multiple systems of record. The first priority is understanding HNTB's specific data environment and reporting requirements before touching any production dashboards or pipelines.</p>
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Learn &amp; Map</div>
+        <div class="plan-dates">Days 1 – 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Audit existing Power BI dashboards</strong> — understand current EVM coverage, data sources, DAX measures, and known gaps or stale reports</div>
+        <div class="plan-item"><strong>Map ETL pipeline architecture</strong> — trace project cost data from Oracle source systems through transformation layers into reporting warehouse</div>
+        <div class="plan-item"><strong>Review data governance standards</strong> — audit logging, CDC processes, row-level security configuration, and compliance requirements</div>
+        <div class="plan-item"><strong>Shadow project manager reviews</strong> — understand how PMs consume EVM data and where reporting fails to meet operational needs</div>
+        <div class="plan-output"><span>Deliverable</span>Dashboard audit + pipeline architecture map + top 3 data quality gaps with remediation proposals</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Contribute &amp; Stabilize</div>
+        <div class="plan-dates">Days 31 – 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Own first dashboard enhancement</strong> — add a missing EVM metric, improve a DAX measure, or fix a data quality issue in a production report</div>
+        <div class="plan-item"><strong>Improve one ETL pipeline</strong> — add a data quality check, reduce latency, or implement a missing CDC process for a high-priority source system</div>
+        <div class="plan-item"><strong>Deliver first earned value analysis</strong> — cost and schedule performance report for one program with root cause commentary for PM leadership</div>
+        <div class="plan-item"><strong>Review and document OLAP schema</strong> — update metadata documentation for star schema dimensions most used in PM reporting</div>
+        <div class="plan-output"><span>Deliverable</span>Enhanced dashboard live + first earned value report delivered + pipeline improvement deployed</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Drive Value</div>
+        <div class="plan-dates">Days 61 – 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Lead quarterly EVM reporting cycle</strong> — EAC, SPI/CPI, and budget variance package for C-suite presentation with narrative and recommendations</div>
+        <div class="plan-item"><strong>Propose one OLAP or schema improvement</strong> — dimensional model enhancement targeting the highest-latency multidimensional query in active use</div>
+        <div class="plan-item"><strong>Expand row-level security coverage</strong> — ensure all active project portfolios have correct PM-level data access governance configured</div>
+        <div class="plan-item"><strong>90-day retrospective</strong> — what I delivered, what I learned about HNTB's project data environment, and BI roadmap priorities</div>
+        <div class="plan-output"><span>Deliverable</span>Quarterly EVM package delivered to C-suite + OLAP improvement proposal + RLS audit complete</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Project Controls BI Analyst &nbsp;·&nbsp; HNTB &nbsp;·&nbsp; Charlotte, NC</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div class="fc-item"><div class="fc-label">Phone</div><div class="fc-val">913-218-6727</div></div>
+    <div class="fc-item"><div class="fc-label">Email</div><div class="fc-val">raghavpatidar997@gmail.com</div></div>
+    <div class="fc-item"><div class="fc-label">LinkedIn</div><div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div></div>
+    <div class="fc-item"><div class="fc-label">Education</div><div class="fc-val">MS Computer Information Systems, University of Central Missouri</div></div>
+  </div>
+</footer>
+
+</body>
+</html>
