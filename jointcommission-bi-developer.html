@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raghav Patidar | BI Developer | The Joint Commission</title>
+<style>
+  :root {
+    --navy:  #003264;
+    --gold:  #C8972A;
+    --light: #F5F0E8;
+    --text:  #1A1A2E;
+    --muted: #5A5A72;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); color: var(--text); line-height: 1.65; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #001A40 100%);
+    color: var(--white);
+    padding: 56px 40px 48px;
+    text-align: center;
+  }
+  .hero-label {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .hero h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .hero h2 { font-size: 1.15rem; font-weight: 400; opacity: 0.85; margin-bottom: 24px; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; font-size: 13px; opacity: 0.75; }
+  .hero-meta span::before { content: ""; display: inline-block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+
+  /* ── IMPACT BAR ── */
+  .impact-bar {
+    background: var(--gold);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .impact-item {
+    text-align: center;
+    padding: 0 40px;
+    border-right: 1px solid rgba(0,50,100,0.25);
+  }
+  .impact-item:last-child { border-right: none; }
+  .impact-num { font-size: 2rem; font-weight: 900; color: var(--navy); line-height: 1; }
+  .impact-lbl { font-size: 11.5px; font-weight: 600; color: var(--navy); margin-top: 4px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+  .section-title {
+    font-size: 1.3rem; font-weight: 800; color: var(--navy);
+    border-left: 4px solid var(--gold);
+    padding-left: 14px; margin-bottom: 24px; letter-spacing: -0.2px;
+  }
+
+  /* ── CONTEXT STRIP ── */
+  .context-strip {
+    background: var(--navy);
+    color: var(--white);
+    padding: 36px 40px;
+    text-align: center;
+  }
+  .context-strip p { max-width: 750px; margin: 0 auto; font-size: 1.05rem; opacity: 0.9; }
+  .context-strip strong { color: var(--gold); }
+
+  /* ── CHALLENGE / RESPONSE CARDS ── */
+  .cr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .cr-grid { grid-template-columns: 1fr; } }
+  .cr-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .cr-card.challenge { border-top: 4px solid #C0392B; }
+  .cr-card.response  { border-top: 4px solid #27AE60; }
+  .cr-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .cr-card.challenge .cr-tag { color: #C0392B; }
+  .cr-card.response  .cr-tag { color: #27AE60; }
+  .cr-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .cr-card p  { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── COVERAGE TABLE ── */
+  .coverage-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .coverage-table th {
+    background: var(--navy); color: var(--white); padding: 10px 14px;
+    text-align: left; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .coverage-table td { padding: 10px 14px; border-bottom: 1px solid #E5E0D8; vertical-align: top; }
+  .coverage-table tr:hover td { background: #FAF6EF; }
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    padding: 3px 9px; border-radius: 20px; text-transform: uppercase;
+  }
+  .badge-direct   { background: #D4EDDA; color: #155724; }
+  .badge-adjacent { background: #FFF3CD; color: #856404; }
+  .badge-project  { background: #CCE5FF; color: #004085; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .skill-card {
+    background: var(--white); border-radius: 8px; padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--gold);
+  }
+  .skill-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .skill-bar-bg { background: #E9E4DA; border-radius: 6px; height: 6px; }
+  .skill-bar-fill { background: var(--gold); border-radius: 6px; height: 6px; }
+  .skill-note { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+
+  /* ── 90-DAY PLAN ── */
+  .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 640px) { .plan-grid { grid-template-columns: 1fr; } }
+  .plan-card {
+    background: var(--white); border-radius: 10px; padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .plan-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .plan-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+  .plan-card ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+  .plan-card ul li { margin-bottom: 6px; }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    background: var(--navy); color: var(--white);
+    border-left: 6px solid var(--gold);
+    padding: 28px 36px; border-radius: 0 10px 10px 0;
+    margin: 32px 0; font-size: 1.05rem; font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy); color: var(--white);
+    text-align: center; padding: 36px 24px; font-size: 0.88rem;
+  }
+  .footer a { color: var(--gold); text-decoration: none; font-weight: 600; }
+  .footer-name { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
+
+  /* ── DIVIDER ── */
+  .alt-bg { background: var(--white); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero">
+  <div class="hero-label">Case Study</div>
+  <h1>Raghav Patidar</h1>
+  <h2>BI Developer &mdash; The Joint Commission</h2>
+  <div class="hero-meta">
+    <span>5+ Years BI &amp; Data Engineering</span>
+    <span>Power BI &bull; DAX &bull; Semantic Models</span>
+    <span>Oakbrook Terrace, IL (Hybrid Ready)</span>
+  </div>
+</div>
+
+<!-- ═══════════════ IMPACT BAR ═══════════════ -->
+<div class="impact-bar">
+  <div class="impact-item">
+    <div class="impact-num">15+</div>
+    <div class="impact-lbl">ETL Pipelines Built</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">45%</div>
+    <div class="impact-lbl">Query Performance Gain</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">50+</div>
+    <div class="impact-lbl">Hours Saved Monthly</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">99.9%</div>
+    <div class="impact-lbl">Pipeline Uptime</div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONTEXT STRIP ═══════════════ -->
+<div class="context-strip">
+  <p>
+    The Joint Commission is a <strong>leading healthcare accreditation body</strong> relied on by thousands of hospitals and health systems.
+    Their BI Developer role demands someone who can bridge <strong>complex data models with intuitive executive dashboards</strong>
+    -- translating accreditation, compliance, and operational data into trusted, self-service Power BI analytics.
+  </p>
+</div>
+
+<!-- ═══════════════ CHALLENGE / RESPONSE ═══════════════ -->
+<div class="section">
+  <div class="section-title">Challenges I Solve</div>
+  <div class="cr-grid">
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Fragmented Reporting Across Business Units</h3>
+      <p>Enterprise teams need consistent, certified semantic models -- not ad hoc spreadsheets that break with every schema change or produce conflicting KPI values.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Kimball Star Schemas + Certified Semantic Models</h3>
+      <p>Built reusable dimensional models in Oracle and Snowflake using Kimball methodology, improving query performance by 45% and standardizing KPI definitions across 8 business units.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Slow, Manual Executive Reporting</h3>
+      <p>Leadership spends hours each month reconciling data from multiple sources into static reports -- missing the real-time visibility needed for strategic decisions.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Power BI Dashboards with Advanced DAX</h3>
+      <p>Developed Power BI dashboards with custom DAX measures, KPI scorecards, and drill-through pages -- cutting manual reporting by 50+ hours/month and speeding executive decisions by 30%.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Data Quality and Governance Gaps</h3>
+      <p>Without row-level security and audit-ready lineage, healthcare organizations face compliance risk when sensitive operational data flows into shared dashboards.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>RLS + Microsoft Purview Data Governance</h3>
+      <p>Implemented Power BI row-level security and Microsoft Purview governance policies ensuring 100% PII compliance, role-based access control, and full lineage tracking across all reporting pipelines.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Low BI Adoption Among Non-Technical Users</h3>
+      <p>Powerful dashboards fail if stakeholders can't use them confidently. Self-service analytics only works when users trust the data and know how to navigate the model.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Semantic Abstraction + User Training Programs</h3>
+      <p>Built logical abstraction layers in OBIEE and Power BI that simplified ad hoc analysis for non-technical users, reducing data request backlog by 22% and cutting new-analyst onboarding time by 25%.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ QUOTE ═══════════════ -->
+<div class="section" style="padding-top: 0;">
+  <div class="quote-block">
+    "At Infosys, I didn't just build dashboards -- I built the data foundation underneath them. Kimball schemas, certified semantic models, row-level security, and CI/CD for dbt transformations. The Joint Commission's stack is the environment I've been engineering for."
+    <div style="margin-top: 12px; font-size: 0.85rem; opacity: 0.75; font-style: normal;">-- Raghav Patidar, Senior BI Developer / Project Lead, Infosys Private Limited</div>
+  </div>
+</div>
+
+<!-- ═══════════════ JD COVERAGE TABLE ═══════════════ -->
+<div class="section alt-bg" style="background: var(--white); max-width: 100%; padding: 48px 5%;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-title">JD Requirements vs. My Experience</div>
+    <table class="coverage-table">
+      <thead>
+        <tr>
+          <th style="width: 38%">JD Requirement</th>
+          <th style="width: 12%">Coverage</th>
+          <th>How I Cover It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Power BI dashboards &amp; reports</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Built 15+ Power BI dashboards with DAX, KPI scorecards, drill-through, and RLS at Infosys across Sales, Finance, and Operations teams</td>
+        </tr>
+        <tr>
+          <td><strong>Shared/certified semantic models</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Engineered semantic models and OLAP cubes in OBIEE and Power BI; designed logical abstraction layers for self-service analytics across 8 business units</td>
+        </tr>
+        <tr>
+          <td><strong>Advanced DAX (measures, KPIs, time intelligence)</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Custom DAX measures for budget variance, burn rate, SPI/CPI, and forecast-to-complete in enterprise Power BI deployments</td>
+        </tr>
+        <tr>
+          <td><strong>Power BI performance optimization</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Star schema model tuning and query reduction drove 45% performance improvement; applied Kimball methodology to all dimensional models</td>
+        </tr>
+        <tr>
+          <td><strong>Star schema &amp; dimensional modeling</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Kimball star and snowflake schemas in Oracle, SQL Server, and Snowflake; modeled fact/dim tables for sales, finance, and operational reporting</td>
+        </tr>
+        <tr>
+          <td><strong>Advanced SQL (joins, CTEs, window functions)</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>5+ years of complex SQL in Oracle, Snowflake, and SQL Server; query optimization including stored procedures, indexing, and parallelized transforms</td>
+        </tr>
+        <tr>
+          <td><strong>Data governance &amp; naming conventions</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Microsoft Purview data governance, metadata documentation, data lineage maps, and role-based access control across all production pipelines</td>
+        </tr>
+        <tr>
+          <td><strong>Requirements gathering &amp; stakeholder collaboration</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Translated business requirements from Sales, Finance, and Delivery teams into Power BI dashboards; presented quarterly performance insights to C-suite</td>
+        </tr>
+        <tr>
+          <td><strong>User training &amp; documentation</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>2 years as Teaching Assistant at UCM -- delivered Python/SQL/BI workshops; documented data sources, transformation logic, and KPI definitions for analytics teams</td>
+        </tr>
+        <tr>
+          <td><strong>Cloud data platforms (Azure Synapse, Snowflake)</strong></td>
+          <td><span class="badge badge-project">Project</span></td>
+          <td>Healthcare KPI Dashboard project: Azure Synapse semantic model with Azure Data Factory pipelines and Microsoft Purview governance for compliance reporting</td>
+        </tr>
+        <tr>
+          <td><strong>Git / DevOps CI/CD for BI assets</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>GitHub CI/CD workflows for dbt transformations with automated data quality tests; version-controlled ETL pipeline modernization cutting execution from 6 hrs to 45 min</td>
+        </tr>
+        <tr>
+          <td><strong>Modern analytics architecture patterns</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Medallion architecture (Bronze/Silver/Gold) in dbt Cloud; ETL/ELT on AWS (S3, Glue, Athena, Redshift); 99.9% pipeline uptime with full audit logging</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ SKILLS ═══════════════ -->
+<div class="section">
+  <div class="section-title">Core Technical Stack</div>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-name">Power BI (DAX, RLS, Semantic Models)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:96%"></div></div>
+      <div class="skill-note">15+ dashboards; advanced DAX measures and KPI scorecards</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">SQL (Oracle, Snowflake, SQL Server)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
+      <div class="skill-note">CTEs, window functions, stored procedures, query tuning</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Kimball / Star Schema Data Modeling</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:93%"></div></div>
+      <div class="skill-note">Fact/dim tables, hierarchies, calculation groups, OLAP cubes</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Azure Synapse + Azure Data Factory</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div>
+      <div class="skill-note">Healthcare KPI dashboard project; compliance semantic models</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">dbt Cloud + GitHub CI/CD</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+      <div class="skill-note">Medallion architecture; automated quality tests; pipeline velocity</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Data Governance (Purview, RLS, Lineage)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+      <div class="skill-note">100% PII compliance; audit logging; role-based access control</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">ETL/ELT Pipeline Design</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:94%"></div></div>
+      <div class="skill-note">15+ pipelines; 10TB+/week; Apache Airflow + Snowflake + dbt</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Python (Pandas, Scikit-learn, XGBoost)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+      <div class="skill-note">Innovation Award: 95% forecast accuracy; anomaly detection</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ 90-DAY PLAN ═══════════════ -->
+<div class="section alt-bg" style="background: var(--navy); max-width: 100%; padding: 48px 5%;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-title" style="color: var(--white); border-left-color: var(--gold);">90-Day Plan at The Joint Commission</div>
+    <div class="plan-grid">
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 1 -- 30</div>
+        <h3>Learn &amp; Listen</h3>
+        <ul>
+          <li>Audit existing Power BI semantic models and DAX patterns</li>
+          <li>Map current data sources and ETL/ELT flow to reporting layer</li>
+          <li>Shadow business teams to understand accreditation KPI definitions</li>
+          <li>Identify quick-win performance bottlenecks in existing dashboards</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 31 -- 60</div>
+        <h3>Build &amp; Standardize</h3>
+        <ul>
+          <li>Refactor and certify top 3 shared semantic models with Kimball best practices</li>
+          <li>Implement row-level security and governance policies on priority datasets</li>
+          <li>Deliver first self-service dashboard with drill-through for leadership team</li>
+          <li>Document DAX measures, naming conventions, and data definitions</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 61 -- 90</div>
+        <h3>Scale &amp; Enable</h3>
+        <ul>
+          <li>Roll out CI/CD workflow for Power BI asset version control via Git</li>
+          <li>Conduct user training sessions to drive self-service analytics adoption</li>
+          <li>Build KPI scorecard for executive leadership with automated refresh</li>
+          <li>Present data modeling roadmap aligned to enterprise BI strategy</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RELEVANT PROJECT ═══════════════ -->
+<div class="section">
+  <div class="section-title">Directly Relevant Project</div>
+  <div style="background: var(--white); border-radius: 10px; padding: 28px 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-top: 4px solid var(--gold);">
+    <h3 style="font-size: 1.05rem; color: var(--navy); font-weight: 800; margin-bottom: 8px;">
+      Healthcare KPI Dashboard -- Azure Synapse &amp; Power BI
+    </h3>
+    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Azure Synapse Analytics &bull; Azure Data Factory &bull; Power BI &bull; DAX &bull; T-SQL &bull; Microsoft Purview</p>
+    <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text); line-height: 1.7;">
+      <li>Designed a semantic data model in Azure Synapse using Kimball star schema methodology, integrating patient and operational data from multiple sources via Azure Data Factory pipelines to support compliance reporting</li>
+      <li>Built Power BI dashboards with custom DAX measures, KPI scorecards, and drill-through pages for operational visibility -- enabling real-time monitoring of accreditation and quality metrics for leadership stakeholders</li>
+      <li>Implemented row-level security and Microsoft Purview data governance policies to ensure PII compliance and role-based data access across all reporting artifacts</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="footer">
+  <div class="footer-name">Raghav Patidar</div>
+  <div>BI Developer &bull; 5+ Years &bull; Power BI &bull; DAX &bull; Semantic Models &bull; Azure &bull; Snowflake</div>
+  <div class="footer-links">
+    <a href="mailto:raghavpatidar997@gmail.com">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank">LinkedIn Profile</a>
+    <span style="opacity:0.6">913-218-6727</span>
+  </div>
+  <div style="margin-top: 16px; font-size: 0.75rem; opacity: 0.5;">Prepared for: The Joint Commission -- BI Developer (Job ID: 2026-7189)</div>
+</div>
+
+</body>
+</html>
