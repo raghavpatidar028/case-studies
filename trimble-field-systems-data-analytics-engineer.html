@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghav Patidar — Data Analytics Engineer | Trimble Field Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --tri-navy:  #003B5C;
+  --tri-blue:  #005F9E;
+  --tri-red:   #C8102E;
+  --tri-teal:  #00A9CE;
+  --text:      #1a1f2e;
+  --muted:     #5a6478;
+  --rule:      #dde2ea;
+  --bg:        #f4f8fb;
+  --white:     #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; color:var(--text); background:var(--white); -webkit-font-smoothing:antialiased; }
+
+header { background:var(--tri-navy); padding:56px 10% 48px; position:relative; overflow:hidden; }
+header::before { content:''; position:absolute; top:-60px; right:-60px; width:440px; height:440px; background:radial-gradient(circle, rgba(0,169,206,0.16) 0%, transparent 65%); border-radius:50%; }
+header::after { content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:linear-gradient(90deg, var(--tri-red) 0%, var(--tri-teal) 55%, transparent 100%); }
+.h-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:14px; }
+header h1 { font-size:clamp(26px,4vw,44px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:10px; }
+header h1 span { color:rgba(255,255,255,0.45); font-weight:400; font-size:0.7em; display:block; margin-top:8px; }
+.h-tagline { font-size:14.5px; color:rgba(255,255,255,0.58); max-width:600px; line-height:1.65; margin-bottom:44px; }
+.h-meta { display:flex; gap:36px; flex-wrap:wrap; }
+.h-meta-item { display:flex; flex-direction:column; }
+.h-meta-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.h-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.86); }
+
+.impact-bar { background:var(--tri-red); display:flex; flex-wrap:wrap; }
+.ib-item { flex:1; min-width:130px; padding:22px 18px; text-align:center; border-right:1px solid rgba(255,255,255,0.18); }
+.ib-item:last-child { border-right:none; }
+.ib-num { font-size:28px; font-weight:800; color:#fff; line-height:1; }
+.ib-label { font-size:11px; color:rgba(255,255,255,0.75); margin-top:4px; }
+
+section { padding:60px 10%; }
+section.alt { background:var(--bg); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--tri-red); margin-bottom:10px; }
+.sec-title { font-size:clamp(18px,2.5vw,26px); font-weight:800; color:var(--tri-navy); margin-bottom:6px; line-height:1.2; }
+.sec-desc { font-size:14px; color:var(--muted); max-width:660px; line-height:1.65; margin-bottom:36px; }
+hr.rule { border:none; border-top:1px solid var(--rule); }
+
+.context-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:36px; }
+.cs-item { background:var(--white); padding:22px 20px; }
+.cs-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.cs-value { font-size:14px; font-weight:700; color:var(--tri-navy); line-height:1.4; }
+.cs-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px 18px; text-align:center; }
+.stat-num { font-size:26px; font-weight:800; color:var(--tri-navy); line-height:1; }
+.stat-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+.stat-card.hl { background:var(--tri-navy); border-color:var(--tri-navy); }
+.stat-card.hl .stat-num { color:#fff; font-size:16px; padding-top:4px; }
+.stat-card.hl .stat-label { color:rgba(255,255,255,0.55); }
+.stat-card.red { background:var(--tri-red); border-color:var(--tri-red); }
+.stat-card.red .stat-num { color:#fff; }
+.stat-card.red .stat-label { color:rgba(255,255,255,0.7); }
+
+.ps-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.ps-col { background:var(--white); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.ps-col-head { padding:14px 20px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+.ps-col-head.problem { background:var(--tri-navy); color:rgba(255,255,255,0.6); }
+.ps-col-head.solution { background:var(--tri-red); color:rgba(255,255,255,0.92); }
+.ps-row { padding:16px 20px; border-top:1px solid var(--rule); display:grid; grid-template-columns:24px 1fr; gap:12px; align-items:start; }
+.ps-num { font-size:11px; font-weight:800; color:var(--tri-teal); padding-top:1px; }
+.ps-col.solution .ps-num { color:var(--tri-navy); }
+.ps-row strong { display:block; font-size:13px; font-weight:700; color:var(--tri-navy); margin-bottom:3px; }
+.ps-row p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+.jd-table { width:100%; border-collapse:collapse; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.jd-table thead tr { background:var(--tri-navy); }
+.jd-table th { padding:12px 18px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.6); text-align:left; }
+.jd-table td { padding:13px 18px; font-size:13px; border-top:1px solid var(--rule); vertical-align:top; }
+.jd-table tr:nth-child(even) td { background:var(--bg); }
+.jd-proof { color:var(--muted); font-size:12px; line-height:1.45; }
+.badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:10px; font-weight:700; text-transform:uppercase; }
+.badge-full { background:rgba(200,16,46,0.12); color:var(--tri-red); }
+.badge-strong { background:rgba(0,59,92,0.1); color:var(--tri-navy); }
+
+.skills-table { width:100%; border-collapse:collapse; }
+.skills-table tr { border-bottom:1px solid var(--rule); }
+.skills-table tr:last-child { border-bottom:none; }
+.skills-table td { padding:14px 0; vertical-align:middle; }
+.sk-name { font-size:13px; font-weight:600; color:var(--tri-navy); width:32%; }
+.sk-bar-wrap { width:40%; padding:0 20px; }
+.sk-bg { background:var(--rule); border-radius:100px; height:5px; }
+.sk-fill { height:5px; border-radius:100px; background:linear-gradient(90deg, var(--tri-navy), var(--tri-red)); }
+.sk-proof { font-size:12px; color:var(--muted); line-height:1.4; width:24%; }
+.sk-pct { font-size:13px; font-weight:800; color:var(--tri-red); width:8%; text-align:right; }
+
+.c360-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+.c360-card { background:var(--white); border:1px solid var(--rule); border-radius:8px; padding:20px; }
+.c360-icon { font-size:22px; margin-bottom:10px; }
+.c360-title { font-size:13px; font-weight:700; color:var(--tri-navy); margin-bottom:6px; }
+.c360-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+.c360-outcome { margin-top:10px; padding:8px 10px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--tri-red); font-weight:700; }
+
+.plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.plan-col { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+.plan-head { padding:16px 18px; }
+.plan-head.p1 { background:var(--tri-navy); }
+.plan-head.p2 { background:var(--tri-blue); }
+.plan-head.p3 { background:var(--tri-red); }
+.plan-phase { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:4px; }
+.plan-title { font-size:15px; font-weight:800; color:#fff; }
+.plan-dates { font-size:11px; color:rgba(255,255,255,0.4); margin-top:3px; }
+.plan-body { padding:14px 16px; background:var(--white); }
+.plan-item { font-size:12px; color:var(--muted); padding:6px 0; border-bottom:1px solid var(--rule); line-height:1.45; }
+.plan-item:last-of-type { border-bottom:none; }
+.plan-item strong { color:var(--text); font-weight:600; }
+.plan-output { margin-top:10px; padding:9px 11px; background:var(--bg); border-radius:5px; font-size:11px; color:var(--tri-navy); font-weight:600; }
+.plan-output span { display:block; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+
+footer { background:var(--tri-navy); padding:44px 10%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:28px; }
+.footer-left h3 { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; }
+.footer-left p { font-size:13px; color:rgba(255,255,255,0.42); }
+.footer-right { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-right a { padding:11px 22px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none; }
+.btn-solid { background:var(--tri-red); color:#fff; }
+.btn-ghost { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); }
+.footer-contacts { display:flex; gap:36px; flex-wrap:wrap; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); width:100%; }
+.fc-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:4px; }
+.fc-val { font-size:13px; font-weight:600; color:rgba(255,255,255,0.78); }
+
+@media(max-width:768px){
+  section { padding:44px 6%; }
+  header { padding:44px 6% 40px; }
+  .context-strip, .stat-row, .c360-grid { grid-template-columns:1fr 1fr; }
+  .ps-grid, .plan-grid { grid-template-columns:1fr; }
+  .sk-bar-wrap, .sk-proof { display:none; }
+  footer { flex-direction:column; padding:40px 6%; }
+  .ib-item { min-width:50%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-eyebrow">Data Analytics Engineer &nbsp;·&nbsp; Trimble Field Systems &nbsp;·&nbsp; Westminster, CO &nbsp;·&nbsp; Customer 360 Data Pipelines</div>
+  <h1>Raghav Patidar<span>Customer 360 integration, medallion architecture, Snowflake + dbt, Python ML — built for Trimble's Field Systems data engineering role.</span></h1>
+  <p class="h-tagline">5+ years building the exact systems Trimble Field Systems needs: Customer 360 data pipelines, medallion architecture in Snowflake and dbt, classification models deployed to production, and ETL modernization at enterprise scale. Here is exactly how that maps to your open role.</p>
+  <div class="h-meta">
+    <div class="h-meta-item"><div class="h-meta-label">Experience</div><div class="h-meta-value">5+ Years Data Engineering & Analytics</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Core Problem</div><div class="h-meta-value">Customer 360 · Fragmented Data Unification</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Certifications</div><div class="h-meta-value">SCRUM · Project Management · Agile</div></div>
+    <div class="h-meta-item"><div class="h-meta-label">Primary Stack</div><div class="h-meta-value">Snowflake · dbt · Python · Airflow · SQL · Splink</div></div>
+  </div>
+</header>
+
+<div class="impact-bar">
+  <div class="ib-item"><div class="ib-num">95%</div><div class="ib-label">ML Forecast Accuracy (Innovation Award)</div></div>
+  <div class="ib-item"><div class="ib-num">10TB+</div><div class="ib-label">Enterprise Data Processed Weekly</div></div>
+  <div class="ib-item"><div class="ib-num">6h→45m</div><div class="ib-label">ETL Execution Time Reduced</div></div>
+  <div class="ib-item"><div class="ib-num">99.9%</div><div class="ib-label">Pipeline Reliability in Production</div></div>
+  <div class="ib-item"><div class="ib-num">5</div><div class="ib-label">Teams Powered by Customer 360 View</div></div>
+</div>
+
+<section>
+  <div class="sec-label">01 &nbsp;— &nbsp;Role Context</div>
+  <h2 class="sec-title">What Trimble Field Systems Is Building — And What I Bring</h2>
+  <p class="sec-desc">Trimble Field Systems is executing a critical Customer 360 data integration initiative — consolidating CRM, ERP, and field data sources into a unified customer view in Snowflake using dbt. This is the exact problem I solved at Infosys. I didn't just work adjacent to this problem — I built the solution end-to-end, in production, at enterprise scale.</p>
+  <div class="context-strip">
+    <div class="cs-item">
+      <div class="cs-label">Team</div>
+      <div class="cs-value">Trimble Field Systems</div>
+      <div class="cs-sub">Customer 360 data pipelines · Snowflake + dbt · Westminster CO</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Core Problem</div>
+      <div class="cs-value">Fragmented CRM + ERP + Field Data</div>
+      <div class="cs-sub">Unified Snowflake Customer 360 · Medallion architecture · Splink entity resolution</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Tech Stack</div>
+      <div class="cs-value">Snowflake · dbt · Python · Airflow</div>
+      <div class="cs-sub">Classification models · Splink · AWS S3 · Power BI · GitHub CI/CD</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">Salary Range</div>
+      <div class="cs-value">$122,500 – $168,400</div>
+      <div class="cs-sub">Westminster, CO · Full-time · Field Systems segment</div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-card red">
+      <div class="stat-num">Customer 360</div>
+      <div class="stat-label">I've built exactly this — CRM + ERP + marketing unified in Snowflake with dbt; 5 teams consuming the output</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Splink</div>
+      <div class="stat-label">Entity resolution across account names, emails, addresses — Fellegi-Sunter probabilistic matching in production</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">dbt + Snowflake</div>
+      <div class="stat-label">Bronze/Silver/Gold medallion architecture with automated data quality tests and incremental materialization</div>
+    </div>
+    <div class="stat-card hl">
+      <div class="stat-num">Production ML</div>
+      <div class="stat-label">Python classification models deployed as Snowpark stored procedures — automated incremental scoring</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">02 &nbsp;— &nbsp;Customer 360 Deep Dive</div>
+  <h2 class="sec-title">The Customer 360 Problem I Solved — And How It Maps to Trimble</h2>
+  <p class="sec-desc">Trimble Field Systems is integrating customer data from hardware CRM, ERP transaction systems, and Impartner partner relationship management into a unified Snowflake view. At Infosys, I built the same architecture for enterprise clients. Here is the technical parallel.</p>
+
+  <div class="c360-grid">
+    <div class="c360-card">
+      <div class="c360-icon">🔗</div>
+      <div class="c360-title">Multi-Source Data Integration</div>
+      <div class="c360-desc">Consolidated records from CRM (Salesforce), ERP, and marketing platforms — 12+ source systems — into Snowflake Bronze layer via Airflow DAG orchestration with automated schema validation on every ingestion run.</div>
+      <div class="c360-outcome">Trimble parallel: CRM + ERP + Impartner PRM → Snowflake</div>
+    </div>
+    <div class="c360-card">
+      <div class="c360-icon">🧩</div>
+      <div class="c360-title">Entity Resolution with Splink</div>
+      <div class="c360-desc">Implemented Fellegi-Sunter probabilistic record linkage using the Splink library — blocking rules to reduce comparison pairs, Jaro-Winkler string similarity for name/email matching, EM algorithm training, threshold-based deduplication.</div>
+      <div class="c360-outcome">Trimble parallel: Field Systems customers appear across multiple systems</div>
+    </div>
+    <div class="c360-card">
+      <div class="c360-icon">🏗️</div>
+      <div class="c360-title">Medallion Architecture in dbt</div>
+      <div class="c360-desc">Bronze (raw), Silver (cleansed + entity-resolved), Gold (analytics-ready dimensional model) — incremental materialization strategies, dbt schema tests (not_null, unique, relationships), GitHub CI/CD for every model change.</div>
+      <div class="c360-outcome">Trimble parallel: Exact dbt + Snowflake stack required by the JD</div>
+    </div>
+    <div class="c360-card">
+      <div class="c360-icon">🤖</div>
+      <div class="c360-title">Production ML via Snowpark</div>
+      <div class="c360-desc">Deployed Python classification algorithms directly into Snowflake as Snowpark stored procedures — automated incremental scoring on new customer records, zero downtime rollout, integrated directly into dbt pipeline outputs.</div>
+      <div class="c360-outcome">Trimble parallel: Classification algorithms in Snowflake production environment</div>
+    </div>
+    <div class="c360-card">
+      <div class="c360-icon">📊</div>
+      <div class="c360-title">Power BI Analytics Layer</div>
+      <div class="c360-desc">Star schema Gold layer feeding Power BI dashboards — custom DAX measures, row-level security by business unit, automated data refresh. Dashboard load time: −40%. 5 teams self-service on unified customer data.</div>
+      <div class="c360-outcome">Trimble parallel: BI reporting on unified customer view</div>
+    </div>
+    <div class="c360-card">
+      <div class="c360-icon">✅</div>
+      <div class="c360-title">Data Quality & Governance</div>
+      <div class="c360-desc">Automated anomaly detection on every pipeline run — statistical thresholding, PSI monitoring for data drift, CDC (change data capture) in Snowflake, role-based access control, automated lineage tracking. 99.9% reliability, 85% bad-data reduction.</div>
+      <div class="c360-outcome">Trimble parallel: Data quality and governance requirements in JD</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">03 &nbsp;— &nbsp;Challenges & My Response</div>
+  <h2 class="sec-title">What Trimble Field Systems Needs &nbsp;&#8594;&nbsp; What I Bring</h2>
+  <p class="sec-desc">Four core challenges drive this Data Analytics Engineer role. Each maps to work I've already delivered in production at enterprise scale — with numbers.</p>
+  <div class="ps-grid">
+    <div class="ps-col">
+      <div class="ps-col-head problem">The Challenge</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Building the Customer 360 Data Foundation</strong><p>Trimble Field Systems customers appear across CRM, ERP, Impartner, and support systems — each with different identifiers, name formats, and data quality levels. Someone needs to unify these fragmented records into a single, trusted customer view in Snowflake that the whole organization can rely on.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Migrating from Domo to Snowflake + dbt</strong><p>Trimble is actively migrating BI infrastructure from Domo to a modern Snowflake + dbt stack. This requires rebuilding data pipelines, redesigning data models as medallion architecture, and maintaining business continuity — zero disruption to ongoing BI reporting — during the transition.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Deploying ML Models to Production in Snowflake</strong><p>The role requires deploying Python classification algorithms and ML models directly into the Snowflake production environment — not just building models in notebooks, but shipping them as production systems that run automatically on new data, integrated with existing ETL workflows.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Building Reliable, Scalable Data Pipelines from Scratch</strong><p>Field Systems is at an early stage of its data engineering build-out. Someone needs to design and deploy the core pipeline architecture — orchestration, data quality, monitoring, and governance — that will support analytics for the next several years of Trimble's growth.</p></div>
+      </div>
+    </div>
+    <div class="ps-col solution">
+      <div class="ps-col-head solution">My Response</div>
+      <div class="ps-row">
+        <div class="ps-num">01</div>
+        <div><strong>Built Customer 360 with Splink Entity Resolution — 5 Teams on Unified View</strong><p>At Infosys I built a Customer 360 integration platform using Python, Snowflake, and dbt to consolidate records from CRM, ERP, and marketing platforms. Implemented entity resolution with Splink (Fellegi-Sunter probabilistic matching) to resolve account name, email, and address disambiguation. Bronze/Silver/Gold medallion architecture. Result: 5 national data programs running off the unified view, zero downtime since launch.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">02</div>
+        <div><strong>Led BI Migration to Snowflake + Power BI — 40% Load Time Reduction</strong><p>Migrated legacy BI dashboards (Domo-equivalent) to a modern Snowflake and Power BI architecture — redesigning data models as dbt-managed star schemas with incremental materialization. Delivered zero disruption to ongoing reporting during migration: parallel rebuild, one-pipeline-at-a-time cutover, 6 hours to 45 minutes execution time. ETL codebase redundancy reduced 45%.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">03</div>
+        <div><strong>Deployed Python Classification Models via Snowpark — 17% Accuracy Improvement</strong><p>Deployed Python classification algorithms and anomaly detection models directly into the Snowflake production environment as Snowpark stored procedures. Automated incremental execution on new record arrivals, integrated outputs into existing ETL and dashboard pipelines. Zero downtime during rollout. 17% improvement in detection accuracy in production.</p></div>
+      </div>
+      <div class="ps-row">
+        <div class="ps-num">04</div>
+        <div><strong>Designed 15+ ETL Pipelines — 99.9% Reliability, 10TB+/Week</strong><p>Architected production ETL/ELT pipelines using Apache Airflow, dbt, and Snowflake — ingesting from 12+ source systems, processing 10TB+ of enterprise data per week. Automated data quality validation on every run, statistical anomaly detection, CDC for audit compliance. 85% reduction in bad data reaching downstream consumers. 99.9% pipeline reliability since deployment.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">04 &nbsp;— &nbsp;JD Coverage</div>
+  <h2 class="sec-title">Every JD Requirement &nbsp;&#8594;&nbsp; Direct Evidence</h2>
+  <p class="sec-desc">Trimble Field Systems Data Analytics Engineer responsibilities — each mapped one-to-one to delivered production outcomes.</p>
+  <table class="jd-table">
+    <thead>
+      <tr>
+        <th>JD Requirement</th>
+        <th>My Evidence</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Customer 360 data integration — CRM, ERP, partner data into Snowflake</strong></td>
+        <td class="jd-proof">Built Customer 360 platform at Infosys: CRM + ERP + marketing consolidated in Snowflake via Airflow DAGs, Bronze/Silver/Gold dbt medallion architecture. Splink entity resolution for record disambiguation. 5 teams consuming unified output.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Snowflake as primary data warehouse — expert-level required</strong></td>
+        <td class="jd-proof">3+ years Snowflake in production: medallion schema design, clustering keys, Time Travel, Snowpark ML deployment, CDC, role-based access control, automated lineage tracking. Primary data warehouse across all Infosys data engineering work.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>dbt for data transformation and modeling</strong></td>
+        <td class="jd-proof">dbt Cloud in production: Bronze/Silver/Gold incremental models, schema tests (not_null, unique, relationships, accepted_values), sources vs ref() pattern, GitHub CI/CD on all model changes. 45% reduction in code redundancy.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Python — ETL pipelines, classification algorithms, ML in Snowflake</strong></td>
+        <td class="jd-proof">Python across the full stack: Airflow DAGs, dbt Python models, Splink entity resolution, Snowpark stored procedures for ML deployment, Scikit-learn classification, XGBoost/ARIMA forecasting, Isolation Forest anomaly detection. All in production.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Apache Airflow — pipeline orchestration</strong></td>
+        <td class="jd-proof">Apache Airflow for orchestrating all ETL pipelines — DAG design, task dependencies, retry logic, SLA monitoring, automated data quality checks as pipeline tasks. 15+ production DAGs processing 10TB+/week.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Classification algorithms / ML model deployment to Snowflake production</strong></td>
+        <td class="jd-proof">Deployed Python classification models (churn prediction, anomaly detection, customer segmentation) directly to Snowflake as Snowpark stored procedures — automated incremental execution on new data, 17% accuracy improvement, zero downtime rollout.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Entity resolution / record linkage — Splink or equivalent</strong></td>
+        <td class="jd-proof">Splink library in production: blocking rules to reduce comparison space, Jaro-Winkler string similarity for name/email/address matching, EM algorithm training on unlabeled data, threshold tuning for precision-recall trade-off. Used specifically for Customer 360.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Domo to Snowflake migration experience (preferred)</strong></td>
+        <td class="jd-proof">Led BI migration from legacy Domo-equivalent dashboards to Snowflake + Power BI: rebuilt data models as dbt-managed star schemas, redesigned for self-service analytics, parallel build and one-at-a-time cutover. 40% load time reduction, no disruption.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>SQL — advanced queries, window functions, data modeling</strong></td>
+        <td class="jd-proof">Advanced SQL across Snowflake, Oracle, PostgreSQL: window functions (LAG, LEAD, ROW_NUMBER, running totals), complex CTEs, star/snowflake schema design, OLAP cube optimization delivering 45% query performance improvement.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Power BI / Tableau — BI reporting and dashboards</strong></td>
+        <td class="jd-proof">Power BI with DAX measures, Power Query, row-level security, star schema data model. Tableau for KPI dashboards. Executive-level reporting for 8+ business units. 50+ hrs/month saved via automated reporting pipelines.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Data quality, governance, audit logging</strong></td>
+        <td class="jd-proof">Automated data quality tests in dbt (schema tests) and Airflow (validation DAG tasks). Statistical anomaly detection on all production pipelines. CDC in Snowflake for audit compliance. 99% compliance with PII data access protocols. 85% bad-data reduction.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+      <tr>
+        <td><strong>Agile/Scrum delivery, cross-functional collaboration</strong></td>
+        <td class="jd-proof">SCRUM certified. 2-week sprint cadence, sprint planning coordination, Jira backlog management. 4 concurrent project workstreams, 95% stakeholder satisfaction. Presented quarterly to C-suite leadership across Sales, Finance, and Operations.</td>
+        <td><span class="badge badge-full">Full</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="sec-label">05 &nbsp;— &nbsp;Technical Alignment</div>
+  <h2 class="sec-title">Required Skills &nbsp;&#8594;&nbsp; Verified Proficiency</h2>
+  <p class="sec-desc">Every tool and capability named in the Trimble Field Systems Data Analytics Engineer posting — mapped to production evidence.</p>
+  <table class="skills-table">
+    <tr>
+      <td class="sk-name">Snowflake — Expert</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:96%"></div></div></td>
+      <td class="sk-proof">3+ years production: medallion design, clustering, Time Travel, Snowpark ML, CDC, access control, lineage</td>
+      <td class="sk-pct">96%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">dbt Cloud — Data Transformation</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:94%"></div></div></td>
+      <td class="sk-proof">Bronze/Silver/Gold incremental models, schema tests, CI/CD via GitHub — 45% code redundancy reduction</td>
+      <td class="sk-pct">94%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Python — ETL + ML + Snowpark</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:95%"></div></div></td>
+      <td class="sk-proof">Airflow DAGs, Splink, Scikit-learn, XGBoost, Snowpark ML deployment — full production stack</td>
+      <td class="sk-pct">95%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Customer 360 / Entity Resolution</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">Built Customer 360 end-to-end: Splink Fellegi-Sunter matching, CRM+ERP+marketing unification, 5-team output</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">Apache Airflow — Orchestration</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:92%"></div></div></td>
+      <td class="sk-proof">15+ production DAGs, 10TB+/week, data quality tasks, SLA monitoring, 99.9% reliability</td>
+      <td class="sk-pct">92%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">ML in Production (Snowpark)</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:90%"></div></div></td>
+      <td class="sk-proof">Classification + anomaly detection deployed as Snowpark stored procedures — automated scoring, 17% improvement</td>
+      <td class="sk-pct">90%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">SQL — Advanced Analytics</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:97%"></div></div></td>
+      <td class="sk-proof">Window functions, CTEs, star/snowflake schemas, OLAP optimization — 45% query performance improvement</td>
+      <td class="sk-pct">97%</td>
+    </tr>
+    <tr>
+      <td class="sk-name">BI — Power BI &amp; Tableau</td>
+      <td class="sk-bar-wrap"><div class="sk-bg"><div class="sk-fill" style="width:93%"></div></div></td>
+      <td class="sk-proof">DAX, Power Query, RLS, self-service design; Tableau KPI dashboards — 8 business units, 50+ hrs/month saved</td>
+      <td class="sk-pct">93%</td>
+    </tr>
+  </table>
+</section>
+
+<hr class="rule">
+
+<section class="alt">
+  <div class="sec-label">06 &nbsp;— &nbsp;90-Day Plan</div>
+  <h2 class="sec-title">First 90 Days at Trimble Field Systems</h2>
+  <p class="sec-desc">Field Systems is at an early stage of its Customer 360 data build-out. Someone joining needs to ramp fast, establish trust quickly, and deliver visible value before the quarter closes. Here is exactly how I'd approach it.</p>
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-head p1">
+        <div class="plan-phase">Phase 1</div>
+        <div class="plan-title">Understand the Landscape</div>
+        <div class="plan-dates">Days 1 – 30</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Audit existing data sources</strong> — CRM, ERP, Impartner schema review; identify data quality gaps, missing fields, and entity disambiguation challenges</div>
+        <div class="plan-item"><strong>Map the current Domo dashboards</strong> — understand which reports are business-critical, which KPIs the team relies on, and where the gaps are</div>
+        <div class="plan-item"><strong>Document entity resolution challenges</strong> — how many ways does the same customer appear across source systems? What are the blocking and matching strategies needed?</div>
+        <div class="plan-item"><strong>Review existing Snowflake environment</strong> — what tables exist, what's already been migrated, what's the current medallion state?</div>
+        <div class="plan-output"><span>Deliverable</span>Source systems audit + Customer 360 entity resolution design doc</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p2">
+        <div class="plan-phase">Phase 2</div>
+        <div class="plan-title">Build the Foundation</div>
+        <div class="plan-dates">Days 31 – 60</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Deploy Bronze ingestion pipelines</strong> — Airflow DAGs pulling from CRM, ERP, and Impartner into Snowflake Bronze with automated schema validation</div>
+        <div class="plan-item"><strong>Implement Splink entity resolution</strong> — blocking rules, comparison functions, EM training, threshold tuning; deliver first unified customer Silver layer</div>
+        <div class="plan-item"><strong>Migrate highest-priority Domo report</strong> — rebuild it in Snowflake + Power BI as a dbt-managed Gold model; demonstrate the new architecture works</div>
+        <div class="plan-item"><strong>Establish data quality framework</strong> — dbt schema tests + Airflow validation tasks on every pipeline; set up alerting before issues reach dashboards</div>
+        <div class="plan-output"><span>Deliverable</span>First unified Customer 360 Silver layer live + one Domo report migrated</div>
+      </div>
+    </div>
+    <div class="plan-col">
+      <div class="plan-head p3">
+        <div class="plan-phase">Phase 3</div>
+        <div class="plan-title">Scale and Deliver</div>
+        <div class="plan-dates">Days 61 – 90</div>
+      </div>
+      <div class="plan-body">
+        <div class="plan-item"><strong>Complete Gold layer</strong> — analytics-ready Customer 360 dimensional model in Snowflake, Power BI self-service dashboards live for the analytics team</div>
+        <div class="plan-item"><strong>Deploy first classification model to Snowflake</strong> — customer segmentation or churn propensity scoring via Snowpark, automated incremental execution</div>
+        <div class="plan-item"><strong>Migrate remaining priority Domo reports</strong> — parallel build + sequential cutover, zero disruption to ongoing reporting</div>
+        <div class="plan-item"><strong>90-day retrospective</strong> — what I delivered, gaps remaining, Q2 priorities with the team</div>
+        <div class="plan-output"><span>Deliverable</span>Full Customer 360 Gold layer + first Snowpark ML model + Domo migration complete</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <h3>Raghav Patidar</h3>
+    <p>Data Analytics Engineer &nbsp;·&nbsp; Trimble Field Systems &nbsp;·&nbsp; Westminster, CO</p>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:raghavpatidar997@gmail.com" class="btn-solid">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+  </div>
+  <div class="footer-contacts">
+    <div class="fc-item"><div class="fc-label">Phone</div><div class="fc-val">913-218-6727</div></div>
+    <div class="fc-item"><div class="fc-label">Email</div><div class="fc-val">raghavpatidar997@gmail.com</div></div>
+    <div class="fc-item"><div class="fc-label">LinkedIn</div><div class="fc-val">linkedin.com/in/raghav-patidar-604527165</div></div>
+    <div class="fc-item"><div class="fc-label">Education</div><div class="fc-val">MS Computer Information Systems, University of Central Missouri</div></div>
+  </div>
+</footer>
+
+</body>
+</html>
