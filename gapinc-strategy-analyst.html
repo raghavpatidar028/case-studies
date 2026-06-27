@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raghav Patidar | Strategy Analyst | Gap Inc</title>
+<style>
+  :root {
+    --navy:  #003C71;
+    --red:   #CC0000;
+    --light: #F4F6F9;
+    --text:  #1A1A2E;
+    --muted: #5A5A72;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); color: var(--text); line-height: 1.65; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #001E3C 100%);
+    color: var(--white);
+    padding: 56px 40px 48px;
+    text-align: center;
+  }
+  .hero-label {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .hero h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .hero h2 { font-size: 1.15rem; font-weight: 400; opacity: 0.85; margin-bottom: 24px; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; font-size: 13px; opacity: 0.75; }
+  .hero-meta span::before { content: ""; display: inline-block; width: 6px; height: 6px; background: var(--red); border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+
+  /* ── IMPACT BAR ── */
+  .impact-bar {
+    background: var(--red);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .impact-item { text-align: center; padding: 0 40px; border-right: 1px solid rgba(255,255,255,0.3); }
+  .impact-item:last-child { border-right: none; }
+  .impact-num { font-size: 2rem; font-weight: 900; color: var(--white); line-height: 1; }
+  .impact-lbl { font-size: 11.5px; font-weight: 600; color: var(--white); margin-top: 4px; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+  .section-title {
+    font-size: 1.3rem; font-weight: 800; color: var(--navy);
+    border-left: 4px solid var(--red);
+    padding-left: 14px; margin-bottom: 24px; letter-spacing: -0.2px;
+  }
+
+  /* ── CONTEXT STRIP ── */
+  .context-strip {
+    background: var(--navy);
+    color: var(--white);
+    padding: 36px 40px;
+    text-align: center;
+  }
+  .context-strip p { max-width: 760px; margin: 0 auto; font-size: 1.05rem; opacity: 0.9; }
+  .context-strip strong { color: #FF9999; }
+
+  /* ── CHALLENGE / RESPONSE CARDS ── */
+  .cr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .cr-grid { grid-template-columns: 1fr; } }
+  .cr-card { background: var(--white); border-radius: 10px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .cr-card.challenge { border-top: 4px solid #C0392B; }
+  .cr-card.response  { border-top: 4px solid #27AE60; }
+  .cr-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .cr-card.challenge .cr-tag { color: #C0392B; }
+  .cr-card.response  .cr-tag { color: #27AE60; }
+  .cr-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .cr-card p  { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── COVERAGE TABLE ── */
+  .coverage-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .coverage-table th { background: var(--navy); color: var(--white); padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .coverage-table td { padding: 10px 14px; border-bottom: 1px solid #E5E0DA; vertical-align: top; }
+  .coverage-table tr:hover td { background: #F8F5F2; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; }
+  .badge-direct   { background: #D4EDDA; color: #155724; }
+  .badge-adjacent { background: #FFF3CD; color: #856404; }
+  .badge-project  { background: #CCE5FF; color: #004085; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .skill-card { background: var(--white); border-radius: 8px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid var(--red); }
+  .skill-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .skill-bar-bg { background: #E9E4DA; border-radius: 6px; height: 6px; }
+  .skill-bar-fill { background: var(--red); border-radius: 6px; height: 6px; }
+  .skill-note { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+
+  /* ── 90-DAY PLAN ── */
+  .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 640px) { .plan-grid { grid-template-columns: 1fr; } }
+  .plan-card { background: var(--white); border-radius: 10px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .plan-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .plan-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+  .plan-card ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+  .plan-card ul li { margin-bottom: 6px; }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    background: var(--navy); color: var(--white);
+    border-left: 6px solid var(--red);
+    padding: 28px 36px; border-radius: 0 10px 10px 0;
+    margin: 32px 0; font-size: 1.05rem; font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--navy); color: var(--white); text-align: center; padding: 36px 24px; font-size: 0.88rem; }
+  .footer a { color: #FF9999; text-decoration: none; font-weight: 600; }
+  .footer-name { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero">
+  <div class="hero-label">Case Study</div>
+  <h1>Raghav Patidar</h1>
+  <h2>Strategy Analyst &mdash; Contact Centers | Gap Inc</h2>
+  <div class="hero-meta">
+    <span>5+ Years Data Strategy &amp; Analytics</span>
+    <span>Power BI &bull; Databricks &bull; Python &bull; SQL</span>
+    <span>Ohio-Based | Post Purchase Ops Ready</span>
+  </div>
+</div>
+
+<!-- ═══════════════ IMPACT BAR ═══════════════ -->
+<div class="impact-bar">
+  <div class="impact-item">
+    <div class="impact-num">95%</div>
+    <div class="impact-lbl">Forecast Accuracy</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">10TB+</div>
+    <div class="impact-lbl">Data Processed Weekly</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">50+</div>
+    <div class="impact-lbl">Hours Saved Monthly</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">10%</div>
+    <div class="impact-lbl">YoY Revenue Impact</div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONTEXT STRIP ═══════════════ -->
+<div class="context-strip">
+  <p>
+    Gap Inc's Post Purchase team sits at the intersection of <strong>customer experience and operational strategy</strong>,
+    where the difference between a loyal repeat buyer and a lost customer is often decided by how fast,
+    clearly, and accurately the analytics team can <strong>turn contact center data into strategic direction</strong>.
+    That translation -- from raw signal to executive action -- is exactly what I've been doing for five years.
+  </p>
+</div>
+
+<!-- ═══════════════ CHALLENGE / RESPONSE ═══════════════ -->
+<div class="section">
+  <div class="section-title">Challenges I Solve</div>
+  <div class="cr-grid">
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Ambiguous Problems, No Clear Starting Point</h3>
+      <p>Post Purchase strategy often begins with a vague directive -- "Why is CSAT dropping?" or "Where are we losing customers?" -- with no pre-packaged framework and imperfect data.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Structured Problem Decomposition to Workplans</h3>
+      <p>At Infosys, I routinely translated ambiguous business questions into structured workplans using SQL and Python analysis -- identifying the key question beneath the surface, scoping the data needed, and delivering a defensible point of view with clear executive recommendations.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Leadership Walks into Meetings Unprepared</h3>
+      <p>Post Purchase leaders need to walk into stakeholder reviews fully armed -- with the right narrative, the right numbers, and a clear story that connects data to decisions. That requires an analyst who can synthesize, not just report.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Executive Narratives from Complex Data</h3>
+      <p>I presented quarterly operational performance insights directly to C-suite, translating complex, dispersed data into clean storylines with supporting visuals. My dashboards and analyses informed budget reallocation decisions driving 10% YoY impact -- I don't just hand over charts, I hand over conclusions.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Business Partners Waiting on Analytics for Every Question</h3>
+      <p>When every data question requires a ticket to the analytics team, strategy slows to a crawl and trust erodes. Self-serve access only works when the models and definitions underneath are reliable and consistent.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Scalable Power BI Models + Databricks Data Products</h3>
+      <p>Built reusable Power BI data models connected to Databricks-backed data products, giving business partners reliable self-serve access to operational metrics. Shared data model standards reduced ad-hoc requests by 22% and built cross-functional trust in the numbers.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Issues Surface Too Late -- After They've Already Escalated</h3>
+      <p>By the time a Post Purchase problem appears in a weekly report, it may already be a customer-facing incident. The value is in catching signals early, not documenting them after the fact.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Proactive Signal Surfacing with Anomaly Detection</h3>
+      <p>Engineered demand forecasting models at 95% accuracy and automated anomaly detection pipelines that flagged issues before escalation. Consistently identified operational signals early, translating them into proactive strategy adjustments rather than reactive firefighting.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ QUOTE ═══════════════ -->
+<div class="section" style="padding-top: 0;">
+  <div class="quote-block">
+    "My job has never been to build dashboards -- it's been to answer the question the stakeholder doesn't know how to ask yet.
+    Power BI and Databricks are the instruments. The strategy is the product."
+    <div style="margin-top: 12px; font-size: 0.85rem; opacity: 0.75; font-style: normal;">-- Raghav Patidar, Senior Strategy Analyst / Project Lead, Infosys Private Limited</div>
+  </div>
+</div>
+
+<!-- ═══════════════ JD COVERAGE TABLE ═══════════════ -->
+<div style="background: var(--white); padding: 48px 5%;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-title">JD Requirements vs. My Experience</div>
+    <table class="coverage-table">
+      <thead>
+        <tr>
+          <th style="width: 38%">JD Requirement</th>
+          <th style="width: 12%">Coverage</th>
+          <th>How I Cover It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Drive Post Purchase strategy (identification to execution)</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Drove strategy initiatives end-to-end at Infosys -- structuring ambiguous operational problems, building workplans, and delivering SQL/Python analysis that created measurable operational value</td>
+        </tr>
+        <tr>
+          <td><strong>Power BI -- dashboards, data models, self-serve analytics</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>5+ years Power BI with DAX, Power Query, and scalable data models connected to cloud-backed data products; reduced ad-hoc requests by 22% through reliable self-serve dashboards</td>
+        </tr>
+        <tr>
+          <td><strong>Databricks -- SQL + PySpark</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Built and maintained data models in Databricks-backed environments using SQL and PySpark for data preparation, analysis, and building reusable operational datasets for downstream reporting</td>
+        </tr>
+        <tr>
+          <td><strong>Python for data preparation and analysis</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>XGBoost/ARIMA ensemble forecasting at 95% accuracy (Innovation Award); Pandas, NumPy, and Scikit-learn for customer journey analysis and operational KPI modeling</td>
+        </tr>
+        <tr>
+          <td><strong>AI-augmented analysis (LLM tooling, Copilot)</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Applied LLM-assisted analytics tools responsibly to accelerate structured analysis while maintaining governance standards, auditability, and data integrity across all deliverables</td>
+        </tr>
+        <tr>
+          <td><strong>Customer journey focus and Post Purchase signals</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Post Purchase Strategy Analytics project: tracked customer journey KPIs and operational cost optimization metrics; surfaced signals before escalation through anomaly detection pipelines</td>
+        </tr>
+        <tr>
+          <td><strong>Shared data models + peer review culture</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Collaborated with BI teams on shared Power BI data models, joint workplans, and peer review of analytical output; defined shared data definitions improving cross-team consistency</td>
+        </tr>
+        <tr>
+          <td><strong>Translate data into compelling executive narratives</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Presented quarterly performance insights to C-suite leadership, synthesizing complex strategy data into clean storylines that directly influenced budget reallocation and a 10% YoY revenue impact</td>
+        </tr>
+        <tr>
+          <td><strong>Structure ambiguous problems -- clear POV from imperfect data</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Consistently identified the key question beneath surface requests and delivered defensible points of view for both peer and executive audiences with incomplete or noisy data</td>
+        </tr>
+        <tr>
+          <td><strong>Proactively surface signals before they become issues</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Automated anomaly detection on operational data streams reduced critical incidents by 85%; demand forecasting at 95% accuracy enabled proactive strategy adjustments before disruptions occurred</td>
+        </tr>
+        <tr>
+          <td><strong>Cross-functional partnerships and stakeholder communication</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>2 years as UCM Teaching Assistant (training 30+ graduate students per semester) plus Infosys cross-functional partner work; delivered clear analytical output from analyst to C-suite audiences</td>
+        </tr>
+        <tr>
+          <td><strong>Retail / fast-moving, data-rich environment</strong></td>
+          <td><span class="badge badge-adjacent">Adjacent</span></td>
+          <td>Enterprise operational analytics at Infosys across CPG, finance, and operations clients; customer journey analytics project directly mirrors Post Purchase retail contact center environment</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ SKILLS ═══════════════ -->
+<div class="section">
+  <div class="section-title">Core Technical Stack</div>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-name">Power BI (DAX, Power Query, Data Models)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
+      <div class="skill-note">Self-serve dashboards; scalable models; 22% drop in ad-hoc requests</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Databricks + PySpark + SQL</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+      <div class="skill-note">Cloud analytics; reusable datasets; operational data preparation</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Python (Pandas, XGBoost, ARIMA, Scikit-learn)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+      <div class="skill-note">Innovation Award: 95% forecast accuracy; anomaly detection pipelines</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">AI-Augmented Analysis (LLM + Copilot)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div>
+      <div class="skill-note">Responsible LLM tooling to accelerate structured analysis with governance</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Structured Problem Solving + Executive Narrative</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%"></div></div>
+      <div class="skill-note">C-suite presentations; ambiguous problem decomposition; workplan design</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">ETL / dbt / Snowflake / Airflow</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+      <div class="skill-note">15+ pipelines; 10TB+/week; 99.9% uptime; medallion architecture</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Customer Journey &amp; Operational KPI Analytics</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:86%"></div></div>
+      <div class="skill-note">Post Purchase metrics; cost optimization; contact center performance</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Cross-Functional Collaboration + Stakeholder Mgmt</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+      <div class="skill-note">Mentored 3 analysts; taught 30+ graduate students; C-suite storytelling</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ 90-DAY PLAN ═══════════════ -->
+<div style="background: var(--navy); padding: 48px 5%;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-title" style="color: var(--white); border-left-color: var(--red);">90-Day Plan at Gap Inc</div>
+    <div class="plan-grid">
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 1 -- 30</div>
+        <h3>Learn the Landscape</h3>
+        <ul>
+          <li>Audit existing Power BI reports and Databricks data models for the Post Purchase team</li>
+          <li>Shadow contact center operations to understand the customer journey and where data lives</li>
+          <li>Map current KPIs, data definitions, and reporting pain points across stakeholders</li>
+          <li>Identify one quick-win analysis to deliver value early and build trust</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 31 -- 60</div>
+        <h3>Build and Contribute</h3>
+        <ul>
+          <li>Deliver first shared Power BI data model aligned with team conventions and definitions</li>
+          <li>Contribute to a joint workplan on an active strategy initiative alongside the BI team</li>
+          <li>Apply AI-augmented analysis techniques to accelerate one recurring analytical workflow</li>
+          <li>Document data sources, field definitions, and transformation logic for my first deliverable</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 61 -- 90</div>
+        <h3>Surface Signals and Influence</h3>
+        <ul>
+          <li>Build a proactive signal-tracking dashboard for Post Purchase operations leadership</li>
+          <li>Identify one underexplored customer journey trend and present a clear POV to stakeholders</li>
+          <li>Partner on long-range planning analysis, translating data into a strategic recommendation</li>
+          <li>Share one AI-assisted analytical technique with the team to increase shared velocity</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RELEVANT PROJECT ═══════════════ -->
+<div class="section">
+  <div class="section-title">Directly Relevant Project</div>
+  <div style="background: var(--white); border-radius: 10px; padding: 28px 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-top: 4px solid var(--red);">
+    <h3 style="font-size: 1.05rem; color: var(--navy); font-weight: 800; margin-bottom: 8px;">
+      Post Purchase Strategy Analytics -- Power BI &amp; Databricks
+    </h3>
+    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Power BI &bull; Databricks &bull; SQL &bull; Python &bull; PySpark &bull; dbt &bull; LLM-Assisted Analysis</p>
+    <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text); line-height: 1.7;">
+      <li>Built scalable, reusable Power BI data models connected to Databricks-backed data products, ensuring leadership had reliable, self-serve access to Post Purchase operational metrics in real time</li>
+      <li>Structured ambiguous customer journey problems and developed analytical workplans using SQL and PySpark, delivering analysis that created operational value and directly influenced Post Purchase strategy initiatives</li>
+      <li>Applied AI-augmented analysis techniques using LLM tooling responsibly to accelerate structured analysis, translating complex retail data into compelling executive narratives for Post Purchase leadership</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="footer">
+  <div class="footer-name">Raghav Patidar</div>
+  <div>Strategy Analyst &bull; 5+ Years &bull; Power BI &bull; Databricks &bull; Python &bull; SQL &bull; AI-Augmented Analytics</div>
+  <div class="footer-links">
+    <a href="mailto:raghavpatidar997@gmail.com">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank">LinkedIn Profile</a>
+    <span style="opacity:0.6">913-218-6727</span>
+  </div>
+  <div style="margin-top: 16px; font-size: 0.75rem; opacity: 0.5;">Prepared for: Gap Inc -- Strategy Analyst, Contact Centers (Job ID: R213569)</div>
+</div>
+
+</body>
+</html>
