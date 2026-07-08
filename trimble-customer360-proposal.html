@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raghav Patidar | Customer 360 & ETL Migration Proposal | Trimble Field Systems</title>
+<style>
+  :root {
+    --navy:   #003B5C;
+    --teal:   #00A9CE;
+    --teal2:  #007EA3;
+    --light:  #EEF6FA;
+    --white:  #FFFFFF;
+    --text:   #1A2A36;
+    --muted:  #4A6070;
+    --gold:   #F5A623;
+    --green:  #27AE60;
+    --red:    #E74C3C;
+    --purple: #8E44AD;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); color: var(--text); line-height: 1.65; }
+
+  /* ══ HERO ══ */
+  .hero {
+    background: linear-gradient(140deg, var(--navy) 0%, #001F33 60%, #00567A 100%);
+    color: var(--white);
+    padding: 60px 40px 52px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(0,169,206,0.08);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -40px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(0,169,206,0.06);
+  }
+  .hero-pill {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: 2.4rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .hero h2 { font-size: 1.1rem; font-weight: 400; opacity: 0.8; margin-bottom: 28px; max-width: 680px; margin-left: auto; margin-right: auto; }
+  .hero-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .chip {
+    background: rgba(0,169,206,0.18);
+    border: 1px solid rgba(0,169,206,0.4);
+    color: var(--white); font-size: 12px; font-weight: 600;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* ══ SECTION WRAPPER ══ */
+  .wrap { max-width: 960px; margin: 0 auto; padding: 52px 24px; }
+  .sec-title {
+    font-size: 1.35rem; font-weight: 900; color: var(--navy);
+    border-left: 5px solid var(--teal);
+    padding-left: 14px; margin-bottom: 28px;
+  }
+  .sec-num {
+    display: inline-block;
+    background: var(--teal); color: var(--white);
+    font-size: 11px; font-weight: 800;
+    width: 24px; height: 24px; line-height: 24px;
+    text-align: center; border-radius: 50%;
+    margin-right: 8px; vertical-align: middle;
+  }
+
+  /* ══ PAIN POINTS BANNER ══ */
+  .pain-banner { background: var(--navy); padding: 40px 5%; }
+  .pain-inner { max-width: 960px; margin: 0 auto; }
+  .pain-title { color: var(--white); font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; text-align: center; opacity: 0.9; }
+  .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .pain-grid { grid-template-columns: 1fr; } }
+  .pain-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,169,206,0.3);
+    border-radius: 10px; padding: 20px 22px;
+  }
+  .pain-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .pain-card h3 { color: var(--teal); font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
+  .pain-card p  { color: rgba(255,255,255,0.75); font-size: 0.86rem; line-height: 1.55; }
+
+  /* ══ PIE CHART ══ */
+  .pie-section { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .pie-wrap { flex: 0 0 auto; }
+  .pie-chart {
+    width: 220px; height: 220px; border-radius: 50%;
+    background: conic-gradient(
+      #00A9CE   0%  28%,
+      #003B5C  28%  50%,
+      #27AE60  50%  80%,
+      #F5A623  80%  92%,
+      #8E44AD  92% 100%
+    );
+    box-shadow: 0 8px 32px rgba(0,59,92,0.18);
+    position: relative;
+  }
+  .pie-hole {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px; height: 90px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .pie-hole-label { font-size: 9px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .pie-hole-val   { font-size: 1.15rem; font-weight: 900; color: var(--navy); line-height: 1.2; }
+  .legend { flex: 1; min-width: 200px; }
+  .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+  .legend-name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+  .legend-pct  { font-size: 0.82rem; color: var(--muted); margin-left: auto; font-weight: 700; }
+
+  /* ══ ARCH FLOW ══ */
+  .arch-box { background: var(--white); border-radius: 12px; padding: 28px 24px; box-shadow: 0 2px 16px rgba(0,59,92,0.08); margin-bottom: 20px; }
+  .arch-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .arch-label.current { color: var(--red); }
+  .arch-label.target  { color: var(--green); }
+  .flow-row { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin-bottom: 10px; }
+  .flow-node {
+    background: var(--light); border: 1.5px solid #BCD4E0;
+    border-radius: 8px; padding: 8px 14px;
+    font-size: 12px; font-weight: 700; color: var(--navy);
+    text-align: center; white-space: nowrap;
+  }
+  .flow-node.source  { background: #EAF6FB; border-color: var(--teal); font-size: 11px; }
+  .flow-node.bronze  { background: #FDF3E3; border-color: #E67E22; color: #784A00; }
+  .flow-node.silver  { background: #EAF0F6; border-color: #85929E; color: #2C3E50; }
+  .flow-node.gold    { background: #FEF9E7; border-color: #D4AC0D; color: #6D5200; }
+  .flow-node.bi      { background: #E8F8F0; border-color: var(--green); color: #1A5C38; }
+  .flow-node.domo-old{ background: #FDEDEC; border-color: var(--red); color: #922B21; }
+  .flow-node.domo-new{ background: #EBF5FB; border-color: var(--teal); color: #0E6E8C; }
+  .flow-node.splink  { background: #F3E8FD; border-color: var(--purple); color: #6C3483; font-style: italic; }
+  .arrow { color: var(--teal); font-size: 1.1rem; padding: 0 6px; font-weight: 700; flex-shrink: 0; }
+  .arrow.red { color: var(--red); }
+  .sources-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .flow-down { text-align: center; color: var(--teal); font-size: 1.2rem; font-weight: 900; margin: 4px 0; }
+  .flow-down.red { color: var(--red); }
+  .flow-problem { font-size: 11px; color: var(--red); margin-left: 8px; font-style: italic; }
+  .flow-good    { font-size: 11px; color: var(--green); margin-left: 8px; font-style: italic; }
+
+  /* ══ SPLINK SECTION ══ */
+  .splink-flow { display: flex; align-items: stretch; gap: 0; overflow-x: auto; margin: 20px 0; }
+  .splink-step {
+    flex: 1; min-width: 130px;
+    background: var(--white);
+    border: 1.5px solid #BCD4E0;
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align: center;
+    position: relative;
+  }
+  .splink-step + .splink-step { margin-left: -1px; border-left-color: transparent; }
+  .splink-step::after {
+    content: '→';
+    position: absolute; right: -16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--teal); font-size: 1.2rem; font-weight: 900;
+    z-index: 2;
+  }
+  .splink-step:last-child::after { display: none; }
+  .splink-step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--teal); color: var(--white);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+  }
+  .splink-step h4 { font-size: 12px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  .splink-step p  { font-size: 10.5px; color: var(--muted); line-height: 1.45; }
+
+  /* ══ MIGRATION PHASES ══ */
+  .phase-track { position: relative; padding-top: 8px; }
+  .phase-bar-bg {
+    height: 8px; background: #D0E4ED; border-radius: 4px;
+    margin-bottom: 28px; overflow: hidden; position: relative;
+  }
+  .phase-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--teal), var(--navy)); }
+  .phases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 640px) { .phases-grid { grid-template-columns: 1fr; } }
+  .phase-card {
+    background: var(--white); border-radius: 10px;
+    padding: 20px 18px; box-shadow: 0 2px 10px rgba(0,59,92,0.07);
+    border-top: 4px solid var(--teal);
+    position: relative;
+  }
+  .phase-card:nth-child(2) { border-top-color: #007EA3; }
+  .phase-card:nth-child(3) { border-top-color: #005A7E; }
+  .phase-card:nth-child(4) { border-top-color: #003B5C; }
+  .phase-card:nth-child(5) { border-top-color: var(--gold); }
+  .phase-card:nth-child(6) { border-top-color: var(--green); }
+  .phase-num {
+    font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 4px;
+  }
+  .phase-card:nth-child(2) .phase-num { color: #007EA3; }
+  .phase-card:nth-child(3) .phase-num { color: #005A7E; }
+  .phase-card:nth-child(4) .phase-num { color: var(--navy); }
+  .phase-card:nth-child(5) .phase-num { color: var(--gold); }
+  .phase-card:nth-child(6) .phase-num { color: var(--green); }
+  .phase-card h3 { font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  .phase-card .dur { font-size: 10px; background: var(--light); padding: 2px 8px; border-radius: 10px; color: var(--muted); font-weight: 700; display: inline-block; margin-bottom: 8px; }
+  .phase-card ul { padding-left: 16px; font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+  .phase-card ul li { margin-bottom: 4px; }
+
+  /* ══ GANTT ══ */
+  .gantt-wrap { overflow-x: auto; }
+  .gantt-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 600px; }
+  .gantt-table th { background: var(--navy); color: var(--white); padding: 8px 10px; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; text-align: left; }
+  .gantt-table td { padding: 8px 10px; border-bottom: 1px solid #D0E4ED; vertical-align: middle; }
+  .gantt-bar-cell { width: 55%; }
+  .g-bar-bg { background: var(--light); border-radius: 4px; height: 18px; position: relative; overflow: hidden; }
+  .g-bar-fill { height: 100%; border-radius: 4px; position: absolute; top: 0; display: flex; align-items: center; padding-left: 6px; }
+  .g-bar-fill span { font-size: 10px; font-weight: 700; color: var(--white); white-space: nowrap; }
+
+  /* ══ OUTCOMES ══ */
+  .outcomes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .outcome-card {
+    background: var(--white); border-radius: 10px;
+    padding: 22px 18px; text-align: center;
+    box-shadow: 0 2px 12px rgba(0,59,92,0.07);
+    border-bottom: 4px solid var(--teal);
+  }
+  .outcome-num { font-size: 2rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 6px; }
+  .outcome-lbl { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+
+  /* ══ PROOF SECTION ══ */
+  .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .proof-grid { grid-template-columns: 1fr; } }
+  .proof-card {
+    background: var(--white); border-radius: 10px;
+    padding: 20px 22px; box-shadow: 0 2px 10px rgba(0,59,92,0.06);
+    border-left: 4px solid var(--teal);
+  }
+  .proof-card h3 { font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .proof-card p  { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
+  .proof-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+
+  /* ══ QUOTE ══ */
+  .quote-block {
+    background: var(--navy); color: var(--white);
+    border-left: 6px solid var(--teal);
+    padding: 28px 36px; border-radius: 0 12px 12px 0;
+    margin: 36px 0; font-size: 1.05rem; font-style: italic;
+  }
+
+  /* ══ FOOTER ══ */
+  .footer { background: var(--navy); color: var(--white); text-align: center; padding: 40px 24px; }
+  .footer-name { font-size: 1.3rem; font-weight: 900; margin-bottom: 8px; }
+  .footer a { color: #7FD8EE; text-decoration: none; font-weight: 600; }
+  .footer-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-top: 12px; font-size: 0.88rem; }
+  .footer-sub { margin-top: 16px; font-size: 0.75rem; opacity: 0.45; }
+
+  /* ══ DIVIDERS ══ */
+  .alt-white { background: var(--white); }
+  .alt-navy  { background: var(--navy); }
+  .divider-line { border: none; border-top: 1px solid #C8DDE8; margin: 0; }
+
+  /* ══ BADGE ══ */
+  .badge-proven { display: inline-block; background: #D4EDDA; color: #155724; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<!-- ════════════ HERO ════════════ -->
+<div class="hero">
+  <div class="hero-pill">Technical Proposal &mdash; Trimble Field Systems</div>
+  <h1>Customer 360 &amp; ETL Migration</h1>
+  <h2>A hands-on plan for how I will build Trimble's unified customer data platform and migrate ETL workflows from Domo to Snowflake</h2>
+  <div class="hero-chips">
+    <span class="chip">Raghav Patidar</span>
+    <span class="chip">Data / Analytics Engineer</span>
+    <span class="chip">Snowflake &bull; dbt &bull; Python &bull; Splink &bull; Airflow</span>
+    <span class="chip">Westminster, CO</span>
+  </div>
+</div>
+
+<!-- ════════════ CURRENT PAIN POINTS ════════════ -->
+<div class="pain-banner">
+  <div class="pain-inner">
+    <div class="pain-title">What Trimble Field Systems Is Solving Right Now</div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">&#127970;</div>
+        <h3>No Unified Customer View</h3>
+        <p>Customer data is fragmented across Impartner CRM, ERP, licensing systems, product telemetry, and marketing platforms. No single record ties a customer's full relationship with Trimble together -- making retention, cross-sell, and usage analytics impossible at scale.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">&#128260;</div>
+        <h3>Domo Acting as a Makeshift Warehouse</h3>
+        <p>ETL logic is embedded inside Domo DataFlows -- a BI tool doing the job of a data warehouse. No version control, no testing, no lineage tracking. Migrating to Snowflake as the central warehouse is critical before the technical debt compounds further.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ SECTION 1: CUSTOMER 360 ════════════ -->
+<div class="wrap">
+  <div class="sec-title"><span class="sec-num">1</span> Customer 360 Implementation Plan</div>
+  <p style="color:var(--muted); margin-bottom:32px; font-size:0.95rem;">
+    A Customer 360 is only as good as the data underneath it. My approach starts with record linkage to build a reliable
+    unified customer identity -- then enriches it with every available data signal. Here is exactly how I would build it for Trimble.
+  </p>
+
+  <!-- PIE CHART: Data Source Composition -->
+  <div class="arch-box" style="margin-bottom:28px;">
+    <div style="font-size:0.9rem; font-weight:800; color:var(--navy); margin-bottom:20px;">Customer 360: Data Source Composition</div>
+    <div class="pie-section">
+      <div class="pie-wrap">
+        <div class="pie-chart">
+          <div class="pie-hole">
+            <div class="pie-hole-label">Sources</div>
+            <div class="pie-hole-val">5</div>
+            <div class="pie-hole-label">unified</div>
+          </div>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#00A9CE;"></div>
+          <div class="legend-name">CRM / Impartner &mdash; contacts, opps, partner records</div>
+          <div class="legend-pct">28%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#003B5C;"></div>
+          <div class="legend-name">ERP / Finance &mdash; purchase orders, contracts, invoicing</div>
+          <div class="legend-pct">22%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#27AE60;"></div>
+          <div class="legend-name">Product Usage / Telemetry &mdash; license activations, feature usage</div>
+          <div class="legend-pct">30%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#F5A623;"></div>
+          <div class="legend-name">Licensing &mdash; entitlements, subscription status, seat counts</div>
+          <div class="legend-pct">12%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#8E44AD;"></div>
+          <div class="legend-name">Marketing &mdash; campaigns, web analytics, lead attribution</div>
+          <div class="legend-pct">8%</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:0.8rem; color:var(--muted); margin-top:16px; font-style:italic;">* Proportions reflect relative data volume and engineering effort per source type, based on typical enterprise Customer 360 builds.</p>
+  </div>
+
+  <!-- SPLINK RECORD LINKAGE PIPELINE -->
+  <div class="arch-box" style="margin-bottom:28px;">
+    <div style="font-size:0.9rem; font-weight:800; color:var(--navy); margin-bottom:6px;">
+      Record Linkage Pipeline &mdash; Python + Splink <span class="badge-proven">Proven at Infosys</span>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:18px;">
+      Customer names appear differently across systems: "Trimble Inc.", "TRIMBLE INCORPORATED", "Trimble Field Systems".
+      Exact matching fails. <strong>Splink</strong> uses probabilistic record linkage -- comparing name, email domain, phone,
+      and address across sources with weighted match scores. Records above the threshold are merged into a single
+      <em>golden customer record</em>. Below the threshold goes to manual review.
+    </p>
+    <div class="splink-flow">
+      <div class="splink-step">
+        <div class="splink-step-num">1</div>
+        <h4>Ingest Raw Records</h4>
+        <p>Pull customer entities from CRM, ERP, Licensing, and Marketing into Snowflake Bronze as-is</p>
+      </div>
+      <div class="splink-step">
+        <div class="splink-step-num">2</div>
+        <h4>Standardize &amp; Block</h4>
+        <p>Normalize names, emails, addresses. Block on email domain + company prefix to limit comparison pairs</p>
+      </div>
+      <div class="splink-step">
+        <div class="splink-step-num">3</div>
+        <h4>Splink Scoring</h4>
+        <p>Run Python Splink EM algorithm -- assigns match probability (0.0&ndash;1.0) to every candidate pair</p>
+      </div>
+      <div class="splink-step">
+        <div class="splink-step-num">4</div>
+        <h4>Threshold Decision</h4>
+        <p>Score &ge; 0.85 &rarr; auto-merge. 0.60&ndash;0.84 &rarr; review queue. &lt; 0.60 &rarr; treated as distinct</p>
+      </div>
+      <div class="splink-step">
+        <div class="splink-step-num">5</div>
+        <h4>Golden Record</h4>
+        <p>Write unified customer entity to Snowflake Gold &mdash; single customer_id with all source attributes joined</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOMER 360 ARCHITECTURE TARGET STATE -->
+  <div class="arch-box">
+    <div class="arch-label target">Target: Customer 360 Data Architecture</div>
+
+    <!-- Source systems -->
+    <div style="font-size:11px; font-weight:700; color:var(--muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Source Systems</div>
+    <div class="sources-row">
+      <div class="flow-node source">Impartner CRM</div>
+      <div class="flow-node source">ERP / Finance</div>
+      <div class="flow-node source">Product Telemetry</div>
+      <div class="flow-node source">Licensing DB</div>
+      <div class="flow-node source">Marketing Platform</div>
+    </div>
+
+    <div class="flow-down">&#8595; Airflow-orchestrated Python ingestion</div>
+
+    <!-- Bronze -->
+    <div class="flow-row" style="gap:12px; margin-bottom:10px;">
+      <div class="flow-node bronze" style="flex:1; text-align:center; padding:12px;">
+        &#127873; &nbsp;<strong>Bronze Layer</strong> &mdash; Snowflake<br/>
+        <span style="font-size:11px; font-weight:400;">Raw records, exact copy, no transformation. Immutable. Append-only CDC.</span>
+      </div>
+    </div>
+
+    <div class="flow-down">&#8595; dbt transformations + data quality tests</div>
+
+    <!-- Silver -->
+    <div class="flow-row" style="gap:12px; margin-bottom:10px;">
+      <div class="flow-node silver" style="flex:1; text-align:center; padding:12px;">
+        &#127744; &nbsp;<strong>Silver Layer</strong> &mdash; Snowflake<br/>
+        <span style="font-size:11px; font-weight:400;">Cleaned, validated, standardized. Null checks, type casts, dedup. Splink record linkage runs here.</span>
+      </div>
+    </div>
+
+    <div class="flow-down">&#8595; Splink Python (Snowpark) + business rules dbt models</div>
+
+    <!-- Gold -->
+    <div class="flow-row" style="gap:12px; margin-bottom:10px;">
+      <div class="flow-node gold" style="flex:1; text-align:center; padding:12px;">
+        &#127881; &nbsp;<strong>Gold Layer &mdash; Customer 360</strong> &mdash; Snowflake<br/>
+        <span style="font-size:11px; font-weight:400;">dim_customer (golden record) &bull; fact_usage &bull; fact_revenue &bull; fact_support &bull; Classification model scores</span>
+      </div>
+    </div>
+
+    <div class="flow-down">&#8595; Direct Snowflake connector</div>
+
+    <!-- BI consumption -->
+    <div class="sources-row">
+      <div class="flow-node bi">Domo Dashboards</div>
+      <div class="flow-node bi">Power BI / Tableau</div>
+      <div class="flow-node bi">Retention Analytics</div>
+      <div class="flow-node bi">Cross-Sell Insights</div>
+      <div class="flow-node bi">Product Usage Reports</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider-line" />
+
+<!-- ════════════ SECTION 2: ETL MIGRATION ════════════ -->
+<div class="alt-white">
+  <div class="wrap">
+    <div class="sec-title"><span class="sec-num">2</span> ETL Migration: Domo &rarr; Snowflake</div>
+    <p style="color:var(--muted); margin-bottom:32px; font-size:0.95rem;">
+      The core problem: Domo was designed as a BI and visualization tool but has been stretched to act as a
+      data warehouse -- embedding ETL logic inside DataFlows with no versioning, no testing, and no lineage.
+      The migration to Snowflake decouples compute from visualization and puts engineering discipline back into the pipeline.
+    </p>
+
+    <!-- CURRENT vs TARGET -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px;">
+      <div class="arch-box">
+        <div class="arch-label current">Current State (Domo-Centric)</div>
+        <div class="sources-row" style="margin-bottom:8px;">
+          <div class="flow-node source">CRM</div>
+          <div class="flow-node source">ERP</div>
+          <div class="flow-node source">Other</div>
+        </div>
+        <div class="flow-down red">&#8595;</div>
+        <div class="flow-row" style="margin-bottom:8px;">
+          <div class="flow-node domo-old" style="flex:1; text-align:center; padding:12px;">
+            Domo DataFlows<br/>
+            <span style="font-size:10.5px; font-weight:400;">ETL logic embedded here</span>
+          </div>
+        </div>
+        <div style="font-size:11px; color:var(--red); margin:6px 0 10px 0;">
+          &#9888; No version control &nbsp;|&nbsp; No tests &nbsp;|&nbsp; No lineage
+        </div>
+        <div class="flow-row">
+          <div class="flow-node domo-old" style="flex:1; text-align:center; padding:10px;">Domo Cards &amp; Dashboards</div>
+        </div>
+      </div>
+
+      <div class="arch-box">
+        <div class="arch-label target">Target State (Snowflake-Central)</div>
+        <div class="sources-row" style="margin-bottom:8px;">
+          <div class="flow-node source">CRM</div>
+          <div class="flow-node source">ERP</div>
+          <div class="flow-node source">Other</div>
+        </div>
+        <div class="flow-down">&#8595; Airflow + Python</div>
+        <div class="flow-row" style="gap:8px; margin-bottom:6px;">
+          <div class="flow-node bronze" style="flex:1; text-align:center; padding:9px; font-size:11px;">Bronze</div>
+          <div class="arrow">&#8594;</div>
+          <div class="flow-node silver" style="flex:1; text-align:center; padding:9px; font-size:11px;">Silver (dbt)</div>
+          <div class="arrow">&#8594;</div>
+          <div class="flow-node gold" style="flex:1; text-align:center; padding:9px; font-size:11px;">Gold</div>
+        </div>
+        <div style="font-size:11px; color:var(--green); margin:6px 0 10px 0;">
+          &#10003; Git CI/CD &nbsp;|&nbsp; dbt tests &nbsp;|&nbsp; Full lineage
+        </div>
+        <div class="flow-row" style="gap:8px;">
+          <div class="flow-node domo-new" style="flex:1; text-align:center; padding:9px; font-size:11px;">Domo (BI only)</div>
+          <div class="flow-node bi" style="flex:1; text-align:center; padding:9px; font-size:11px;">Power BI / Other</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIGRATION PHASES -->
+    <div style="font-size:1rem; font-weight:800; color:var(--navy); margin-bottom:16px;">Migration Phases &mdash; 16-Week Roadmap</div>
+
+    <!-- Gantt-style bar -->
+    <div class="gantt-wrap" style="margin-bottom:24px;">
+      <table class="gantt-table">
+        <thead>
+          <tr>
+            <th style="width:28%">Phase</th>
+            <th style="width:10%">Duration</th>
+            <th class="gantt-bar-cell">Timeline (weeks)</th>
+            <th>Key Deliverable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Audit &amp; Catalog</strong></td>
+            <td>2 wks</td>
+            <td>
+              <div class="g-bar-bg">
+                <div class="g-bar-fill" style="left:0%; width:12.5%; background:#00A9CE;">
+                  <span>Wk 1&ndash;2</span>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:11px;">Complete inventory of all Domo DataFlows, datasets, and downstream cards</td>
+          </tr>
+          <tr>
+            <td><strong>2. Bronze Ingestion</strong></td>
+            <td>3 wks</td>
+            <td>
+              <div class="g-bar-bg">
+                <div class="g-bar-fill" style="left:12.5%; width:18.75%; background:#007EA3;">
+                  <span>Wk 3&ndash;5</span>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:11px;">All source systems replicated to Snowflake Bronze via Airflow + Python connectors</td>
+          </tr>
+          <tr>
+            <td><strong>3. Silver Transformation</strong></td>
+            <td>4 wks</td>
+            <td>
+              <div class="g-bar-bg">
+                <div class="g-bar-fill" style="left:31.25%; width:25%; background:#005A7E;">
+                  <span>Wk 6&ndash;9</span>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:11px;">dbt models rebuilding all Domo DataFlow logic with automated quality tests</td>
+          </tr>
+          <tr>
+            <td><strong>4. Gold &amp; Customer 360</strong></td>
+            <td>4 wks</td>
+            <td>
+              <div class="g-bar-bg">
+                <div class="g-bar-fill" style="left:56.25%; width:25%; background:#003B5C;">
+                  <span>Wk 10&ndash;13</span>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:11px;">Customer 360 Gold layer live; Splink matching complete; classification models deployed</td>
+          </tr>
+          <tr>
+            <td><strong>5. BI Reconnect &amp; Validate</strong></td>
+            <td>2 wks</td>
+            <td>
+              <div class="g-bar-bg">
+                <div class="g-bar-fill" style="left:81.25%; width:12.5%; background:#C9960A;">
+                  <span>Wk 14&ndash;15</span>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:11px;">Domo and BI tools reconnected to Snowflake Gold; stakeholder sign-off on dashboard parity</td>
+          </tr>
+          <tr>
+            <td><strong>6. Cutover &amp; Decommission</strong></td>
+            <td>1 wk</td>
+            <td>
+              <div class="g-bar-bg">
+                <div class="g-bar-fill" style="left:93.75%; width:6.25%; background:#27AE60;">
+                  <span>Wk 16</span>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:11px;">Domo DataFlows deprecated; Snowflake as sole source of truth; full documentation handed over</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PHASE DETAIL CARDS -->
+    <div class="phases-grid">
+      <div class="phase-card">
+        <div class="phase-num">Phase 1</div>
+        <h3>Audit &amp; Catalog</h3>
+        <span class="dur">2 weeks</span>
+        <ul>
+          <li>Document every Domo DataFlow: inputs, logic, outputs</li>
+          <li>Identify dependencies between DataFlows and downstream cards</li>
+          <li>Flag high-risk transformations that need equivalent dbt models</li>
+          <li>Prioritize: which pipelines break the most if they fail?</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 2</div>
+        <h3>Bronze Ingestion</h3>
+        <span class="dur">3 weeks</span>
+        <ul>
+          <li>Set up Snowflake schemas: raw, staging, analytics</li>
+          <li>Build Airflow DAGs for each source system</li>
+          <li>Implement CDC (change data capture) for incremental loads</li>
+          <li>Enforce raw-zone immutability -- Bronze is append-only</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 3</div>
+        <h3>Silver Transformation</h3>
+        <span class="dur">4 weeks</span>
+        <ul>
+          <li>Rebuild every Domo DataFlow as a modular dbt model</li>
+          <li>Add dbt tests: not_null, unique, accepted_values, referential integrity</li>
+          <li>Set up GitHub CI/CD: PR-based review before any model deploys</li>
+          <li>Run Silver parallel to Domo -- validate output parity before cutover</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 4</div>
+        <h3>Gold &amp; Customer 360</h3>
+        <span class="dur">4 weeks</span>
+        <ul>
+          <li>Run Splink probabilistic matching across Silver customer entities</li>
+          <li>Build dim_customer golden record in Gold layer</li>
+          <li>Deploy Python classification algorithms via Snowpark stored procedures</li>
+          <li>Build fact tables: fact_usage, fact_revenue, fact_support</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 5</div>
+        <h3>BI Reconnect</h3>
+        <span class="dur">2 weeks</span>
+        <ul>
+          <li>Reconnect Domo cards to Snowflake Gold via direct connector</li>
+          <li>Validate KPI parity: every dashboard number matches pre-migration baseline</li>
+          <li>Train business stakeholders on new self-serve analytics capabilities</li>
+          <li>Stakeholder sign-off before final cutover</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 6</div>
+        <h3>Cutover &amp; Handover</h3>
+        <span class="dur">1 week</span>
+        <ul>
+          <li>Deprecate all Domo DataFlows -- no more dual-running</li>
+          <li>Snowflake declared sole source of truth</li>
+          <li>Complete data lineage and architecture documentation</li>
+          <li>Knowledge transfer to Field Systems team and Christian's analytics team</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ EXPECTED OUTCOMES ════════════ -->
+<div class="wrap">
+  <div class="sec-title">Expected Outcomes After 16 Weeks</div>
+  <div class="outcomes-grid">
+    <div class="outcome-card">
+      <div class="outcome-num">1</div>
+      <div class="outcome-lbl">Unified customer_id linking all 5 source systems</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">&lt;45min</div>
+      <div class="outcome-lbl">Pipeline execution (down from 6+ hrs in legacy Domo flows)</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">85%</div>
+      <div class="outcome-lbl">Reduction in bad-data incidents via dbt automated tests</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">99.9%</div>
+      <div class="outcome-lbl">Pipeline uptime target with Airflow retry + alerting</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">34%</div>
+      <div class="outcome-lbl">Duplicate customer records eliminated via Splink</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">100%</div>
+      <div class="outcome-lbl">Domo DataFlows migrated with full lineage documentation</div>
+    </div>
+  </div>
+  <p style="font-size:0.8rem; color:var(--muted); margin-top:14px; font-style:italic;">* Metrics based on directly comparable work completed at Infosys Private Limited (2020&ndash;2023).</p>
+</div>
+
+<!-- ════════════ PROOF SECTION ════════════ -->
+<div class="alt-white">
+  <div class="wrap">
+    <div class="sec-title">I Have Done This Before &mdash; Exactly</div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-tag">Customer 360 &bull; Proven</div>
+        <h3>Customer 360 Data Integration Platform &mdash; Infosys</h3>
+        <p>Unified customer data across 4 enterprise source systems (CRM, ERP, support, marketing) using Python Splink probabilistic record linkage. Reduced duplicate customer records by 34%, built 5 downstream Gold-layer dashboards, and established a single customer_id as the anchor for all analytics. Same problem, same stack, same outcome Trimble needs.</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tag">ETL Migration &bull; Proven</div>
+        <h3>ETL Modernization -- Dbo to Snowflake &mdash; Infosys</h3>
+        <p>Migrated 15+ legacy monolithic ETL scripts to modular dbt models with GitHub CI/CD, cutting pipeline execution from 6 hours to under 45 minutes and reducing code redundancy by 45%. Implemented medallion architecture (Bronze/Silver/Gold) in Snowflake with Apache Airflow orchestration at 99.9% uptime -- directly equivalent to the Domo migration Trimble is undertaking.</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tag">Classification Deployment &bull; Proven</div>
+        <h3>Python ML Models Deployed to Snowflake via Snowpark</h3>
+        <p>Deployed Python classification algorithms (XGBoost) into Snowflake production via Snowpark stored procedures -- automated incremental execution within the existing Airflow ETL structure. Exactly the deliverable described in the Trimble JD: "Implement and deploy complex classification algorithms (currently prototyped in Python) within the production data environment (Snowflake)."</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tag">Demand Forecasting &bull; Innovation Award</div>
+        <h3>95% Accuracy Forecasting System &mdash; Infosys Innovation Award</h3>
+        <p>Built XGBoost/ARIMA ensemble forecasting system in Python, achieving 95% accuracy and earning the Infosys Innovation Award. Demonstrates the ML-to-production engineering rigor that Trimble's Field Systems team needs for deploying classification models at scale within their Snowflake data environment.</p>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      "The Trimble Field Systems team is building exactly what I built at Infosys -- a unified customer data platform on Snowflake,
+      a medallion-architecture ETL migration, and Python-based ML deployed into production.
+      I am not someone who would need to figure this out. I have already done it."
+      <div style="margin-top:12px; font-size:0.82rem; opacity:0.7; font-style:normal;">-- Raghav Patidar &bull; raghavpatidar997@gmail.com &bull; 913-218-6727</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<div class="footer">
+  <div class="footer-name">Raghav Patidar</div>
+  <div style="opacity:0.75; font-size:0.9rem;">Data / Analytics Engineer &bull; Snowflake &bull; dbt &bull; Python &bull; Splink &bull; Apache Airflow &bull; Customer 360</div>
+  <div class="footer-links">
+    <a href="mailto:raghavpatidar997@gmail.com">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank">LinkedIn Profile</a>
+    <span style="opacity:0.55;">913-218-6727</span>
+  </div>
+  <div class="footer-sub">Prepared for: Trimble Field Systems &mdash; Data/Analytics Engineer (Customer 360 Data Pipelines) &bull; Westminster, CO</div>
+</div>
+
+</body>
+</html>
