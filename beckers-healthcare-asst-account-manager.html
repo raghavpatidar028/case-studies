@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raghav Patidar | Assistant Account Manager | Becker's Healthcare</title>
+<style>
+  :root {
+    --navy:  #1B3A5C;
+    --teal:  #2BAE8E;
+    --light: #F2F7F5;
+    --text:  #1A1A2E;
+    --muted: #5A5A72;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); color: var(--text); line-height: 1.65; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #0D2238 100%);
+    color: var(--white);
+    padding: 56px 40px 48px;
+    text-align: center;
+  }
+  .hero-label {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .hero h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .hero h2 { font-size: 1.15rem; font-weight: 400; opacity: 0.85; margin-bottom: 24px; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; font-size: 13px; opacity: 0.75; }
+  .hero-meta span::before { content: ""; display: inline-block; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+
+  /* ── IMPACT BAR ── */
+  .impact-bar {
+    background: var(--teal);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .impact-item { text-align: center; padding: 0 40px; border-right: 1px solid rgba(255,255,255,0.3); }
+  .impact-item:last-child { border-right: none; }
+  .impact-num { font-size: 2rem; font-weight: 900; color: var(--white); line-height: 1; }
+  .impact-lbl { font-size: 11.5px; font-weight: 600; color: var(--white); margin-top: 4px; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+  .section-title {
+    font-size: 1.3rem; font-weight: 800; color: var(--navy);
+    border-left: 4px solid var(--teal);
+    padding-left: 14px; margin-bottom: 24px; letter-spacing: -0.2px;
+  }
+
+  /* ── CONTEXT STRIP ── */
+  .context-strip {
+    background: var(--navy);
+    color: var(--white);
+    padding: 36px 40px;
+    text-align: center;
+  }
+  .context-strip p { max-width: 760px; margin: 0 auto; font-size: 1.05rem; opacity: 0.9; }
+  .context-strip strong { color: #80DFCA; }
+
+  /* ── CHALLENGE / RESPONSE CARDS ── */
+  .cr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .cr-grid { grid-template-columns: 1fr; } }
+  .cr-card { background: var(--white); border-radius: 10px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .cr-card.challenge { border-top: 4px solid #C0392B; }
+  .cr-card.response  { border-top: 4px solid #27AE60; }
+  .cr-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .cr-card.challenge .cr-tag { color: #C0392B; }
+  .cr-card.response  .cr-tag { color: #27AE60; }
+  .cr-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .cr-card p  { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── DIFFERENTIATOR BOX ── */
+  .diff-box {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 28px 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 6px solid var(--teal);
+    margin-bottom: 20px;
+  }
+  .diff-box h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .diff-box p  { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── COVERAGE TABLE ── */
+  .coverage-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .coverage-table th { background: var(--navy); color: var(--white); padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .coverage-table td { padding: 10px 14px; border-bottom: 1px solid #DDE8E4; vertical-align: top; }
+  .coverage-table tr:hover td { background: #EDF5F2; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; }
+  .badge-direct   { background: #D4EDDA; color: #155724; }
+  .badge-adjacent { background: #FFF3CD; color: #856404; }
+  .badge-project  { background: #CCE5FF; color: #004085; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .skill-card { background: var(--white); border-radius: 8px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid var(--teal); }
+  .skill-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .skill-bar-bg { background: #D8EDE8; border-radius: 6px; height: 6px; }
+  .skill-bar-fill { background: var(--teal); border-radius: 6px; height: 6px; }
+  .skill-note { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+
+  /* ── 90-DAY PLAN ── */
+  .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 640px) { .plan-grid { grid-template-columns: 1fr; } }
+  .plan-card { background: var(--white); border-radius: 10px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .plan-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+  .plan-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+  .plan-card ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); }
+  .plan-card ul li { margin-bottom: 6px; }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    background: var(--navy); color: var(--white);
+    border-left: 6px solid var(--teal);
+    padding: 28px 36px; border-radius: 0 10px 10px 0;
+    margin: 32px 0; font-size: 1.05rem; font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--navy); color: var(--white); text-align: center; padding: 36px 24px; font-size: 0.88rem; }
+  .footer a { color: #80DFCA; text-decoration: none; font-weight: 600; }
+  .footer-name { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero">
+  <div class="hero-label">Case Study</div>
+  <h1>Raghav Patidar</h1>
+  <h2>Assistant Account Manager &mdash; Becker's Healthcare</h2>
+  <div class="hero-meta">
+    <span>5+ Years Client Relationship Management</span>
+    <span>CRM &bull; Proposals &bull; Pipeline Analytics</span>
+    <span>Chicago, IL (Hybrid Ready)</span>
+  </div>
+</div>
+
+<!-- ═══════════════ IMPACT BAR ═══════════════ -->
+<div class="impact-bar">
+  <div class="impact-item">
+    <div class="impact-num">12+</div>
+    <div class="impact-lbl">Enterprise Accounts Managed</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">10%</div>
+    <div class="impact-lbl">YoY Client Program Growth</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">40%</div>
+    <div class="impact-lbl">Faster Team Onboarding</div>
+  </div>
+  <div class="impact-item">
+    <div class="impact-num">200+</div>
+    <div class="impact-lbl">Hours Reporting Saved/Year</div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONTEXT STRIP ═══════════════ -->
+<div class="context-strip">
+  <p>
+    Becker's Healthcare is a fast-moving, high-cadence media and events organization where account managers
+    are <strong>relationship builders and operations anchors</strong> rolled into one.
+    Success here requires someone who can run high-volume outreach, keep proposals and CRM records spotless,
+    coordinate across editorial and production teams, and <strong>turn post-campaign data into the next renewal conversation</strong>.
+    That is exactly what I have been doing for five years.
+  </p>
+</div>
+
+<!-- ═══════════════ CHALLENGE / RESPONSE ═══════════════ -->
+<div class="section">
+  <div class="section-title">Challenges I Solve</div>
+  <div class="cr-grid">
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Long-Standing Client Relationships at Risk Without Continuity</h3>
+      <p>Enterprise clients who have trusted a media partner for years expect to feel remembered, understood, and prioritized -- not handed off to someone starting from scratch every quarter.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Structured Check-Ins and Personalized CRM-Driven Outreach</h3>
+      <p>Managed 12+ enterprise accounts at Infosys as primary relationship owner -- conducting regular check-ins, tracking engagement history in Salesforce CRM, and building outreach cadences tailored to each account's priorities and renewal timeline.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Proposals and Collateral Take Too Long to Turn Around</h3>
+      <p>A sales team moving fast can't wait three days for a custom proposal or media kit. Delays in collateral cost deals and signal to clients that the team isn't organized.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Templated Proposal Frameworks + 50% Faster Turnaround</h3>
+      <p>Built modular proposal templates and custom one-sheet frameworks at Infosys, enabling account teams to personalize materials quickly for each client. Reduced proposal turnaround time by 50% and freed senior reps to focus on relationship conversations rather than document production.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>CRM Data Goes Stale -- Forecasting Becomes Guesswork</h3>
+      <p>When account activity isn't logged consistently, pipeline reports mislead leadership and missed renewal dates slip through the cracks. Discipline in CRM hygiene is a competitive advantage.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Automated Pipeline Tracking + Real-Time CRM Dashboards</h3>
+      <p>Maintained meticulous Salesforce records across 12+ accounts and built automated reporting workflows that reduced manual CRM data entry by 65%. Leadership always had real-time visibility into pipeline health, renewal timelines, and outreach activity without chasing account managers for updates.</p>
+    </div>
+
+    <div class="cr-card challenge">
+      <div class="cr-tag">Challenge</div>
+      <h3>Post-Campaign Data Sits in a Spreadsheet No One Acts On</h3>
+      <p>Campaign wrap-ups are only valuable if they translate into a retention conversation, an upsell, or a smarter next campaign. Most post-campaign summaries get filed and forgotten.</p>
+    </div>
+    <div class="cr-card response">
+      <div class="cr-tag">My Response</div>
+      <h3>Post-Campaign Summaries Engineered as Renewal Conversations</h3>
+      <p>Developed post-campaign performance reports at Infosys that synthesized engagement metrics into client-ready narratives -- framed not as "here's what happened" but as "here's what we do next." These summaries directly supported upsell conversations and influenced 10% YoY growth across the account portfolio.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ DIFFERENTIATOR ═══════════════ -->
+<div class="section" style="padding-top: 0;">
+  <div class="section-title">Why I Am Different from Other Candidates</div>
+
+  <div class="diff-box">
+    <h3>Analytics-Backed Account Management -- a Rare Combination</h3>
+    <p>Most account managers track activities. I also track patterns. My background in data analytics and CRM reporting means I can look at an account's engagement history and spot a churn signal before it shows up in a renewal conversation. At Becker's, where post-campaign reporting and pipeline forecasting are core to the role, having an account manager who can also build the dashboard behind those reports is a meaningful advantage.</p>
+  </div>
+
+  <div class="diff-box">
+    <h3>High-Cadence Relationship Management -- Proven at Scale</h3>
+    <p>During my two years as Teaching Assistant at UCM, I managed relationships with 30+ graduate students per semester simultaneously -- personalized check-ins, structured follow-ups, coordinating with faculty and administration, and producing progress reports on 200+ submissions annually. That is the same operating rhythm Becker's needs: high volume, high personalization, zero dropped balls.</p>
+  </div>
+
+  <div class="diff-box">
+    <h3>Cross-Functional Liaison -- Sales, Editorial, Production, Client Services</h3>
+    <p>At Infosys, I served as the connective tissue between internal delivery teams and external clients -- coordinating meeting logistics, managing follow-up action items, and ensuring deliverables landed on time and on spec. I understand how to keep every stakeholder aligned without creating bottlenecks.</p>
+  </div>
+</div>
+
+<!-- ═══════════════ QUOTE ═══════════════ -->
+<div class="section" style="padding-top: 0;">
+  <div class="quote-block">
+    "Clients don't renew because the product was good. They renew because the relationship felt reliable,
+    the reporting was clear, and someone was paying attention when it mattered.
+    That's the standard I hold myself to on every account."
+    <div style="margin-top: 12px; font-size: 0.85rem; opacity: 0.75; font-style: normal;">-- Raghav Patidar, Senior Account Manager / Client Relations Lead, Infosys Private Limited</div>
+  </div>
+</div>
+
+<!-- ═══════════════ JD COVERAGE TABLE ═══════════════ -->
+<div style="background: var(--white); padding: 48px 5%;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-title">JD Requirements vs. My Experience</div>
+    <table class="coverage-table">
+      <thead>
+        <tr>
+          <th style="width: 38%">JD Requirement</th>
+          <th style="width: 12%">Coverage</th>
+          <th>How I Cover It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Partner with sales to serve long-standing clients</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Primary relationship owner for 12+ enterprise accounts at Infosys -- regular check-ins, escalation management, renewal tracking, and growth identification across a multi-contract book of business</td>
+        </tr>
+        <tr>
+          <td><strong>Create, edit, finalize proposals, contracts, presentations</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Created and finalized client-facing proposals, contracts, and presentations for C-suite stakeholders at Infosys; built modular proposal templates reducing turnaround time by 50%</td>
+        </tr>
+        <tr>
+          <td><strong>Keep sales operations running -- meeting prep, follow-ups, schedules</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Served as cross-functional coordinator between sales, delivery, and client services -- managing meeting logistics, follow-up action tracking, and scheduling across 12+ concurrent accounts</td>
+        </tr>
+        <tr>
+          <td><strong>Liaison between sales, editorial, production, client services</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>At Infosys, served as liaison between sales, analytics, production, and client teams -- coordinating deliverables, aligning editorial timelines, and ensuring clients received consistent communication</td>
+        </tr>
+        <tr>
+          <td><strong>Manage ongoing client communications for retention and growth</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Conducted structured outreach cadences with personalized follow-up to nurture relationships, surface upsell opportunities, and maintain engagement between formal renewal cycles</td>
+        </tr>
+        <tr>
+          <td><strong>CRM maintenance for pipeline tracking and forecasting (HubSpot)</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Maintained Salesforce CRM (HubSpot-equivalent) records across all accounts; automated pipeline reporting workflows that reduced manual CRM entry by 65% and gave leadership real-time visibility</td>
+        </tr>
+        <tr>
+          <td><strong>Sales collateral -- media kits, rate cards, one-sheets, custom proposals</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Built and maintained sales collateral templates including one-sheets, rate cards, and custom proposal frameworks aligned to client segments; collaborated with editorial and production teams</td>
+        </tr>
+        <tr>
+          <td><strong>Lead generation and market research</strong></td>
+          <td><span class="badge badge-project">Project</span></td>
+          <td>Lead Generation and Prospect Intelligence System project: Python/NLP pipeline identifying new prospects and tracking industry trends; improved pipeline conversion by 22% through prospect scoring models</td>
+        </tr>
+        <tr>
+          <td><strong>Contract and billing coordination -- routing, invoicing, payment</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Assisted with routing and signature processes, invoicing, and billing coordination across 12+ accounts at Infosys; maintained accurate contract tracking and renewal timeline visibility for leadership</td>
+        </tr>
+        <tr>
+          <td><strong>Post-campaign summaries and sales reporting</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Developed post-campaign performance reports translating engagement data into client-ready narratives that supported retention conversations and upsell strategy; influenced 10% YoY account growth</td>
+        </tr>
+        <tr>
+          <td><strong>High-volume outreach (100 calls + 150 emails daily)</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Applied metrics-driven outreach approach with structured email sequences and call cadences; maintained detailed activity records enabling the team to focus on highest-converting relationship strategies</td>
+        </tr>
+        <tr>
+          <td><strong>HubSpot and Google Workspace proficiency</strong></td>
+          <td><span class="badge badge-direct">Direct</span></td>
+          <td>Salesforce CRM (same principles as HubSpot); Google Workspace (Docs, Sheets, Slides) listed in skills; used for client communication, proposal collaboration, and pipeline reporting</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ SKILLS ═══════════════ -->
+<div class="section">
+  <div class="section-title">Core Competencies</div>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-name">Client Relationship Management (12+ Accounts)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
+      <div class="skill-note">Enterprise accounts; check-ins; escalations; retention and growth strategy</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">CRM -- Salesforce / HubSpot Pipeline Management</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%"></div></div>
+      <div class="skill-note">65% less manual data entry; real-time pipeline dashboards for leadership</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Proposal and Sales Collateral Development</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+      <div class="skill-note">50% faster turnaround; modular templates; C-suite presentations</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Post-Campaign Reporting and Analytics</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:93%"></div></div>
+      <div class="skill-note">Engagement metrics to client narratives; upsell-framed summaries</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">High-Volume Outreach and Cadence Management</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+      <div class="skill-note">Structured email sequences; personalized follow-up; activity logging</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Cross-Functional Liaison and Coordination</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+      <div class="skill-note">Sales, editorial, production, client services -- all under one roof at a time</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Lead Generation and Market Research</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div>
+      <div class="skill-note">Prospect scoring models; 22% pipeline conversion improvement</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-name">Google Workspace + Microsoft Office Suite</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
+      <div class="skill-note">Docs, Sheets, Slides; Excel; proposal and reporting workflows daily</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ 90-DAY PLAN ═══════════════ -->
+<div style="background: var(--navy); padding: 48px 5%;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-title" style="color: var(--white); border-left-color: var(--teal);">90-Day Plan at Becker's Healthcare</div>
+    <div class="plan-grid">
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 1 -- 30</div>
+        <h3>Learn the Book and the Cadence</h3>
+        <ul>
+          <li>Shadow senior reps on active accounts and outreach calls to absorb Becker's client culture</li>
+          <li>Audit existing HubSpot records for the assigned accounts -- identify gaps, stale contacts, and upcoming renewals</li>
+          <li>Learn the proposal and media kit templates and understand which work best for which client segments</li>
+          <li>Begin participating in client check-ins with the sales team to build relationship continuity</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 31 -- 60</div>
+        <h3>Own My Accounts and Ramp Outreach</h3>
+        <ul>
+          <li>Take primary ownership of assigned client communications, check-ins, and follow-up tracking</li>
+          <li>Hit daily outreach targets -- 100 calls and 150 emails -- with personalized messaging tailored to each contact's role and history</li>
+          <li>Complete first round of custom proposals and client-facing presentations independently</li>
+          <li>Deliver first post-campaign summary reports for any wrap-up campaigns in the portfolio</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tag">Days 61 -- 90</div>
+        <h3>Drive Retention, Spot Growth, Report Clearly</h3>
+        <ul>
+          <li>Identify at least one upsell or renewal conversation opportunity per active account</li>
+          <li>Build a CRM reporting view that gives the sales team clear pipeline health visibility without manual updates</li>
+          <li>Contribute to one lead generation research initiative to add new qualified prospects to the pipeline</li>
+          <li>Present account health summary to the team -- what's strong, what needs attention, what's next</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="footer">
+  <div class="footer-name">Raghav Patidar</div>
+  <div>Assistant Account Manager &bull; 5+ Years &bull; CRM &bull; Proposals &bull; Pipeline Analytics &bull; Client Retention</div>
+  <div class="footer-links">
+    <a href="mailto:raghavpatidar997@gmail.com">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank">LinkedIn Profile</a>
+    <span style="opacity:0.6">913-218-6727</span>
+  </div>
+  <div style="margin-top: 16px; font-size: 0.75rem; opacity: 0.5;">Prepared for: Becker's Healthcare -- Assistant Account Manager | Chicago, IL (Hybrid)</div>
+</div>
+
+</body>
+</html>
