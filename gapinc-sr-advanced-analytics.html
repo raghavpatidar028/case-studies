@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raghav Patidar | Sr. Analyst, Advanced Analytics | Gap Inc</title>
+<style>
+  :root {
+    --navy:  #003C71;
+    --red:   #CC0000;
+    --light: #F3F6FA;
+    --white: #FFFFFF;
+    --text:  #1A2A3A;
+    --muted: #5A6A7A;
+    --teal:  #0077A8;
+    --green: #1A7A4A;
+    --gold:  #C8920A;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); color: var(--text); line-height: 1.65; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(140deg, var(--navy) 0%, #001D3D 65%, #00355E 100%);
+    color: var(--white); padding: 62px 40px 52px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 340px; height: 340px; border-radius: 50%; background: rgba(204,0,0,0.07);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -60px; left: -50px;
+    width: 260px; height: 260px; border-radius: 50%; background: rgba(0,119,168,0.08);
+  }
+  .hero-pill {
+    display: inline-block; background: var(--red); color: var(--white);
+    font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: 2.45rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .hero h2 { font-size: 1.05rem; font-weight: 400; opacity: 0.82; margin-bottom: 28px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .hero-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .chip { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: var(--white); font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 20px; }
+
+  /* ── IMPACT BAR ── */
+  .impact-bar { background: var(--red); padding: 28px 40px; display: flex; justify-content: center; flex-wrap: wrap; }
+  .impact-item { text-align: center; padding: 0 36px; border-right: 1px solid rgba(255,255,255,0.3); }
+  .impact-item:last-child { border-right: none; }
+  .impact-num { font-size: 2rem; font-weight: 900; color: var(--white); line-height: 1; }
+  .impact-lbl { font-size: 11px; font-weight: 600; color: var(--white); margin-top: 4px; opacity: 0.88; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── WRAP ── */
+  .wrap { max-width: 960px; margin: 0 auto; padding: 52px 24px; }
+  .sec-title { font-size: 1.3rem; font-weight: 900; color: var(--navy); border-left: 5px solid var(--red); padding-left: 14px; margin-bottom: 28px; }
+  .sec-num { display: inline-block; background: var(--red); color: var(--white); font-size: 11px; font-weight: 800; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+  /* ── CONTEXT STRIP ── */
+  .context-strip { background: var(--navy); padding: 36px 5%; text-align: center; }
+  .context-strip p { max-width: 780px; margin: 0 auto; color: rgba(255,255,255,0.88); font-size: 1.02rem; }
+  .context-strip strong { color: #FF9999; }
+
+  /* ── FUNNEL CHART ── */
+  .funnel-wrap { display: flex; align-items: flex-end; justify-content: center; gap: 6px; padding: 32px 20px 16px; background: var(--white); border-radius: 12px; box-shadow: 0 2px 16px rgba(0,60,113,0.08); margin-bottom: 28px; overflow-x: auto; }
+  .funnel-stage { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 90px; }
+  .funnel-bar-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .funnel-bar { width: 76%; border-radius: 6px 6px 0 0; position: relative; transition: opacity 0.2s; }
+  .funnel-bar:hover { opacity: 0.85; }
+  .funnel-pct { font-size: 13px; font-weight: 900; color: var(--navy); margin-bottom: 6px; }
+  .funnel-label { font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 10px; }
+  .funnel-metric { font-size: 10px; color: var(--teal); font-weight: 700; margin-top: 3px; }
+  .funnel-arrow { color: var(--red); font-size: 1.1rem; padding-bottom: 40px; opacity: 0.5; align-self: center; flex-shrink: 0; }
+
+  /* ── ROAS CHART ── */
+  .roas-chart { background: var(--white); border-radius: 12px; padding: 28px 28px; box-shadow: 0 2px 16px rgba(0,60,113,0.08); margin-bottom: 28px; }
+  .roas-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .roas-label { font-size: 12px; font-weight: 700; color: var(--navy); width: 110px; flex-shrink: 0; text-align: right; }
+  .roas-bar-bg { flex: 1; background: #EAF0F6; border-radius: 4px; height: 28px; position: relative; overflow: hidden; }
+  .roas-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; }
+  .roas-bar-fill span { font-size: 11px; font-weight: 800; color: var(--white); }
+  .roas-val { font-size: 12px; font-weight: 800; color: var(--navy); width: 52px; flex-shrink: 0; }
+
+  /* ── SEGMENTATION QUADRANT ── */
+  .quad-wrap { background: var(--white); border-radius: 12px; padding: 24px; box-shadow: 0 2px 16px rgba(0,60,113,0.08); }
+  .quad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 16px 0; background: #D0DCE8; border-radius: 8px; overflow: hidden; }
+  .quad-cell { padding: 20px 18px; }
+  .quad-cell h4 { font-size: 13px; font-weight: 800; margin-bottom: 6px; }
+  .quad-cell p { font-size: 11.5px; line-height: 1.5; }
+  .quad-cell ul { padding-left: 14px; font-size: 11px; line-height: 1.6; margin-top: 6px; }
+  .quad-champions { background: #EAF6EF; }  .quad-champions h4 { color: #1A6E40; }
+  .quad-nurture    { background: #EAF3FA; }  .quad-nurture    h4 { color: #0060A0; }
+  .quad-risk       { background: #FEF3E3; }  .quad-risk       h4 { color: #B05A00; }
+  .quad-lost       { background: #FDECEA; }  .quad-lost       h4 { color: #A02020; }
+  .quad-axis-x { text-align: center; font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; }
+  .quad-axis-y { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; padding: 0 8px; }
+
+  /* ── AB TEST CHART ── */
+  .ab-wrap { background: var(--white); border-radius: 12px; padding: 28px; box-shadow: 0 2px 16px rgba(0,60,113,0.08); }
+  .ab-bars { display: flex; gap: 32px; align-items: flex-end; justify-content: center; height: 180px; margin: 20px 0 12px; }
+  .ab-bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .ab-bar { width: 80px; border-radius: 6px 6px 0 0; position: relative; }
+  .ab-bar-label { font-size: 12px; font-weight: 800; color: var(--navy); }
+  .ab-bar-pct { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 13px; font-weight: 900; white-space: nowrap; }
+  .ab-desc { font-size: 11.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .lift-badge { display: inline-block; background: #D4EDDA; color: #155724; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; margin-top: 8px; }
+
+  /* ── CARDS ── */
+  .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .cards-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  @media (max-width: 680px) { .cards-2, .cards-3 { grid-template-columns: 1fr; } }
+  .card { background: var(--white); border-radius: 10px; padding: 22px; box-shadow: 0 2px 12px rgba(0,60,113,0.07); }
+  .card-red  { border-top: 4px solid var(--red); }
+  .card-navy { border-top: 4px solid var(--navy); }
+  .card-teal { border-top: 4px solid var(--teal); }
+  .card-gold { border-top: 4px solid var(--gold); }
+  .card-green{ border-top: 4px solid var(--green); }
+  .card h3 { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .card p  { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+
+  /* ── COVERAGE TABLE ── */
+  .cov-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  .cov-table th { background: var(--navy); color: var(--white); padding: 10px 14px; text-align: left; font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .cov-table td { padding: 10px 14px; border-bottom: 1px solid #DDE6EF; vertical-align: top; }
+  .cov-table tr:hover td { background: #F0F5FA; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .b-direct   { background: #D4EDDA; color: #155724; }
+  .b-project  { background: #CCE5FF; color: #004085; }
+  .b-adjacent { background: #FFF3CD; color: #856404; }
+
+  /* ── PLAN ── */
+  .plan-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  @media (max-width: 680px) { .plan-grid { grid-template-columns: 1fr; } }
+  .plan-card { background: var(--white); border-radius: 10px; padding: 22px; box-shadow: 0 2px 12px rgba(0,60,113,0.07); }
+  .plan-tag { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+  .plan-card h3 { font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .plan-card ul { padding-left: 16px; font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+  .plan-card ul li { margin-bottom: 5px; }
+
+  /* ── OUTCOMES ── */
+  .outcomes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px,1fr)); gap: 16px; }
+  .outcome-card { background: var(--white); border-radius: 10px; padding: 22px 16px; text-align: center; box-shadow: 0 2px 10px rgba(0,60,113,0.07); border-bottom: 4px solid var(--red); }
+  .outcome-num { font-size: 1.9rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 6px; }
+  .outcome-lbl { font-size: 0.8rem; color: var(--muted); font-weight: 600; line-height: 1.4; }
+
+  /* ── QUOTE ── */
+  .quote-block { background: var(--navy); color: var(--white); border-left: 6px solid var(--red); padding: 28px 36px; border-radius: 0 12px 12px 0; margin: 32px 0; font-size: 1.04rem; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--navy); color: var(--white); text-align: center; padding: 40px 24px; }
+  .footer-name { font-size: 1.25rem; font-weight: 900; margin-bottom: 8px; }
+  .footer a { color: #FF9999; text-decoration: none; font-weight: 600; }
+  .footer-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-top: 12px; font-size: 0.88rem; }
+  .footer-sub { margin-top: 16px; font-size: 0.73rem; opacity: 0.4; }
+
+  .divider { border: none; border-top: 1px solid #C8D8E8; margin: 0; }
+  .white-bg { background: var(--white); }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-pill">Post-Screening Follow-Up &nbsp;|&nbsp; Gap Inc</div>
+  <h1>Raghav Patidar</h1>
+  <h2>Sr. Analyst, Advanced Analytics &mdash; why my background maps precisely to what Gap Inc is building in marketing and customer analytics</h2>
+  <div class="hero-chips">
+    <span class="chip">5+ Years Advanced Analytics</span>
+    <span class="chip">Marketing Mix Modeling</span>
+    <span class="chip">A/B Testing &amp; Incrementality</span>
+    <span class="chip">Customer Segmentation &bull; CLV &bull; Churn</span>
+    <span class="chip">SQL &bull; Python &bull; Tableau &bull; Power BI</span>
+  </div>
+</div>
+
+<!-- ═══ IMPACT BAR ═══ -->
+<div class="impact-bar">
+  <div class="impact-item"><div class="impact-num">95%</div><div class="impact-lbl">Forecast Accuracy</div></div>
+  <div class="impact-item"><div class="impact-num">18%</div><div class="impact-lbl">Budget Efficiency Gain</div></div>
+  <div class="impact-item"><div class="impact-num">75%</div><div class="impact-lbl">Engagement Lift via Churn Model</div></div>
+  <div class="impact-item"><div class="impact-num">10%</div><div class="impact-lbl">YoY Revenue Influenced</div></div>
+</div>
+
+<!-- ═══ CONTEXT ═══ -->
+<div class="context-strip">
+  <p>
+    Gap Inc runs four distinct brands across omnichannel retail. The Advanced Analytics team's job is to turn
+    <strong>fragmented customer signals into clear marketing decisions</strong> -- which channels are actually driving
+    incremental revenue, which customers are drifting toward churn, and where the next dollar of ad spend
+    creates the most value. That is the work I have been doing for five years.
+  </p>
+</div>
+
+<!-- ═══ SECTION 1: FULL-FUNNEL ANALYTICS ═══ -->
+<div class="wrap">
+  <div class="sec-title"><span class="sec-num">1</span> Full-Funnel Marketing Analytics</div>
+  <p style="color:var(--muted); font-size:0.93rem; margin-bottom:24px;">
+    Retail analytics lives and dies on funnel visibility. I track every stage from awareness spend to repeat purchase --
+    measuring where conversion drops, where attribution misleads, and where budget reallocation drives real incremental revenue.
+  </p>
+
+  <!-- FUNNEL VISUALIZATION -->
+  <div style="background:var(--white); border-radius:12px; padding:28px 24px 20px; box-shadow:0 2px 16px rgba(0,60,113,0.08); margin-bottom:28px;">
+    <div style="font-size:0.88rem; font-weight:800; color:var(--navy); margin-bottom:20px;">Customer Acquisition Funnel &mdash; Typical Retail Omnichannel</div>
+    <div class="funnel-wrap" style="padding:0; background:transparent; box-shadow:none; margin-bottom:0;">
+      <div class="funnel-stage">
+        <div class="funnel-pct">100%</div>
+        <div class="funnel-bar" style="height:160px; background:linear-gradient(180deg,#003C71,#0056A8);"></div>
+        <div class="funnel-label">Awareness</div>
+        <div class="funnel-metric">Reach &bull; CPM</div>
+      </div>
+      <div class="funnel-arrow">&#8594;</div>
+      <div class="funnel-stage">
+        <div class="funnel-pct">38%</div>
+        <div class="funnel-bar" style="height:61px; background:linear-gradient(180deg,#0077A8,#0099CC);"></div>
+        <div class="funnel-label">Click</div>
+        <div class="funnel-metric">CTR &bull; CPC</div>
+      </div>
+      <div class="funnel-arrow">&#8594;</div>
+      <div class="funnel-stage">
+        <div class="funnel-pct">22%</div>
+        <div class="funnel-bar" style="height:35px; background:linear-gradient(180deg,#1A7A4A,#2EAD6B);"></div>
+        <div class="funnel-label">Site Visit</div>
+        <div class="funnel-metric">Sessions &bull; Bounce</div>
+      </div>
+      <div class="funnel-arrow">&#8594;</div>
+      <div class="funnel-stage">
+        <div class="funnel-pct">4.2%</div>
+        <div class="funnel-bar" style="height:18px; background:linear-gradient(180deg,#C8920A,#E0A800);"></div>
+        <div class="funnel-label">Purchase</div>
+        <div class="funnel-metric">Conv. Rate &bull; AUR &bull; AOS</div>
+      </div>
+      <div class="funnel-arrow">&#8594;</div>
+      <div class="funnel-stage">
+        <div class="funnel-pct">28%</div>
+        <div class="funnel-bar" style="height:11px; background:linear-gradient(180deg,#CC0000,#FF3333);"></div>
+        <div class="funnel-label">Repeat Buy</div>
+        <div class="funnel-metric">CLV &bull; Retention</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem; color:var(--muted); margin-top:16px; font-style:italic; text-align:center;">Each stage measured, each drop-off explained -- not just reported, but diagnosed and acted on.</p>
+  </div>
+
+  <!-- CARDS: HOW I APPROACH IT -->
+  <div class="cards-2">
+    <div class="card card-red">
+      <div class="card-tag">My Approach</div>
+      <h3>KPIs I Build Dashboards Around</h3>
+      <p>ROAS by channel and campaign &bull; CAC vs CLV ratio &bull; Conversion rate by brand and category &bull; AUR and AOS trends &bull; Reach/frequency optimization &bull; NPS and retention cohort tracking. Every metric has a business question behind it -- I build dashboards that answer the question, not just display the number.</p>
+    </div>
+    <div class="card card-navy">
+      <div class="card-tag">Tooling</div>
+      <h3>Power BI + Tableau + SQL + Snowflake</h3>
+      <p>Built 15+ production dashboards at Infosys surfacing full-funnel marketing KPIs for brand and finance leadership. Parameter-driven scenario views let marketing leaders simulate budget reallocation in real time -- cutting ad-hoc data requests by 22% and accelerating weekly planning cycles by 50%.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ═══ SECTION 2: MARKETING MIX MODELING ═══ -->
+<div class="white-bg">
+  <div class="wrap">
+    <div class="sec-title"><span class="sec-num">2</span> Marketing Mix Modeling &amp; Attribution</div>
+    <p style="color:var(--muted); font-size:0.93rem; margin-bottom:24px;">
+      Last-click attribution tells you who crossed the finish line. Marketing Mix Modeling tells you who actually ran the race.
+      I build regression-based MMMs that decompose channel contribution, separate base sales from incremental media lift,
+      and give marketing teams a defensible framework for budget allocation decisions.
+    </p>
+
+    <!-- ROAS CHART -->
+    <div class="roas-chart">
+      <div style="font-size:0.88rem; font-weight:800; color:var(--navy); margin-bottom:18px;">Channel ROAS Decomposition &mdash; MMM Output Example</div>
+      <div class="roas-row">
+        <div class="roas-label">Paid Search</div>
+        <div class="roas-bar-bg">
+          <div class="roas-bar-fill" style="width:88%; background:var(--navy);">
+            <span>Paid Search</span>
+          </div>
+        </div>
+        <div class="roas-val">4.8x</div>
+      </div>
+      <div class="roas-row">
+        <div class="roas-label">Email / CRM</div>
+        <div class="roas-bar-bg">
+          <div class="roas-bar-fill" style="width:80%; background:#0056A8;">
+            <span>Email / CRM</span>
+          </div>
+        </div>
+        <div class="roas-val">4.1x</div>
+      </div>
+      <div class="roas-row">
+        <div class="roas-label">Paid Social</div>
+        <div class="roas-bar-bg">
+          <div class="roas-bar-fill" style="width:60%; background:var(--teal);">
+            <span>Paid Social</span>
+          </div>
+        </div>
+        <div class="roas-val">2.9x</div>
+      </div>
+      <div class="roas-row">
+        <div class="roas-label">Display / GDN</div>
+        <div class="roas-bar-bg">
+          <div class="roas-bar-fill" style="width:38%; background:var(--gold);">
+            <span>Display</span>
+          </div>
+        </div>
+        <div class="roas-val">1.8x</div>
+      </div>
+      <div class="roas-row">
+        <div class="roas-label">Affiliate</div>
+        <div class="roas-bar-bg">
+          <div class="roas-bar-fill" style="width:28%; background:#A0A0A0;">
+            <span>Affiliate</span>
+          </div>
+        </div>
+        <div class="roas-val">1.3x</div>
+      </div>
+      <p style="font-size:0.78rem; color:var(--muted); margin-top:14px; font-style:italic;">MMM output shows true incremental ROAS -- not last-click. Budget reallocated from low-ROAS display/affiliate toward search and CRM using this framework improved overall media efficiency by 18%.</p>
+    </div>
+
+    <div class="cards-2" style="margin-top:20px;">
+      <div class="card card-teal">
+        <div class="card-tag">Incrementality vs. Attribution</div>
+        <h3>Why Last-Click Attribution Misleads</h3>
+        <p>A customer who was already going to buy sees a retargeting ad right before checkout. Last-click credits the ad. MMM and holdout testing show zero incremental lift. At Infosys, A/B incrementality testing distinguished genuine lift from attribution theater -- improving media budget decisions by 18% and removing spend from channels that looked good on paper but were not driving new revenue.</p>
+      </div>
+      <div class="card card-gold">
+        <div class="card-tag">Budget Optimization</div>
+        <h3>Translating MMM into Spend Decisions</h3>
+        <p>Built regression-based Marketing Mix Models in Python (scikit-learn) to decompose ROAS and quantify each channel's marginal return. Presented findings to CMO-level audiences with clear "reallocate X% from display to paid search" recommendations -- not just model outputs, but business decisions the marketing team could execute in the next planning cycle.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ═══ SECTION 3: CUSTOMER SEGMENTATION & CLV ═══ -->
+<div class="wrap">
+  <div class="sec-title"><span class="sec-num">3</span> Customer Segmentation, CLV &amp; Churn Analytics</div>
+  <p style="color:var(--muted); font-size:0.93rem; margin-bottom:24px;">
+    Not all Gap Inc customers are equal. Identifying who is a high-CLV loyalist, who is drifting toward churn,
+    and who can be reactivated with the right offer is the foundation of efficient retention marketing.
+    Here is how I build that segmentation and act on it.
+  </p>
+
+  <!-- SEGMENT QUADRANT -->
+  <div class="quad-wrap" style="margin-bottom:28px;">
+    <div style="font-size:0.88rem; font-weight:800; color:var(--navy); margin-bottom:4px;">RFM Customer Segmentation Matrix</div>
+    <p style="font-size:0.82rem; color:var(--muted); margin-bottom:16px;">Recency &times; Frequency &times; Monetary value &mdash; 4-quadrant view driving targeted campaign personalization</p>
+    <div style="display:flex; gap:0; align-items:stretch;">
+      <div class="quad-axis-y">&#8593; Lifetime Value (CLV)</div>
+      <div style="flex:1;">
+        <div class="quad-grid">
+          <div class="quad-cell quad-champions">
+            <h4>&#11088; Champions</h4>
+            <p style="font-size:11px; color:var(--muted);">High CLV &bull; Low churn risk</p>
+            <ul>
+              <li>VIP loyalty rewards</li>
+              <li>Early access to new collections</li>
+              <li>Referral program activation</li>
+              <li>Cross-brand upsell (BR &rarr; Gap)</li>
+            </ul>
+          </div>
+          <div class="quad-cell quad-nurture">
+            <h4>&#127919; High Potential</h4>
+            <p style="font-size:11px; color:var(--muted);">High CLV &bull; Rising churn signal</p>
+            <ul>
+              <li>Personalized win-back offers</li>
+              <li>Proactive service outreach</li>
+              <li>Loyalty tier upgrade nudge</li>
+              <li>Survey: why did they slow down?</li>
+            </ul>
+          </div>
+          <div class="quad-cell quad-risk">
+            <h4>&#9888; At Risk</h4>
+            <p style="font-size:11px; color:var(--muted);">Lower CLV &bull; Low churn risk</p>
+            <ul>
+              <li>Bundle and value promotions</li>
+              <li>Category expansion campaigns</li>
+              <li>Frequency-driving email cadence</li>
+              <li>Seasonal re-engagement offers</li>
+            </ul>
+          </div>
+          <div class="quad-cell quad-lost">
+            <h4>&#128680; Lapsing</h4>
+            <p style="font-size:11px; color:var(--muted);">Lower CLV &bull; High churn risk</p>
+            <ul>
+              <li>Final win-back discount</li>
+              <li>Sunset from high-cost channels</li>
+              <li>Move to low-cost email only</li>
+              <li>Suppress from paid media</li>
+            </ul>
+          </div>
+        </div>
+        <div class="quad-axis-x">&#8592; Churn Risk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Low &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; High &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Churn Risk &#8594;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-2">
+    <div class="card card-green">
+      <div class="card-tag">Churn Prediction &bull; Proven</div>
+      <h3>Behavioral ML Model &mdash; 75% Engagement Lift</h3>
+      <p>Built a behavioral AI churn prediction model at Infosys using classification algorithms (XGBoost, logistic regression) on purchase frequency, session recency, and category engagement signals. Triggered proactive retention campaigns at the right moment -- driving a 75% increase in customer engagement and reducing lapsed customer rate by 18%. For Gap Inc, this maps directly to preventing Old Navy or Banana Republic customers from silently drifting to competitors.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-tag">Segmentation &bull; Proven</div>
+      <h3>K-Means + Hierarchical Clustering &mdash; 18% ROI Lift</h3>
+      <p>Applied unsupervised clustering in Python (scikit-learn) and R/SPSS to segment customers by purchase frequency, CLV, and engagement attributes across 5 national campaigns. Each segment received a distinct campaign strategy and creative brief. Outcome: 18% improvement in campaign ROI versus undifferentiated batch-and-blast. Gap Inc's multi-brand portfolio makes this segmentation even more valuable -- customers behave differently across Gap, Old Navy, Banana Republic, and Athleta.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ═══ SECTION 4: A/B TESTING ═══ -->
+<div class="white-bg">
+  <div class="wrap">
+    <div class="sec-title"><span class="sec-num">4</span> A/B Testing &amp; Incrementality Analysis</div>
+    <p style="color:var(--muted); font-size:0.93rem; margin-bottom:24px;">
+      Good experimentation answers "did this campaign actually cause the outcome, or would it have happened anyway?"
+      I build statistically rigorous test designs with proper holdouts, calculate lift against control,
+      and present results that drive real budget and creative decisions -- not just "treatment outperformed control" summaries.
+    </p>
+
+    <!-- A/B CHART -->
+    <div class="ab-wrap" style="margin-bottom:28px;">
+      <div style="font-size:0.88rem; font-weight:800; color:var(--navy); margin-bottom:6px;">A/B Test Result &mdash; Campaign CTA Experiment</div>
+      <p style="font-size:0.82rem; color:var(--muted); margin-bottom:0;">Measuring incremental conversion lift from personalized CTA vs. generic. Holdout group isolates true incrementality.</p>
+      <div class="ab-bars">
+        <div class="ab-bar-group">
+          <div class="ab-bar" style="height:80px; background:#AEC6D8; position:relative;">
+            <span class="ab-bar-pct" style="color:var(--muted);">3.8%</span>
+          </div>
+          <div class="ab-bar-label">Control</div>
+          <div class="ab-desc">Generic CTA<br/>"Shop Now"</div>
+        </div>
+        <div class="ab-bar-group">
+          <div class="ab-bar" style="height:138px; background:var(--navy); position:relative;">
+            <span class="ab-bar-pct" style="color:var(--white);">5.4%</span>
+          </div>
+          <div class="ab-bar-label">Treatment</div>
+          <div class="ab-desc">Personalized CTA<br/>by segment</div>
+        </div>
+        <div class="ab-bar-group">
+          <div class="ab-bar" style="height:22px; background:#D0DCE8; position:relative;">
+            <span class="ab-bar-pct" style="color:var(--muted);">1.1%</span>
+          </div>
+          <div class="ab-bar-label">Holdout</div>
+          <div class="ab-desc">No exposure<br/>baseline</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <span class="lift-badge">+42% incremental lift &nbsp;|&nbsp; p &lt; 0.01 &nbsp;|&nbsp; 95% confidence</span>
+      </div>
+      <p style="font-size:0.78rem; color:var(--muted); margin-top:12px; font-style:italic; text-align:center;">Holdout group confirms organic conversion was 1.1% -- the 5.4% treatment rate represents genuine incremental lift, not just measurement of organic behavior.</p>
+    </div>
+
+    <div class="cards-3">
+      <div class="card card-navy">
+        <div class="card-tag">Test Design</div>
+        <h3>How I Design Experiments</h3>
+        <p style="font-size:0.83rem;">Power analysis to determine required sample size &bull; Randomized control/treatment assignment &bull; Holdout group for true incrementality &bull; Pre-registration of primary metric before launch &bull; Segment-level result breakdowns to catch heterogeneous treatment effects</p>
+      </div>
+      <div class="card card-red">
+        <div class="card-tag">What I Test at Gap Inc</div>
+        <h3>Experiments Worth Running</h3>
+        <p style="font-size:0.83rem;">CTA and creative personalization by brand &bull; Promotional discount depth vs. frequency &bull; Email send-time optimization by cohort &bull; Cross-brand recommendation lift (Old Navy &rarr; Gap) &bull; Loyalty program nudge messaging &bull; Media channel exclusion tests</p>
+      </div>
+      <div class="card card-teal">
+        <div class="card-tag">Outcome</div>
+        <h3>Decisions, Not Reports</h3>
+        <p style="font-size:0.83rem;">At Infosys, A/B incrementality testing improved budget allocation decisions by 18% by removing spend from channels showing attribution credit but zero incremental lift. Every experiment ends with a clear "do more, do less, or stop" recommendation -- not a summary of what happened.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COVERAGE TABLE ═══ -->
+<div style="background:var(--white); padding:52px 5%;">
+  <div style="max-width:960px; margin:0 auto;">
+    <div class="sec-title">Role Requirements vs. My Experience</div>
+    <table class="cov-table">
+      <thead>
+        <tr>
+          <th style="width:36%">Role Requirement</th>
+          <th style="width:12%">Coverage</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Marketing Mix Modeling &amp; channel attribution</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>Regression-based MMM in Python at Infosys -- decomposed ROAS across paid search, social, display, email; budget reallocation improved efficiency by 18%</td>
+        </tr>
+        <tr>
+          <td><strong>A/B testing and incrementality analysis</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>Designed and ran holdout-based A/B tests distinguishing incremental lift from last-click attribution; +15% conversion on CTA experiments</td>
+        </tr>
+        <tr>
+          <td><strong>Full-funnel marketing KPIs (ROAS, CAC, CLV, AUR, AOS, conversion)</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>Built Power BI and Tableau dashboards tracking all listed KPIs for brand and finance leadership at Infosys across 5 national campaigns</td>
+        </tr>
+        <tr>
+          <td><strong>Customer segmentation and lifecycle analytics</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>K-means and hierarchical clustering in Python/R/SPSS; RFM segmentation across 5 campaigns; 18% campaign ROI improvement from behavioral cohorts</td>
+        </tr>
+        <tr>
+          <td><strong>Predictive modeling &amp; demand forecasting</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>XGBoost/ARIMA ensemble at 95% accuracy -- Infosys Innovation Award; churn prediction model driving 75% engagement lift</td>
+        </tr>
+        <tr>
+          <td><strong>SQL for data extraction and reporting</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>5+ years of complex SQL across Snowflake, Oracle, SQL Server; 15+ ETL pipelines processing 10TB+/week; automated weekly reporting workflows</td>
+        </tr>
+        <tr>
+          <td><strong>Python for analytics and modeling</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>Pandas, NumPy, Scikit-learn, XGBoost, ARIMA -- daily tooling; deployed models into Snowflake production via stored procedures</td>
+        </tr>
+        <tr>
+          <td><strong>Tableau / Power BI dashboards for leadership</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>15+ dashboards; parameter-driven scenario modeling; C-suite executive reporting; reduced ad-hoc requests by 22%; cut report cycle time by 35%</td>
+        </tr>
+        <tr>
+          <td><strong>Cross-functional collaboration (marketing, finance, agencies)</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>Partnered with marketing, finance, and external agency stakeholders at Infosys to define measurement frameworks and present findings to C-suite quarterly</td>
+        </tr>
+        <tr>
+          <td><strong>E-commerce KPIs (conversion rate, AUR, AOS)</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>Analyzed marketing effectiveness across digital channels with weekly performance reports covering conversion rate, AUR, and AOS for an e-commerce client</td>
+        </tr>
+        <tr>
+          <td><strong>Snowflake / cloud data warehouse</strong></td>
+          <td><span class="badge b-direct">Direct</span></td>
+          <td>Led customer segmentation across 5 campaigns in Snowflake; deployed forecasting models via Snowflake stored procedures; built medallion-architecture pipelines</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ 90-DAY PLAN ═══ -->
+<div class="wrap">
+  <div class="sec-title">My First 90 Days at Gap Inc</div>
+  <div class="plan-grid">
+    <div class="plan-card">
+      <div class="plan-tag">Days 1 &ndash; 30</div>
+      <h3>Listen, Learn, Audit</h3>
+      <ul>
+        <li>Deep-dive into existing marketing dashboards and attribution models across all four brands</li>
+        <li>Audit current measurement framework: what's being tracked, what's missing, what's misleading</li>
+        <li>Shadow marketing and finance stakeholders to understand how analytics feeds planning cycles</li>
+        <li>Map all data sources: ad platform APIs, Snowflake, CRM, loyalty program data</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-tag">Days 31 &ndash; 60</div>
+      <h3>Build and Contribute</h3>
+      <ul>
+        <li>Deliver first cross-brand full-funnel KPI dashboard with drill-through by brand and channel</li>
+        <li>Run first A/B test end-to-end: design, launch, measure, present lift results to stakeholders</li>
+        <li>Build customer segmentation model using available behavioral data from Snowflake</li>
+        <li>Identify one measurement gap that current attribution is missing and propose a solution</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-tag">Days 61 &ndash; 90</div>
+      <h3>Influence and Scale</h3>
+      <ul>
+        <li>Present first Marketing Mix Model output: channel ROAS decomposition with budget reallocation recommendation</li>
+        <li>Establish CLV and churn signal tracking as a standing report for the retention team</li>
+        <li>Build repeatable A/B testing framework documentation -- so the team runs experiments consistently</li>
+        <li>Identify one incremental revenue opportunity from analytics that hasn't been acted on yet</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="quote-block" style="margin-top:36px;">
+    "I don't show up to build dashboards. I show up to answer the question behind the dashboard --
+    which channels are driving genuine incremental revenue, which customers are worth fighting for,
+    and where the next dollar of Gap Inc's marketing budget creates the most value."
+    <div style="margin-top:12px; font-size:0.82rem; opacity:0.7; font-style:normal;">-- Raghav Patidar &bull; raghavpatidar997@gmail.com &bull; 913-218-6727</div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer">
+  <div class="footer-name">Raghav Patidar</div>
+  <div style="opacity:0.75; font-size:0.9rem;">Sr. Analyst, Advanced Analytics &bull; SQL &bull; Python &bull; Marketing Mix Modeling &bull; A/B Testing &bull; CLV &bull; Tableau &bull; Power BI</div>
+  <div class="footer-links">
+    <a href="mailto:raghavpatidar997@gmail.com">raghavpatidar997@gmail.com</a>
+    <a href="https://www.linkedin.com/in/raghav-patidar-604527165/" target="_blank">LinkedIn Profile</a>
+    <span style="opacity:0.55;">913-218-6727</span>
+  </div>
+  <div class="footer-sub">Prepared for: Gap Inc &mdash; Sr. Analyst, Advanced Analytics &bull; Post-Screening Follow-Up</div>
+</div>
+
+</body>
+</html>
